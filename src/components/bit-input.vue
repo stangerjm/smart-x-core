@@ -109,7 +109,7 @@
     @import "../../sass/components/bit/input/bit-input";
 
     .flatpickr-input {
-        background: url('/images/svg/sprites.svg#calendar-usage') 5px / 20px no-repeat;
+        background: url('/img/sprites.svg#calendar-usage') 5px / 20px no-repeat;
         padding-left: 30px;
     }
 </style>

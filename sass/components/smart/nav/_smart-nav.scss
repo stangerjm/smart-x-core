@@ -31,6 +31,7 @@
 
 .smart-nav--logo {
   margin: 10px;
+  @include icon-url("wspLogo", 125px, 60px);
 }
 
 .smart-nav--list {

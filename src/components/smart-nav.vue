@@ -2,9 +2,8 @@
     <nav class="smart-nav">
         <header class="smart-nav--header">
             <main class="smart-nav--headerMain">
-                <a href="/"><img src="../assets/wspLogo.png" class="smart-nav--logo" alt="Logo" width="100"
-                                 height="50"></a>
-                <h5>{{navTitle}}</h5>
+                <a href="/" class="smart-nav--logo"></a>
+                <h4>{{navTitle}}</h4>
             </main>
             <aside class="smart-nav--headerAside">
                 <bit-icon icon-type="user"></bit-icon>

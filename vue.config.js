@@ -29,7 +29,7 @@ module.exports = {
     chainWebpack: config => {
         const images = glob('./images/svg/*.svg');
         const svgEntry = config.entry('svg');
-        images.forEach(function(image) {
+        images.forEach((image) => {
            svgEntry.add(image);
         });
 
