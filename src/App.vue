@@ -6,7 +6,7 @@
         <product-list-one></product-list-one>
         <product-list-two></product-list-two>
         <smart-table default-context="/"
-                     :table-data="tableData"></smart-table>
+                     :table-data="getRegions"></smart-table>
     </div>
 </template>
 
@@ -16,6 +16,7 @@
   import SmartTable from './components/smart-table';
   import SmartNav from './components/smart-nav';
   import {config} from '../app.config.js';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'app',
@@ -27,16 +28,13 @@
     },
     data() {
       return {
-        tableData: [
-          {'id': 1, 'name': 'James'},
-          {'id': 1, 'name': 'Jenna'},
-          {'id': 1, 'name': 'Joel'},
-          {'id': 1, 'name': 'Jacob'},
-          {'id': 1, 'name': 'Joseph'},
-          {'id': 1, 'name': 'Sandi'},
-        ],
         nav: config.nav
       }
+    },
+    computed: {
+      ...mapGetters([
+        'getRegions'
+      ])
     }
   }
 </script>
