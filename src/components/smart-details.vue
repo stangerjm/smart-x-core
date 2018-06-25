@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { parseJsonDate } from '../helpers';
+  import { parseJsonDate } from '../global/mixins';
 
   /**
    * A component that renders a model as a list of details.

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import {fillCustomEvent} from '../polyfill';
+  import {fillCustomEvent} from '../polyfill/polyfill';
   fillCustomEvent();
   /**
    * A component that renders a responsive accordion that can contain any HTML content.

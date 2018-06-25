@@ -13,3 +13,9 @@ export function parseJsonDate(date) {
     return null;
   }
 }
+
+export function formatFromCamelCase(text) {
+    return text
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, (substr) => { return substr.toUpperCase(); });
+}

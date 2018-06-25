@@ -27,8 +27,8 @@
 </template>
 
 <script>
-  import { EventBus } from '../event-bus';
-  import { parseJsonDate } from '../helpers';
+  import { EventBus } from '../global/event-bus';
+  import { parseJsonDate } from '../global/mixins';
 
   /**
    * A component that renders a dynamic form based on a model.

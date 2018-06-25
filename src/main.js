@@ -3,7 +3,8 @@ import bitBtn from './components/bit-btn';
 import bitInput from './components/bit-input';
 import bitIcon from './components/bit-icon';
 import App from './App.vue';
-import { store } from './store/store';
+import store from './store';
+import { formatFromCamelCase } from './global/mixins';
 
 //Register base components globally
 Vue.component('bit-btn', bitBtn);
@@ -23,11 +24,7 @@ Vue.mixin({
 //Format camel case mixin
 Vue.mixin({
     methods: {
-        formatFromCamelCase: text => {
-            return text
-                .replace(/([A-Z])/g, ' $1')
-                .replace(/^./, (substr) => { return substr.toUpperCase(); });
-        }
+        formatFromCamelCase: formatFromCamelCase
     }
 });
 

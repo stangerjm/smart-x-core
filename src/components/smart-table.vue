@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import { parseJsonDate } from "../helpers";
+  import { parseJsonDate } from "../global/mixins";
 
   /**
    * A component that renders a responsive table from a data-set.

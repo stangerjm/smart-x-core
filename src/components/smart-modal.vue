@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import { EventBus } from '../event-bus';
+  import { EventBus } from '../global/event-bus';
   import Axios from 'axios';
 
   export default {

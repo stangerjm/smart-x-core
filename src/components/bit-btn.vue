@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { EventBus } from '../event-bus';
+  import { EventBus } from '../global/event-bus';
 
   /**
    * A dynamic button that can be used as an various types of buttons and links.
