@@ -1,0 +1,40 @@
+/// Sets layout and basic styles for a navigation
+.smart-nav {
+  border-bottom: 1px solid $theme-secondary--deep;
+  background-color: $theme-main;
+  position: relative;
+}
+
+.smart-nav--header {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: $break-med) {
+    flex-direction: column;
+  }
+}
+
+.smart-nav--headerMain {
+  flex: 2;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: $break-med) {
+    flex: none;
+    flex-direction: column;
+  }
+}
+
+.smart-nav--headerAside {
+  flex: 1;
+}
+
+.smart-nav--logo {
+  margin: 10px;
+}
+
+.smart-nav--list {
+  @media screen and (max-width: $break-med) {
+    margin: 10px;
+  }
+}

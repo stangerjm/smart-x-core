@@ -1,0 +1,118 @@
+////
+/// @group Variables
+////
+
+//////////////////////////
+// THEME COLORS
+//////////////////////////
+
+/// Theme White
+/// @type Color
+$theme-white: #f9f9f9;
+
+/// Main Theme Color
+/// @type Color
+$theme-main: #a1bae1;
+
+/// Main Color Dark
+/// @type Color
+$theme-main--dark: darken($theme-main, 55%);
+
+/// Main Color Deep
+/// @type Color
+$theme-main--deep: darken($theme-main, 30%);
+
+/// Main Color Light
+/// @type Color
+$theme-main--light: lighten($theme-main, 10%);
+
+/// Link Theme Color
+/// @type Color
+$theme-link: #0063ff;
+
+/// Secondary Theme Color
+$theme-secondary: #fea104;
+
+/// Secondary Color Light
+/// @type Color
+$theme-secondary--light: lighten($theme-secondary, 10%);
+
+/// Secondary Color Deep
+/// @type Color
+$theme-secondary--deep: saturate($theme-secondary, 20%);
+
+/// Black Theme Color
+/// @type Color
+$theme-black: #0d0908;
+
+/// Generic Theme Color
+/// @type Color
+$theme-generic: #d9d9d9;
+
+//////////////////////////
+// MEDIA BREAKS
+//////////////////////////
+
+/// Smallest break
+/// @type Number
+$break-xs: 480px;
+
+/// Small break
+/// @type Number
+$break-sml: 520px;
+
+/// Medium break
+/// @type Number
+$break-med: 768px;
+
+/// Large break
+/// @type Number
+$break-lrg: 1024px;
+
+//////////////////////////
+// Z-INDICES
+//////////////////////////
+
+/// Smallest Z-index level
+/// @type Number
+$level-0: -1;
+
+/// Z-index level 1
+/// @type Number
+$level-1: 10;
+
+/// Z-index level 2
+/// @type Number
+$level-2: 20;
+
+/// Z-index level 3
+/// @type Number
+$level-3: 30;
+
+/// Z-index level 4
+/// @type Number
+$level-4: 40;
+
+/// Z-index level 5
+/// @type Number
+$level-5: 50;
+
+/// Z-index level 6
+/// @type Number
+$level-6: 60;
+
+/// Z-index level 7
+/// @type Number
+$level-7: 70;
+
+/// Z-index level 8
+/// @type Number
+$level-8: 80;
+
+/// Z-index level 9
+/// @type Number
+$level-9: 90;
+
+/// Top Z-index level
+/// @type Number
+$level-100: 999;

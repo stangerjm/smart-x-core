@@ -1,0 +1,25 @@
+.block-multiSelect {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: $break-med) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &-stacked {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.block-multiSelect--label {
+  margin: 5px 10px;
+}
+
+.block-multiSelect--select {
+  margin: 5px 10px;
+  padding: 2px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px $theme-generic;
+}

@@ -1,0 +1,24 @@
+/// Styles a user / profile icon.
+.bit-icon-user {
+  &:before {
+    @include icon;
+    @include icon-url('user', 20px, 20px);
+  }
+}
+
+/// Icon that is added to a sortable table column to indicate the
+/// column is sortable.
+.bit-icon-sort {
+  display: inline-block;
+  &:before {
+    @include icon;
+    @include icon-url('sort', 20px, 20px);
+  }
+}
+
+.bit-icon-error {
+  &:before {
+    @include icon('!');
+    color: red;
+  }
+}
