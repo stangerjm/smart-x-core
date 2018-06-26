@@ -1,6 +1,6 @@
 <template>
-    <table class="smart-table">
-        <tr class="smart-table--row smart-table--head" v-if="tableData.length !== 0">
+    <table class="smart-table" v-if="tableData.length !== 0">
+        <tr class="smart-table--row smart-table--head">
             <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in getTableKeys" v-if="isDisplayHeading(heading)">
                 <template v-if="!unsearchableHeadings.includes(heading)">
                     <a class="smart-table--link" :href="'/' + defaultContext + '?sortOrder=' + heading">{{formatFromCamelCase(heading)}}</a>

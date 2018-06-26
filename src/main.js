@@ -2,6 +2,7 @@ import Vue from 'vue';
 import bitBtn from './components/bit-btn';
 import bitInput from './components/bit-input';
 import bitIcon from './components/bit-icon';
+import bitLoading from './components/bit-loading';
 import App from './App.vue';
 import store from './store';
 import { formatFromCamelCase } from './global/mixins';
@@ -10,6 +11,7 @@ import { formatFromCamelCase } from './global/mixins';
 Vue.component('bit-btn', bitBtn);
 Vue.component('bit-input', bitInput);
 Vue.component('bit-icon', bitIcon);
+Vue.component('bit-loading', bitLoading);
 
 //Apply base styles to all components
 require('../sass/base/_base.scss');

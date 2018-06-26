@@ -8,12 +8,12 @@ export function getData() {
     setTimeout(() => {
       resolve([
         {'id': 1, 'name': 'James'},
-        {'id': 1, 'name': 'Jenna'},
-        {'id': 1, 'name': 'Joel'},
-        {'id': 1, 'name': 'Jacob'},
-        {'id': 1, 'name': 'Joseph'},
-        {'id': 1, 'name': 'Sandi'}
+        {'id': 2, 'name': 'Jenna'},
+        {'id': 3, 'name': 'Joel'},
+        {'id': 4, 'name': 'Jacob'},
+        {'id': 5, 'name': 'Joseph'},
+        {'id': 6, 'name': 'Sandi'}
       ]);
-    }, 1000);
+    }, 2000);
   });
 }
