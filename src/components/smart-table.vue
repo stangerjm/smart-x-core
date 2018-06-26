@@ -1,7 +1,7 @@
 <template>
     <table class="smart-table">
-        <tr class="smart-table--row smart-table--head">
-            <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in Object.keys(tableData[0])" v-if="isDisplayHeading(heading)">
+        <tr class="smart-table--row smart-table--head" v-if="tableData.length !== 0">
+            <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in getTableKeys" v-if="isDisplayHeading(heading)">
                 <template v-if="!unsearchableHeadings.includes(heading)">
                     <a class="smart-table--link" :href="'/' + defaultContext + '?sortOrder=' + heading">{{formatFromCamelCase(heading)}}</a>
                     <bit-icon icon-type="sort"></bit-icon>
@@ -124,6 +124,13 @@
       openModalDetails: {
         type: Boolean,
         default: false
+      }
+    },
+    computed: {
+      getTableKeys() {
+        if (this.tableData.length !== 0) {
+          return Object.keys(this.tableData[0])
+        }
       }
     },
     methods: {

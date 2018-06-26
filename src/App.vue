@@ -3,8 +3,6 @@
         <smart-nav :nav-items="nav"
                    nav-title="Admin"
                    usr="JMST225"></smart-nav>
-        <product-list-one></product-list-one>
-        <product-list-two></product-list-two>
         <smart-table default-context="/"
                      :table-data="getRegions"></smart-table>
     </div>
@@ -15,7 +13,7 @@
   import ProductListTwo from './components/ProductListTwo';
   import SmartTable from './components/smart-table';
   import SmartNav from './components/smart-nav';
-  import {config} from '../app.config.js';
+  import { config } from '../app.config.js';
   import { mapGetters } from 'vuex';
 
   export default {
@@ -35,6 +33,9 @@
       ...mapGetters([
         'getRegions'
       ])
+    },
+    created() {
+      this.$store.dispatch('fetchRegionData');
     }
   }
 </script>

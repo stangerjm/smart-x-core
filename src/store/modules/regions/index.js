@@ -4,14 +4,7 @@ import * as mutations from './lib/mutations';
 
 const regions = {
   state: {
-    regions: [
-      {'id': 1, 'name': 'James'},
-      {'id': 1, 'name': 'Jenna'},
-      {'id': 1, 'name': 'Joel'},
-      {'id': 1, 'name': 'Jacob'},
-      {'id': 1, 'name': 'Joseph'},
-      {'id': 1, 'name': 'Sandi'}
-    ]
+    regions: []
   },
   getters,
   actions,
