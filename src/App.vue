@@ -3,9 +3,9 @@
         <smart-nav :nav-items="nav"
                    nav-title="Admin"
                    usr="JMST225"></smart-nav>
+        <smart-search action="/" form-title="Test" method="get"></smart-search>
         <smart-table default-context="/"
                      :table-data="getRegions"></smart-table>
-        <smart-search action="/" form-title="Test" method="get"></smart-search>
     </div>
 </template>
 
