@@ -5,6 +5,7 @@
                    usr="JMST225"></smart-nav>
         <smart-table default-context="/"
                      :table-data="getRegions"></smart-table>
+        <smart-search action="/" form-title="Test" method="get"></smart-search>
     </div>
 </template>
 
@@ -15,6 +16,7 @@
   import SmartNav from './components/smart-nav';
   import { config } from '../app.config.js';
   import { mapGetters } from 'vuex';
+  import SmartSearch from './components/smart-search';
 
   export default {
     name: 'app',
@@ -22,7 +24,8 @@
       ProductListOne,
       ProductListTwo,
       SmartTable,
-      SmartNav
+      SmartNav,
+      SmartSearch
     },
     data() {
       return {
