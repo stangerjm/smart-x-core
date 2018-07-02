@@ -6,7 +6,7 @@
         <!--<smart-search action="/" form-title="Test" method="get"></smart-search>-->
         <!--<smart-table default-context="/"-->
                      <!--:table-data="getRegions"></smart-table>-->
-        <Test style="margin: 5px"></Test>
+        <smart-tabs style="margin: 5px"></smart-tabs>
     </div>
 </template>
 
@@ -18,7 +18,7 @@
   import { config } from '../app.config.js';
   import { mapGetters } from 'vuex';
   import SmartSearch from './components/smart-search';
-  import Test from './components/Test';
+  import SmartTabs from './components/smart-tabs-PROTO';
 
   export default {
     name: 'app',
@@ -28,7 +28,7 @@
       SmartTable,
       SmartNav,
       SmartSearch,
-      Test
+      SmartTabs
     },
     data() {
       return {
