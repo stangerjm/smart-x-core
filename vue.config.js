@@ -5,18 +5,6 @@ const path = require('path');
 
 module.exports = {
     configureWebpack: {
-        module: {
-            rules: [
-                {
-                    test: /\.svg$/,
-                    loader: 'svg-sprite-loader',
-                    options: {
-                        extract: true,
-                        spriteFilename: 'img/sprites.svg'
-                    }
-                }
-            ]
-        },
         plugins: [
             new SpriteLoaderPlugin(),
             new BundleAnalyzerPlugin({
@@ -27,18 +15,6 @@ module.exports = {
         ]
     },
     chainWebpack: config => {
-        const images = glob('./images/svg/*.svg');
-        const svgEntry = config.entry('svg');
-        images.forEach((image) => {
-           svgEntry.add(image);
-        });
-
-        svgEntry.end();
-
-        //delete existing svg rule
-        config.module.rules.delete('svg');
-
-
         //use vue compiler
         config.resolve.alias.set('vue$', 'vue/dist/vue.esm.js');
     }

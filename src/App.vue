@@ -3,9 +3,10 @@
         <smart-nav :nav-items="nav"
                    nav-title="Admin"
                    usr="JMST225"></smart-nav>
-        <smart-search action="/" form-title="Test" method="get"></smart-search>
-        <smart-table default-context="/"
-                     :table-data="getRegions"></smart-table>
+        <!--<smart-search action="/" form-title="Test" method="get"></smart-search>-->
+        <!--<smart-table default-context="/"-->
+                     <!--:table-data="getRegions"></smart-table>-->
+        <Test style="margin: 5px"></Test>
     </div>
 </template>
 
@@ -17,6 +18,7 @@
   import { config } from '../app.config.js';
   import { mapGetters } from 'vuex';
   import SmartSearch from './components/smart-search';
+  import Test from './components/Test';
 
   export default {
     name: 'app',
@@ -25,7 +27,8 @@
       ProductListTwo,
       SmartTable,
       SmartNav,
-      SmartSearch
+      SmartSearch,
+      Test
     },
     data() {
       return {
