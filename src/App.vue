@@ -3,7 +3,8 @@
         <smart-nav :nav-items="nav"
                    nav-title="Admin"
                    usr="JMST225"></smart-nav>
-        <!--<smart-search action="/" form-title="Test" method="get"></smart-search>-->
+        <!--<smart-details :detail-data="{ group: 'Awesomeness', members: 8 }"></smart-details>-->
+        <smart-search :is-expanded="false" action="/" form-title="IIP" method="get"></smart-search>
         <!--<smart-table default-context="/"-->
                      <!--:table-data="getRegions"></smart-table>-->
         <smart-tabs style="margin: 5px"></smart-tabs>
@@ -19,6 +20,7 @@
   import { mapGetters } from 'vuex';
   import SmartSearch from './components/smart-search';
   import SmartTabs from './components/smart-tabs-PROTO';
+  import SmartDetails from './components/smart-details';
 
   export default {
     name: 'app',
@@ -28,7 +30,8 @@
       SmartTable,
       SmartNav,
       SmartSearch,
-      SmartTabs
+      SmartTabs,
+      SmartDetails
     },
     data() {
       return {

@@ -1,15 +1,15 @@
 <template>
     <form :action="action" :method="method" class="smart-search">
-        <div class="smart-search--heading">
+        <header class="smart-search--heading">
             <h2 class="smart-search--title">{{formTitle}}</h2>
             <bit-btn btn-style="add" :is-link="true" :href="action + '/Create'">Add</bit-btn>
             <bit-btn class="smart-search--action" btn-style="plainSearch" v-show="isHidden"
                      @click.native="toggle()"></bit-btn>
             <bit-btn class="smart-search--action" btn-style="plainExit" v-show="!isHidden"
                      @click.native="toggle()"></bit-btn>
-        </div>
-        <div class="smart-search--fieldContainer">
-            <div :class="['smart-search--toggleContainer', isHidden ? 'is-hidden' : '']">
+        </header>
+        <div :class="['smart-search--fieldContainer', isHidden ? 'is-hidden' : '']">
+            <div class="smart-search--toggleContainer">
                 <bit-input
                         class="smart-search--field"
                         :disabled="isHidden"
@@ -43,10 +43,17 @@
         /**
          * Flag indicating that the search is hidden.
          */
-        isHidden: true
+        isHidden: !this.isExpanded
       }
     },
     props: {
+      /**
+       * Indicates if the search should be expanded
+       */
+      isExpanded: {
+        type: Boolean,
+        default: false
+      },
       /**
        * Corresponds to the native HTML form attribute "action"
        */
@@ -103,6 +110,11 @@
      */
     created: function () {
       window.addEventListener('resize', this.resize);
+    },
+    mounted: function() {
+      if (this.isExpanded) {
+        this.resize();
+      }
     }
   }
 </script>
