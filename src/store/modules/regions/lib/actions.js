@@ -14,6 +14,6 @@ export function getData() {
         {'id': 5, 'name': 'Joseph'},
         {'id': 6, 'name': 'Sandi'}
       ]);
-    }, 2000);
+    }, 0);
   });
 }

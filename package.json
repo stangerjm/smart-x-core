@@ -19,6 +19,7 @@
     "@vue/cli-plugin-babel": "^3.0.0-rc.3",
     "@vue/cli-plugin-eslint": "^3.0.0-rc.3",
     "@vue/cli-service": "^3.0.0-rc.3",
+    "autoprefixer": "^8.6.5",
     "clean-webpack-plugin": "^0.1.19",
     "glob": "^7.1.2",
     "node-sass": "^4.9.0",

@@ -81,6 +81,10 @@
   }
 }
 
+.smart-table--textCell {
+  text-align: left;
+}
+
 /// Class indicating that a part of the record is key information
 /// and should be displayed even when the record is expanded.
 /// @example markup - HTML Use

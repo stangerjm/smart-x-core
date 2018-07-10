@@ -7,8 +7,8 @@
         </div>
         <ul :class="[isExpanded ? 'nav-show' : '', 'block-navList--list']">
             <li class="block-navList--item" v-for="item in listItems">
-                <a :href="item.linkPath" class="bit-link">{{item.itemTitle}}</a>
-                <bit-drop-list v-if="item.inlineItems" :drop-items="item.inlineItems" v-on:mounted="mountDropList"></bit-drop-list>
+                <a :href="item.linkPath" :class="['bit-link', hasSubitems(item) ? 'block-navList--sublistHeading' : '']">{{item.itemTitle}}</a>
+                <bit-drop-list v-if="hasSubitems(item)" :drop-items="item.inlineItems"></bit-drop-list>
             </li>
         </ul>
     </div>
@@ -40,15 +40,8 @@
       }
     },
     methods: {
-      mountDropList: function() {
-        let inlineLists = this.$el.querySelectorAll(".bit-dropList");
-        if (inlineLists.length !== 0) {
-          for (let inlineList of inlineLists) {
-            if (inlineList.hasChildNodes()) {
-              inlineList.parentNode.firstChild.classList.add("block-navList--sublistHeading");
-            }
-          }
-        }
+      hasSubitems: function(item) {
+        return item.inlineItems;
       }
     }
   }

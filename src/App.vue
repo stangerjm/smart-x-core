@@ -1,19 +1,26 @@
 <template>
-    <div id="app">
-        <smart-nav :nav-items="nav"
+    <div id="app" class="layout-grid layout-main">
+        <smart-nav class="layout-main--nav"
+                   :nav-items="nav"
                    nav-title="Admin"
-                   usr="JMST225"></smart-nav>
-        <!--<smart-details :detail-data="{ group: 'Awesomeness', members: 8 }"></smart-details>-->
-        <smart-search :is-expanded="false" action="/" form-title="IIP" method="get"></smart-search>
-        <!--<smart-table default-context="/"-->
-                     <!--:table-data="getRegions"></smart-table>-->
-        <smart-tabs style="margin: 5px"></smart-tabs>
+                   usr="JMST225">
+        </smart-nav>
+        <smart-search class="layout-main--search"
+                      :is-expanded="false"
+                      action="/"
+                      form-title="IIP"
+                      method="get">
+        </smart-search>
+        <main class="layout-main--content">
+            <smart-table default-context="/"
+                         :table-data="getRegions">
+            </smart-table>
+        </main>
+        <smart-footer class="layout-main--footer"></smart-footer>
     </div>
 </template>
 
 <script>
-  import ProductListOne from './components/ProductListOne';
-  import ProductListTwo from './components/ProductListTwo';
   import SmartTable from './components/smart-table';
   import SmartNav from './components/smart-nav';
   import { config } from '../app.config.js';
@@ -21,21 +28,35 @@
   import SmartSearch from './components/smart-search';
   import SmartTabs from './components/smart-tabs-PROTO';
   import SmartDetails from './components/smart-details';
+  import SmartFooter from './components/smart-footer';
 
   export default {
     name: 'app',
     components: {
-      ProductListOne,
-      ProductListTwo,
       SmartTable,
       SmartNav,
       SmartSearch,
       SmartTabs,
-      SmartDetails
+      SmartDetails,
+      SmartFooter
     },
     data() {
       return {
-        nav: config.nav
+        nav: config.nav,
+        dummyData:
+          {
+            group: 'Awesomeness',
+            members: 8,
+            test: true,
+            person1: 'James',
+            person2: 'Jenna',
+            person3: 'Joel',
+            person4: 'Jacquie',
+            person5: 'Joseph',
+            person6: 'Jacob',
+            person7: 'Jessica',
+            person8: 'Billy',
+          }
       }
     },
     computed: {
@@ -49,12 +70,7 @@
   }
 </script>
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-
-        font-family: Ubuntu, sans-serif;
-        color: #555;
-    }
+<style lang="scss">
+    @import "../sass/layout/grid/grid";
+    @import "../sass/base/base";
 </style>

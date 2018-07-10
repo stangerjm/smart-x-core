@@ -1,4 +1,7 @@
-.smart-tabs {}
+.smart-tabs {
+  display: flex;
+  flex-direction: column;
+}
 
 .smart-tabs--nav {
   display: flex;
@@ -54,6 +57,8 @@
 }
 
 .smart-tabs--content {
+  flex: 1;
+
   padding: 20px;
   background: $theme-generic;
 }

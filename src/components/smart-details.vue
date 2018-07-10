@@ -1,5 +1,5 @@
 <template>
-    <div class="smart-details">
+    <div class="smart-details-outlined">
         <header class="smart-details--header">
             <h3 class="smart-details--heading">{{title ? title : 'Details'}}</h3>
         </header>
