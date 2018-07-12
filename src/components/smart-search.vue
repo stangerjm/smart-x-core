@@ -3,10 +3,10 @@
         <header class="smart-search--heading">
             <h2 class="smart-search--title">{{formTitle}}</h2>
             <bit-btn btn-style="add" :is-link="true" :href="action + '/Create'">Add</bit-btn>
-            <bit-btn class="smart-search--action" btn-style="plainSearch" v-show="isHidden"
-                     @click.native="toggle()"></bit-btn>
-            <bit-btn class="smart-search--action" btn-style="plainExit" v-show="!isHidden"
-                     @click.native="toggle()"></bit-btn>
+            <bit-icon class="smart-search--action" icon-type="search" v-show="isHidden"
+                     @click.native="toggle()"></bit-icon>
+            <bit-icon class="smart-search--action" icon-type="exit" v-show="!isHidden"
+                     @click.native="toggle()"></bit-icon>
         </header>
         <div :class="['smart-search--fieldContainer', isHidden ? 'is-hidden' : '']">
             <div class="smart-search--toggleContainer">

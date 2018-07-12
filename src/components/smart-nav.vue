@@ -3,10 +3,9 @@
         <header class="smart-nav--header">
             <main class="smart-nav--headerMain">
                 <a href="/" class="smart-nav--logo"></a>
-                <h4>{{navTitle}}</h4>
+                <h4 class="smart-nav--title">{{navTitle}}</h4>
             </main>
             <aside class="smart-nav--headerAside">
-                <bit-icon icon-type="user"></bit-icon>
                 <span class="smart-nav--userTime">{{usr}} - {{currentDateTime}}</span>
             </aside>
         </header>

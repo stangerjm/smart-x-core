@@ -58,8 +58,6 @@
           case 'add':
           case 'exit':
           case 'expand':
-          case 'plainExit':
-          case 'plainSearch':
           case 'reset':
           case 'search':
             return 'bit-btn-' + type;

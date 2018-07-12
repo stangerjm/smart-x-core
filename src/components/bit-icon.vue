@@ -36,7 +36,7 @@
        * @param {string} type - icon style
        */
       getClass: function (type) {
-        let allowedTypes = ['user', 'sort', 'delete', 'details', 'edit'];
+        let allowedTypes = ['user', 'sort', 'delete', 'details', 'edit', 'search', 'exit'];
         if (!type) {
           return 'bit-icon-error';
         } else if (allowedTypes.includes(type)) {

@@ -21,6 +21,8 @@
 }
 
 .smart-search--title {
+  margin: 10px;
+
   @media screen and (max-width: $break-med) {
     /* Force other items to next row */
     width: 100%;
@@ -29,7 +31,7 @@
 
 .smart-search--action {
   /* Align action button to the right */
-  margin-left: auto;
+  margin: 10px 10px 10px auto;
 }
 
 .smart-search--fieldContainer {
