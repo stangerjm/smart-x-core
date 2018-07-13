@@ -5,40 +5,36 @@
                    nav-title="Admin"
                    usr="JMST225">
         </smart-nav>
-        <smart-search class="layout-main--search"
-                      :is-expanded="false"
-                      action="/"
-                      form-title="IIP"
-                      method="get">
-        </smart-search>
+        <!--<nav class="layout-main&#45;&#45;nav">-->
+            <!--<router-link to="/">Home</router-link>-->
+            <!--<router-link :to="{name: 'People'}">People</router-link>-->
+        <!--</nav>-->
         <main class="layout-main--content">
-            <smart-table default-context="/"
-                         :table-data="getRegions">
-            </smart-table>
+            <router-view></router-view>
+            <!--<smart-table :table-data="regions" default-context="/"></smart-table>-->
         </main>
         <smart-footer class="layout-main--footer"></smart-footer>
     </div>
 </template>
 
 <script>
-  import SmartTable from './components/smart-table';
   import SmartNav from './components/smart-nav';
   import { config } from '../app.config.js';
-  import { mapGetters } from 'vuex';
   import SmartSearch from './components/smart-search';
   import SmartTabs from './components/smart-tabs-PROTO';
   import SmartDetails from './components/smart-details';
   import SmartFooter from './components/smart-footer';
+  import SmartTable from './components/smart-table';
 
   export default {
     name: 'app',
     components: {
-      SmartTable,
       SmartNav,
       SmartSearch,
       SmartTabs,
       SmartDetails,
-      SmartFooter
+      SmartFooter,
+      SmartTable
     },
     data() {
       return {
@@ -56,16 +52,26 @@
             person6: 'Jacob',
             person7: 'Jessica',
             person8: 'Billy',
-          }
+          },
+          regions:
+            [
+              { id: 1, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 2, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 3, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 4, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 5, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 6, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 7, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 8, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 9, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 10, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 11, name: 'EASTERN WA', code: 'E-WA' },
+              { id: 12, name: 'EASTERN WA', code: 'E-WA' },
+            ]
       }
     },
-    computed: {
-      ...mapGetters([
-        'getRegions'
-      ])
-    },
     created() {
-      this.$store.dispatch('fetchRegionData');
+      this.$store.dispatch('fetchPeopleData');
     }
   }
 </script>
