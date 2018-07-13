@@ -1,8 +1,8 @@
 export const config = {
     nav:
       [
-        { 'itemTitle': 'Home', 'linkPath': '#' },
-        { 'itemTitle': 'WSP', 'linkPath': '#' },
+        { 'itemTitle': 'Home', 'linkPath': '/' },
+        { 'itemTitle': 'People', 'linkPath': '/people' },
         { 'itemTitle': 'More', 'linkPath': '#',
           'inlineItems':
             [

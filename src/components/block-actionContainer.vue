@@ -8,10 +8,7 @@
                 <!--</bit-btn>-->
             </template>
             <template v-else>
-                <bit-icon icon-type="details"
-                          :is-link="true"
-                          :href="getActionPath('Details', detailsContext)">
-                </bit-icon>
+                <router-link class="bit-icon-details" :to="getActionPath('Details', detailsContext)"></router-link>
             </template>
         </template>
 
@@ -23,10 +20,7 @@
                 <!--</bit-btn>-->
             </template>
             <template v-else>
-                <bit-icon icon-type="edit"
-                          :is-link="true"
-                          :href="getActionPath('Edit', editContext)">
-                </bit-icon>
+                <router-link class="bit-icon-edit" :to="getActionPath('Edit', editContext)"></router-link>
             </template>
         </template>
 
@@ -38,10 +32,7 @@
                 <!--</bit-btn>-->
             </template>
             <template v-else>
-                <bit-icon icon-type="delete"
-                          :is-link="true"
-                          :href="getActionPath('Delete', deleteContext)">
-                </bit-icon>
+                <router-link class="bit-icon-delete" :to="getActionPath('Delete', deleteContext)"></router-link>
             </template>
         </template>
     </div>
@@ -69,7 +60,6 @@
        * Id of the corresponding item.
        */
       itemId: {
-        type: Number,
         required: true
       },
       /**
@@ -142,4 +132,5 @@
 <style scoped lang="scss">
     @import "../../sass/global/mixins";
     @import "../../sass/components/block/actionContainer/block-actionContainer";
+    @import "../../sass/components/bit/icon/bit-icon";
 </style>

@@ -13,7 +13,8 @@
     "axios": "^0.18.0",
     "vue": "^2.5.16",
     "vue-flatpickr-component": "^7.0.4",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persist": "^1.4.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.3",
@@ -25,6 +26,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3",
     "svg-sprite-loader": "^3.8.0",
+    "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.12.0",
     "webpack-bundle-analyzer": "^2.13.1"
@@ -50,7 +52,7 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {}
+
     }
   },
   "browserslist": [

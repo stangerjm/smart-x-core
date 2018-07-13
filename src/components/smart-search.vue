@@ -1,8 +1,8 @@
 <template>
-    <form :action="action" :method="method" class="smart-search">
+    <form class="smart-search">
         <header class="smart-search--heading">
             <h2 class="smart-search--title">{{formTitle}}</h2>
-            <bit-btn btn-style="add" :is-link="true" :href="action + '/Create'">Add</bit-btn>
+            <router-link class="bit-btn bit-btn-add" :to="{ name: routeName }">Add</router-link>
             <bit-icon class="smart-search--action" icon-type="search" v-show="isHidden"
                      @click.native="toggle()"></bit-icon>
             <bit-icon class="smart-search--action" icon-type="exit" v-show="!isHidden"
@@ -55,9 +55,9 @@
         default: false
       },
       /**
-       * Corresponds to the native HTML form attribute "action"
+       * Name of the route to navigate to when add button is clicked.
        */
-      action: {
+      routeName: {
         type: String,
         required: true
       },
@@ -123,4 +123,5 @@
     @import "../../sass/global/mixins";
     @import "../../sass/global/variables";
     @import "../../sass/components/smart/search/smart-search";
+    @import "../../sass/components/bit/btn/bit-btn";
 </style>

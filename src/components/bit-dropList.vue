@@ -1,7 +1,7 @@
 <template>
     <ul class="bit-dropList">
         <li class="bit-dropList--item" v-for="item in dropItems">
-            <a :href="item.linkPath" class="bit-link">{{item.itemTitle}}</a>
+            <router-link :to="item.linkPath" class="bit-link">{{item.itemTitle}}</router-link>
         </li>
     </ul>
 </template>

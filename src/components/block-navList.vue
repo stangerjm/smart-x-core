@@ -7,7 +7,7 @@
         </div>
         <ul :class="[isExpanded ? 'nav-show' : '', 'block-navList--list']">
             <li class="block-navList--item" v-for="item in listItems">
-                <a :href="item.linkPath" :class="['bit-link', hasSubitems(item) ? 'block-navList--sublistHeading' : '']">{{item.itemTitle}}</a>
+                <router-link :to="item.linkPath" :class="['bit-link', hasSubitems(item) ? 'block-navList--sublistHeading' : '']">{{item.itemTitle}}</router-link>
                 <bit-drop-list v-if="hasSubitems(item)" :drop-items="item.inlineItems"></bit-drop-list>
             </li>
         </ul>
