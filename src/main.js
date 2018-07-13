@@ -5,6 +5,7 @@ import bitIcon from './components/bit-icon';
 import bitLoading from './components/bit-loading';
 import App from './App.vue';
 import store from './store';
+import Router from './router';
 import { formatFromCamelCase } from './global/mixins';
 
 //Register base components globally
@@ -34,6 +35,7 @@ Vue.config.productionTip = false;
 
 new Vue({
     store: store,
+    router: Router,
     components: {
         //Load components asynchronously so that we only load the components that we need when we need them.
         bitDropList: () => import('./components/bit-dropList'),

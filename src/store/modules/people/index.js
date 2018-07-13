@@ -2,13 +2,13 @@ import * as getters from './lib/getters';
 import * as actions from './lib/actions';
 import * as mutations from './lib/mutations';
 
-const regions = {
+const people = {
   state: {
-    regions: []
+    people: []
   },
   getters,
   actions,
   mutations
 };
 
-export default regions;
+export default people;
