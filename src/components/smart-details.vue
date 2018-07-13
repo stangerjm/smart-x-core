@@ -5,7 +5,7 @@
         </header>
         <div class="smart-details--listContainer">
             <dl v-for="column in detailColumns" class="smart-details--list" :style="{width: 100 / detailColumns.length + '%'}">
-                <div v-for="(detail, key) in column" class="smart-details--detail">
+                <div v-for="(detail, key) in column" v-if="!key.startsWith('_')" class="smart-details--detail">
                     <dt class="smart-details--detailKey">{{formatFromCamelCase(key)}}</dt>
                     <dd class="smart-details--detailValue" v-if="typeof(detail) !== typeof(true)">{{getValue(detail)}}</dd>
                     <dd class="smart-details--detailValue" v-else><input type="checkbox" :checked="detail" disabled></dd>

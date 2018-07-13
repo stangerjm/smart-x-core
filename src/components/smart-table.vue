@@ -159,7 +159,7 @@
        * @returns {boolean}
        */
       isDisplayHeading: function (heading) {
-        if (this.ignoreFields.includes(heading)) {
+        if (this.ignoreFields.includes(heading) || heading[0] === '_') {
           return false;
         }
 
@@ -174,7 +174,7 @@
       },
       getItemId: function (item) {
         let keys = Object.keys(item);
-        let idKey = keys.find(id => id.toLowerCase() === 'id');
+        let idKey = keys.find(id => id.toLowerCase() === 'id' || id.toLowerCase() === '_id');
         return item[idKey];
       },
       getValue: function(detail) {
