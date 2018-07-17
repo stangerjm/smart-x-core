@@ -11,18 +11,10 @@
     components: {
       SmartDetails
     },
-    data() {
-      return {
-        person: null
+    computed: {
+      person() {
+        return this.$store.getters.getPersonSingle(this.$route.params.id);
       }
-    },
-    methods: {
-      async getPerson() {
-        this.person = await this.$store.dispatch('fetchPerson', this.$route.params.id);
-      }
-    },
-    created() {
-      this.getPerson();
     }
   }
 </script>

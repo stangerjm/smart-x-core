@@ -26,13 +26,14 @@
       }
     },
     methods: {
-      submit: function() {
+      submit: async function(formData) {
         let newPerson = {
-
+          name: formData.name.value,
+          age: formData.age.value
         };
 
-        // await this.$store.dispatch('addPerson', newPerson);
-        // this.$router.push('/people');
+        await this.$store.dispatch('addPerson', newPerson);
+        this.$router.push('/people');
       }
     }
   }

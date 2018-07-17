@@ -1,19 +1,21 @@
 <template>
-    <div>
+    <div v-if="person">
         <h1>Delete this record?</h1>
-        <div>
-            <div v-for="personDetail in person">{{personDetail}}</div>
-        </div>
+        <smart-details :detail-data="person"></smart-details>
         <button type="button" @click="deletePerson">Delete</button>
     </div>
 </template>
 
 <script>
+  import SmartDetails from '../components/smart-details';
   export default {
     name: "person-delete",
+    components: {
+      SmartDetails
+    },
     computed: {
       person() {
-        return this.$store.getters.getPerson(this.$route.params.id)
+        return this.$store.getters.getPersonSingle(this.$route.params.id);
       }
     },
     methods: {

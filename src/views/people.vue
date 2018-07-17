@@ -5,9 +5,11 @@
                       form-title="People"
                       method="get">
         </smart-search>
-        <smart-table default-context="people"
+        <smart-table v-if="getPeople.length > 0"
+                     default-context="people"
                      :table-data="getPeople">
         </smart-table>
+        <p v-else>Nothing to see here!</p>
     </div>
 </template>
 

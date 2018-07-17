@@ -2,10 +2,6 @@ export const getPeople = state => {
   return state.people;
 };
 
-export const getPerson = state => {
-  return id => {
-    return state.people.find(person => {
-      return person._id === id;
-    });
-  }
+export const getPersonSingle = (state) => (id) => {
+  return state.people.find(person => person._id === id);
 };

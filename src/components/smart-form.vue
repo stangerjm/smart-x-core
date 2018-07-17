@@ -1,5 +1,5 @@
 <template>
-    <form :action="action" :method="formMethod" class="smart-form">
+    <form class="smart-form">
         <header class="smart-form--titleSection" v-if="formTitle">
             <h3 class="smart-form--title">{{formTitle}}</h3>
         </header>
@@ -9,19 +9,18 @@
                 <input v-if="key.toLowerCase() === 'id'"
                        :name="key"
                        type="hidden"
-                       v-model="dataCopy[key]">
+                       v-model="item.value">
                 <bit-input class="smart-form--field"
-                        v-else-if="isValidField(item, key)"
-                        :stack-elements="true"
-                        :input-name="key"
-                        :input-type="getType(item)"
-                        :label-text="formatFromCamelCase(key)"
-                        :readonly="readonlyInputs.includes(key)"
-                        :input-model="determineIsEmpty(dataCopy[key]) ? dataCopy[key] : null"
-                        :date-format="getType(item) === 'date' ? dateFormat : null">
+                           v-else-if="isValidField(item, key)"
+                           :stack-elements="true"
+                           :input-name="key"
+                           :input-type="getType(item)"
+                           :label-text="formatFromCamelCase(key)"
+                           :readonly="readonlyInputs.includes(key)"
+                           v-model="item.value">
                 </bit-input>
             </template>
-            <bit-btn type="submit">Submit</bit-btn>
+            <bit-btn @click.native="submit">Submit</bit-btn>
         </section>
     </form>
 </template>
@@ -42,7 +41,6 @@
         /**
          * Will contain a non-reactive copy of the data when the component is created.
          */
-        dataCopy: {},
         masterData: this.formData,
         action: this.formAction
       }
@@ -54,6 +52,10 @@
       formAction: {
         type: String,
         default: '/'
+      },
+      onSubmit: {
+        type: Function,
+        required: true
       },
       /**
        * The model that the form should use as a template.
@@ -106,15 +108,17 @@
        * @param value
        * @returns {string}
        */
-      getType: function(value) {
-        if (typeof(value) === typeof(true)) {
-          return 'checkbox';
-        } else if (value !== null && value !== '' && !isNaN(value)) {
-          return 'number';
-        } else if (Date.parse(value)) {
-          return 'date'
-        } else {
-          return 'text';
+      getType: function(item) {
+        let type = item.type.name;
+        switch(type) {
+          case 'Boolean':
+            return 'checkbox';
+          case 'Number':
+            return 'number';
+          case 'Date':
+            return 'date';
+          default:
+            return 'text';
         }
       },
       determineIsEmpty: function (value) {
@@ -131,7 +135,7 @@
         for (let requiredInput of this.requiredInputs) {
           let domInput;
 
-          if (this.getType(this.dataCopy[requiredInput]) === 'date') {
+          if (this.getType(this.masterData[requiredInput]) === 'date') {
             domInput = this.$el.querySelector('.el-date-editor > input[name=' + requiredInput + ']');
           } else {
             domInput = this.$el.querySelector('input[name=' + requiredInput + ']');
@@ -151,8 +155,9 @@
             model[prop] = jsonDate.toString();
           }
         }
-
-        this.dataCopy = Object.assign({}, model);
+      },
+      submit() {
+        this.onSubmit(this.masterData);
       }
     },
     /**

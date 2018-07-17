@@ -1,41 +1,49 @@
 <template>
     <div>
-        <h1>Edit</h1>
-        <form action="/people">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" v-model="name">
-            <label for="age">Age</label>
-            <input type="number" id="age" name="age" v-model="age">
-
-            <button type="button" @click="submit">Submit</button>
-        </form>
+        <smart-form form-title="Edit" :form-data="formData" :on-submit="submit"></smart-form>
     </div>
 </template>
 
 <script>
+  import SmartForm from '../components/smart-form';
   export default {
     name: "person-edit",
+    components: {
+      SmartForm
+    },
     data() {
       return {
-        name: '',
-        age: ''
+        formData: {
+          name: {
+            type: String,
+            value: ''
+          },
+          age: {
+            type: Number,
+            value: null
+          },
+          birth: {
+            type: Date,
+            value: null
+          }
+        }
       }
     },
     methods: {
-      async submit() {
+      async submit(formData) {
         let newPerson = {
-          name: this.name,
-          age: this.age
+          name: formData.name.value,
+          age: formData.age.value
         };
 
         await this.$store.dispatch('editPerson', { person: newPerson, id: this.$route.params.id});
         this.$router.push('/people');
       },
-      async getPerson() {
-        const person = await this.$store.dispatch('fetchPerson', this.$route.params.id);
+      getPerson() {
+        const person = this.$store.getters.getPersonSingle(this.$route.params.id);
 
-        this.name = person.name;
-        this.age = person.age;
+        this.formData.name.value = person.name;
+        this.formData.age.value = person.age;
       }
     },
     created() {

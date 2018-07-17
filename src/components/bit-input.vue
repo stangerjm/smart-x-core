@@ -6,8 +6,8 @@
                    :id="inputName"
                    :type="inputType"
                    :name="inputName"
-                   v-model="model"
-                   value="true"
+                   :value="value"
+                   @input="$emit('input', $event.target.value)"
                    v-bind="$attrs">
             <input type="hidden" value="false" :name="inputName">
         </template>
@@ -17,14 +17,16 @@
                    :id="inputId ? inputId : randomId"
                    :type="inputType"
                    :name="inputName"
-                   v-model="model"
+                   :value="value"
+                   @input="$emit('input', $event.target.value)"
                    v-bind="$attrs">
         </template>
         <template v-else>
             <label class="bit-input--label" :for="inputId ? inputId : randomId">{{labelText}}</label>
             <flat-pickr class="bit-input--field"
                         :id="inputId ? inputId : randomId"
-                        v-model="model"
+                        :value="value"
+                        v-model="value"
                         :name="inputName"
                         v-bind="$attrs">
             </flat-pickr>
@@ -81,23 +83,13 @@
         type: String
       },
       /**
-       * Optional date format for the input[type=date] element
+       * Allows v-model to return the altered input value
        */
-      dateFormat: {
-        type: String
-      },
-      /**
-       * Model for form inputs
-       * @model
-       */
-      inputModel: {}
+      value: {}
     },
     data() {
       return {
-        randomId: 'input-' + Math.random().toString(36).substr(2, 9),
-        // Setting inputModel to the a data property to avoid accidental overwriting of parent
-        // See: https://vuejs.org/v2/guide/migration.html#Prop-Mutation-deprecated
-        model: this.inputModel
+        randomId: 'input-' + Math.random().toString(36).substr(2, 9)
       }
     }
   }
@@ -108,8 +100,8 @@
     @import "../../sass/global/mixins";
     @import "../../sass/components/bit/input/bit-input";
 
-    .flatpickr-input {
-        background: url('/img/sprites.svg#calendar-usage') 5px / 20px no-repeat;
+    .bit-input--field.flatpickr-input {
+        background: url('../assets/calendar.svg') 5px / 20px no-repeat;
         padding-left: 30px;
     }
 </style>

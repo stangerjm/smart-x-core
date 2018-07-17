@@ -5,7 +5,7 @@
         </header>
         <div class="smart-details--listContainer">
             <dl v-for="column in detailColumns" class="smart-details--list" :style="{width: 100 / detailColumns.length + '%'}">
-                <div v-for="(detail, key) in column" v-if="!key.startsWith('_')" class="smart-details--detail">
+                <div v-for="[key, detail] in column" class="smart-details--detail">
                     <dt class="smart-details--detailKey">{{formatFromCamelCase(key)}}</dt>
                     <dd class="smart-details--detailValue" v-if="typeof(detail) !== typeof(true)">{{getValue(detail)}}</dd>
                     <dd class="smart-details--detailValue" v-else><input type="checkbox" :checked="detail" disabled></dd>
@@ -61,42 +61,45 @@
         } else {
           return detail;
         }
+      },
+      isObjectOrArray(value) {
+        return Array.isArray(value) || typeof value === 'object';
+      },
+      isHiddenField(value) {
+        return !value.startsWith('_');
+      },
+      splitArrayIntoChunks(array, chunks) {
+        //Create an array with the number of chunks required
+        return Array(Math.ceil(array.length / chunks))
+          //Fill the array with any value (no arguments will just fill with 'undefined')
+          .fill()
+          //Use Array.prototype.map to fill each chunk with the correct number of values from the original array
+          .map((_, idx) => {
+            const start = idx * chunks;
+            let end = start + chunks;
+            return array.slice(start, end);
+          });
       }
     },
     /**
      * Filter out associated records and break main details object into objects representing columns.
      */
     created: function() {
-      // filter the details to remove the associated records or child objects
-      // as they are beyond the scope of this component
-      for (let prop in this.detailData) {
-        let detailProp = this.detailData[prop];
-        if (Array.isArray(detailProp) || typeof detailProp === 'object') {
-          delete this.detailData[prop];
-        }
-      }
+      const details = Object.entries(this.detailData);
 
-      // Break up details object into smaller objects with the number of properties specified in the "detailsPerColumn"
-      // property. This will allow the view to display the details in dynamic columns.
-      let detailKeys = Object.keys(this.detailData);
-      let newProps = {};
-      for(let [index, key] of detailKeys.entries()) {
-        //push key and value to a new object
-        newProps[key] = this.detailData[key];
-        //delete the property and value from old object
-        delete this.detailData[key];
-
-        // Check the index for the following conditions:
-        //   Current iteration is not the first iteration, as this would cause an empty object to be pushed
-        //   AND
-        //   Loop has iterated seven times after last push. As this check comes last, it will push the eighth value to the array.
-        //   OR (independent from previous AND check)
-        //   Current iteration is the last iteration. If this is the case it will push the rest of the values to the array.
-        if((index !== 0 && (index + 1) % this.detailsPerColumn === 0) || index === detailKeys.length - 1) {
-          this.detailColumns.push(newProps);
-          newProps = {};
+      const filterOutOfScopeData = item => {
+        let [key, value] = item;
+        if (!this.isObjectOrArray(value)) {
+          return this.isHiddenField(key);
         }
-      }
+
+        return false;
+      };
+
+      let filteredEntries = details
+        .filter(filterOutOfScopeData);
+
+      this.detailColumns = this.splitArrayIntoChunks(filteredEntries, this.detailsPerColumn);
     }
   }
 </script>
