@@ -12,7 +12,7 @@
             <th class="smart-table--heading">Actions</th>
         </tr>
         <tr class="smart-table--row" v-for="item in tableData">
-            <td v-for="(key, index) in Object.keys(item)" v-if="isDisplayHeading(key)" :class="{'smart-table--cell': true, 'smart-table--key': index < 2, 'smart-table--textCell': item[key].length > 3}">
+            <td v-for="(key, index) in Object.keys(item)" v-if="isDisplayHeading(key)" :class="{'smart-table--cell': true, 'smart-table--key': index < 2, 'smart-table--centeredCell': isCentered(item[key])}">
                 <span class="smart-table--inlineHeading">{{formatFromCamelCase(key)}}:</span>
                 <template v-if="typeof(item[key]) === typeof(true)">
                     <input type="checkbox" :checked="item[key]" disabled>
@@ -185,6 +185,9 @@
         } else {
           return detail;
         }
+      },
+      isCentered(value) {
+        return typeof value === 'number' || typeof value === 'boolean';
       }
     }
   }

@@ -71,6 +71,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: left;
 
   @media screen and (max-width: $break-med) {
     border: none;
@@ -81,8 +82,8 @@
   }
 }
 
-.smart-table--textCell {
-  text-align: left;
+.smart-table--centeredCell {
+  text-align: center;
 }
 
 /// Class indicating that a part of the record is key information
