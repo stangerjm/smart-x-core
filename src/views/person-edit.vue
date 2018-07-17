@@ -21,10 +21,6 @@
           age: {
             type: Number,
             value: null
-          },
-          birth: {
-            type: Date,
-            value: null
           }
         }
       }
