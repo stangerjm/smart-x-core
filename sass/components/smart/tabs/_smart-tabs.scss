@@ -48,6 +48,7 @@
 }
 
 .smart-tabs--action {
+  display: none;
   align-self: center;
   margin: 5px;
 
@@ -57,7 +58,8 @@
 }
 
 .smart-tabs--content {
-  flex: 1;
+  /* Flex available content on all browsers */
+  flex: 1 0 auto;
 
   padding: 20px;
   background: $theme-generic;
@@ -69,7 +71,8 @@
 
 .smart-tabs--default {}
 
-.smart-tabs--activeItem {
+.smart-tabs--activeItem,
+.smart-tabs--activeAction {
   display: block;
 }
 
