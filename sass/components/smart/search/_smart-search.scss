@@ -21,7 +21,7 @@
 }
 
 .smart-search--title {
-  margin: 10px;
+  margin-right: 10px;
 
   @media screen and (max-width: $break-med) {
     /* Force other items to next row */
@@ -41,7 +41,8 @@
 }
 
 .smart-search--field {
-  width: 100%
+  width: 100%;
+  padding: 5px;
 }
 
 .smart-search--toggleContainer {
