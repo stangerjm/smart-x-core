@@ -23,7 +23,7 @@
         </template>
         <template v-else>
             <label class="bit-input--label" :for="inputId ? inputId : randomId">{{labelText}}</label>
-            <flat-pickr class="bit-input--field"
+            <flat-pickr class="bit-input--field bit-input--date"
                         :id="inputId ? inputId : randomId"
                         :value="value"
                         v-model="value"
@@ -99,9 +99,4 @@
     @import "../../sass/global/variables";
     @import "../../sass/global/mixins";
     @import "../../sass/components/bit/input/bit-input";
-
-    .bit-input--field.flatpickr-input {
-        background: url('../assets/calendar.svg') 5px / 20px no-repeat;
-        padding-left: 30px;
-    }
 </style>
