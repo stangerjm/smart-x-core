@@ -12,6 +12,7 @@
   width: 100%;
   border-spacing: 0;
   border: 1px solid $theme-black;
+  border-collapse: separate;
 
   @media screen and (max-width: $break-lrg) {
     table-layout: fixed;
@@ -24,6 +25,7 @@
 
 .smart-table--heading {
   border: 1px solid $theme-black;
+  text-align: center;
 
   @media screen and (max-width: $break-med) {
     @include hide();
