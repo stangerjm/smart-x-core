@@ -5,10 +5,6 @@
                    nav-title="Admin"
                    usr="JMST225">
         </smart-nav>
-        <!--<nav class="layout-main&#45;&#45;nav">-->
-            <!--<router-link to="/">Home</router-link>-->
-            <!--<router-link :to="{name: 'People'}">People</router-link>-->
-        <!--</nav>-->
         <main class="layout-main--content">
             <router-view></router-view>
             <!--<smart-table :table-data="regions" default-context="/"></smart-table>-->
@@ -25,6 +21,7 @@
   import SmartDetails from './components/smart-details';
   import SmartFooter from './components/smart-footer';
   import SmartTable from './components/smart-table';
+  import SmartAccordion from './components/smart-accordion';
 
   export default {
     name: 'app',
@@ -34,7 +31,8 @@
       SmartTabs,
       SmartDetails,
       SmartFooter,
-      SmartTable
+      SmartTable,
+      SmartAccordion
     },
     data() {
       return {
