@@ -1,15 +1,21 @@
 <template>
-    <div>
-        <smart-details v-if="person" :detail-data="person"></smart-details>
+    <div class="layout-subsection">
+        <smart-search class="layout-subsection--header" form-title="Test" method="get" route-name="Add"></smart-search>
+        <smart-details class="layout-subsection--main" v-if="person" :detail-data="person"></smart-details>
+        <smart-tabs class="layout-subsection--footer"></smart-tabs>
     </div>
 </template>
 
 <script>
   import SmartDetails from '../components/smart-details';
+  import SmartTabs from '../components/smart-tabs-PROTO';
+  import SmartSearch from '../components/smart-search';
   export default {
     name: "person-details",
     components: {
-      SmartDetails
+      SmartDetails,
+      SmartTabs,
+      SmartSearch
     },
     computed: {
       person() {
@@ -19,6 +25,6 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    @import "../../sass/layout/subsection/subsection";
 </style>
