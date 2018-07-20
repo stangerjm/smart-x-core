@@ -9,6 +9,11 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Fixes scrollbar bug on IE */
+  -ms-overflow-style: scrollbar;
+}
+
 /// Sets default body styles.
 body {
   margin: 0;
