@@ -44,10 +44,10 @@
    */
   .layout-main {
     grid-template: "nav    " auto
-    "search " auto
-    "content" 1fr
-    "footer " 50px
-                 / 1fr;
+                   "search " auto
+                   "content" 1fr
+                   "footer " 50px
+                   / 1fr;
   }
 
   .layout-main--nav {
