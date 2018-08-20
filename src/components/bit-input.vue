@@ -28,6 +28,7 @@
                         :value="value"
                         v-model="value"
                         :name="inputName"
+                        :config="config"
                         v-bind="$attrs">
             </flat-pickr>
         </template>
@@ -89,7 +90,13 @@
     },
     data() {
       return {
-        randomId: 'input-' + Math.random().toString(36).substr(2, 9)
+        randomId: 'input-' + Math.random().toString(36).substr(2, 9),
+        config: {
+          allowInput: true,
+          dateFormat: 'm-d-Y',
+          minDate: '01/01/1900',
+          maxDate: '12/31/2099'
+        }
       }
     }
   }

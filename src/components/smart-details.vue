@@ -4,7 +4,7 @@
             <h3 class="smart-details--heading">{{title ? title : 'Details'}}</h3>
         </header>
         <div class="smart-details--listContainer">
-            <dl v-for="column in detailColumns" class="smart-details--list" :style="{width: 100 / detailColumns.length + '%'}">
+            <dl v-for="column in detailColumns" class="smart-details--list">
                 <div v-for="[key, detail] in column" class="smart-details--detail">
                     <dt class="smart-details--detailKey">{{formatFromCamelCase(key)}}</dt>
                     <dd class="smart-details--detailValue" v-if="typeof(detail) !== typeof(true)">{{getValue(detail)}}</dd>
