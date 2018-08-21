@@ -103,7 +103,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/global/mixins";
-    @import "../../sass/components/bit/input/bit-input";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/components/bit/input/bit-input";
 </style>

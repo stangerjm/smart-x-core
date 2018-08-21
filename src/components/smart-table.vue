@@ -194,7 +194,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/mixins";
-    @import "../../sass/global/variables";
-    @import "../../sass/components/smart/table/smart-table";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/components/smart/table/smart-table";
 </style>

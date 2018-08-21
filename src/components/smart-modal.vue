@@ -147,7 +147,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/mixins";
-    @import "../../sass/global/variables";
-    @import "../../sass/components/smart/modal/smart-modal";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/components/smart/modal/smart-modal";
 </style>

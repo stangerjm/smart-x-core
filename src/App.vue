@@ -75,6 +75,6 @@
 </script>
 
 <style lang="scss">
-    @import "../sass/layout/grid/grid";
-    @import "../sass/base/base";
+    @import "../styles/sass/layout/grid/grid";
+    @import "../styles/sass/base/base";
 </style>

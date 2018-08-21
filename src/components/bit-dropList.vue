@@ -27,7 +27,8 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/components/bit/link/bit-link";
-    @import "../../sass/components/bit/dropList/bit-dropList";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/config";
+    @import "../../styles/sass/components/bit/link/bit-link";
+    @import "../../styles/sass/components/bit/dropList/bit-dropList";
 </style>

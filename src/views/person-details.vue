@@ -26,5 +26,5 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/layout/subsection/subsection";
+    @import "../../styles/sass/layout/subsection/subsection";
 </style>

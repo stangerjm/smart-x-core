@@ -9,6 +9,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/mixins";
-    @import "../../sass/components/bit/loading/bit-loading";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/components/bit/loading/bit-loading";
 </style>

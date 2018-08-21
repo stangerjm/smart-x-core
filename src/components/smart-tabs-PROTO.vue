@@ -86,6 +86,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/components/smart/tabs/smart-tabs";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/config";
+    @import "../../styles/sass/components/smart/tabs/smart-tabs";
 </style>

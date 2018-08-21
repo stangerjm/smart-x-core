@@ -75,7 +75,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/global/mixins";
-    @import "../../sass/components/bit/btn/bit-btn";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/components/bit/btn/bit-btn";
 </style>

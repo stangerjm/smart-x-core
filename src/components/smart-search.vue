@@ -120,8 +120,8 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/mixins";
-    @import "../../sass/global/variables";
-    @import "../../sass/components/smart/search/smart-search";
-    @import "../../sass/components/bit/btn/bit-btn";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/components/smart/search/smart-search";
+    @import "../../styles/sass/components/bit/btn/bit-btn";
 </style>

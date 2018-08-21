@@ -15,7 +15,7 @@ Vue.component('bit-icon', bitIcon);
 Vue.component('bit-loading', bitLoading);
 
 //Apply base styles to all components
-require('../sass/base/_base.scss');
+require('../styles/sass/base/_base.scss');
 
 //Mounted mixin
 Vue.mixin({

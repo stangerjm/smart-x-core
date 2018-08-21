@@ -105,7 +105,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/global/mixins";
-    @import "../../sass/components/smart/details/smart-details";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/components/smart/details/smart-details";
 </style>

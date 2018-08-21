@@ -106,7 +106,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/mixins";
-    @import "../../sass/global/variables";
-    @import "../../sass/components/smart/nav/smart-nav";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/components/smart/nav/smart-nav";
 </style>

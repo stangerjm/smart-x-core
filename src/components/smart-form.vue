@@ -195,6 +195,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/components/smart/form/smart-form";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/config";
+    @import "../../styles/sass/components/smart/form/smart-form";
 </style>

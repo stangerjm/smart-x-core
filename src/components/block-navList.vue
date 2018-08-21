@@ -48,8 +48,8 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../sass/global/variables";
-    @import "../../sass/global/mixins";
-    @import "../../sass/components/bit/link/bit-link";
-    @import "../../sass/components/block/navList/block-navList";
+    @import "../../styles/sass/global/variables";
+    @import "../../styles/sass/global/mixins";
+    @import "../../styles/sass/components/bit/link/bit-link";
+    @import "../../styles/sass/components/block/navList/block-navList";
 </style>
