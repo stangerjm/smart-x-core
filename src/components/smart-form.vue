@@ -1,12 +1,12 @@
 <template>
-    <form class="smart-form">
+    <form class="smart-form" v-if="formData">
         <header class="smart-form--titleSection" v-if="formTitle">
             <h3 class="smart-form--title">{{formTitle}}</h3>
         </header>
         <section class="smart-form--fieldSection">
             <slot></slot>
             <template v-for="(item, key) in masterData">
-                <input v-if="key.toLowerCase() === 'id'"
+                <input v-if="key.toLowerCase().includes('id')"
                        :name="key"
                        type="hidden"
                        v-model="item.value">
@@ -41,8 +41,7 @@
         /**
          * Will contain a non-reactive copy of the data when the component is created.
          */
-        masterData: this.formData,
-        action: this.formAction
+        masterData: this.getNonReactiveCopy(this.formData)
       }
     },
     props: {
@@ -105,11 +104,11 @@
     methods: {
       /**
        * Gets the appropriate input type depending on the value's data type.
-       * @param value
+       * @param item
        * @returns {string}
        */
       getType: function(item) {
-        let type = item.type.name;
+        let type = item.type;
         switch(type) {
           case 'Boolean':
             return 'checkbox';
@@ -129,7 +128,11 @@
         return value !== 0 && value.toString() !== new Date('1/1/0001').toString();
       },
       isValidField: function (item, key) {
-        return (!Array.isArray(item) && !this.ignoreFields.includes(key));
+        return (
+          !Array.isArray(item)
+          &&
+          !this.ignoreFields.includes(key)
+        );
       },
       setRequiredInputs: function () {
         for (let requiredInput of this.requiredInputs) {
@@ -146,16 +149,6 @@
           }
         }
       },
-      mountModel: function () {
-        let model = this.masterData;
-
-        for (let prop in model) {
-          let jsonDate = parseJsonDate(model[prop]);
-          if (jsonDate !== null) {
-            model[prop] = jsonDate.toString();
-          }
-        }
-      },
       submit() {
         this.onSubmit(this.masterData);
       }
@@ -164,26 +157,35 @@
      * Loop through the properties in the model and replace all of the dates with the expected format.
      */
     created: function () {
-      if (this.masterData) {
-        this.mountModel();
+      let model = this.masterData;
+
+      for (let prop in model) {
+        let jsonDate = parseJsonDate(model[prop]);
+        if (jsonDate !== null) {
+          model[prop] = jsonDate.toString();
+        }
       }
 
-      //Set up event listener for the modal recieving data
-      EventBus.$on('modal-data-received', (payload) => {
-        this.masterData = payload.data;
-        this.action = payload.path;
-        this.mountModel();
+      // if (this.masterData) {
+      //   this.mountModel();
+      // }
 
-        for (let value of Object.values(payload.data)) {
-          if (Array.isArray(value)) {
-            EventBus.$emit('form-data-updated', value);
-          }
-        }
-      });
-
-      EventBus.$on('modal-closed', () => {
-        this.masterData = {};
-      });
+      // //Set up event listener for the modal recieving data
+      // EventBus.$on('modal-data-received', (payload) => {
+      //   this.masterData = payload.data;
+      //   this.action = payload.path;
+      //   this.mountModel();
+      //
+      //   for (let value of Object.values(payload.data)) {
+      //     if (Array.isArray(value)) {
+      //       EventBus.$emit('form-data-updated', value);
+      //     }
+      //   }
+      // });
+      //
+      // EventBus.$on('modal-closed', () => {
+      //   this.masterData = {};
+      // });
     },
     /**
      * Set each input specified in the requiredInputs array to have the native HTML attribute "required"

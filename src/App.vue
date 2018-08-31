@@ -7,7 +7,6 @@
         </smart-nav>
         <main class="layout-main--content">
             <router-view></router-view>
-            <!--<smart-table :table-data="regions" default-context="/"></smart-table>-->
         </main>
         <smart-footer class="layout-main--footer"></smart-footer>
     </div>
@@ -50,26 +49,8 @@
             person6: 'Jacob',
             person7: 'Jessica',
             person8: 'Billy',
-          },
-          regions:
-            [
-              { id: 1, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 2, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 3, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 4, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 5, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 6, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 7, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 8, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 9, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 10, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 11, name: 'EASTERN WA', code: 'E-WA' },
-              { id: 12, name: 'EASTERN WA', code: 'E-WA' },
-            ]
+          }
       }
-    },
-    created() {
-      this.$store.dispatch('fetchPeopleData');
     }
   }
 </script>

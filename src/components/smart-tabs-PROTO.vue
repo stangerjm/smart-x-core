@@ -12,16 +12,16 @@
         <article class="smart-tabs--content">
             <p class="smart-tabs--default" v-if="!hasItems">Nothing to see here!</p>
             <div class="smart-tabs--item smart-tabs--activeItem">
-                <smart-table default-context="/" :table-data="[{id: 1, name: 'James'}, {id: 2, name: 'Jenna'}]"></smart-table>
+                <smart-table default-context="/" :table-data="[{id: 1, name: 'James'}, {id: 2, name: 'Jenna'}].map(createSchema)"></smart-table>
             </div>
             <div class="smart-tabs--item">
-                <smart-table default-context="/" :table-data="[{id: 3, name: 'Joel'}, {id: 4, name: 'Joseph'}]"></smart-table>
+                <smart-table default-context="/" :table-data="[{id: 3, name: 'Joel'}, {id: 4, name: 'Joseph'}].map(createSchema)"></smart-table>
             </div>
             <div class="smart-tabs--item">
-                <smart-table default-context="/" :table-data="[{id: 5, name: 'Jacquie'}, {id: 6, name: 'Jessica'}]"></smart-table>
+                <smart-table default-context="/" :table-data="[{id: 5, name: 'Jacquie'}, {id: 6, name: 'Jessica'}].map(createSchema)"></smart-table>
             </div>
             <div class="smart-tabs--item">
-                <smart-table default-context="/" :table-data="[{id: 7, name: 'Jacob'}, {id: 8, name: 'Jared'}]"></smart-table>
+                <smart-table default-context="/" :table-data="[{id: 7, name: 'Jacob'}, {id: 8, name: 'Jared'}].map(createSchema)"></smart-table>
             </div>
         </article>
     </section>

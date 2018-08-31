@@ -1,13 +1,17 @@
 import personService from '../../../services/personService';
+import { createSchema }  from '../../../../global/mixins';
 
 export const fetchPeopleData = async context => {
   let response = await personService.fetchPeople();
-  context.commit('updatePeople', response.data.people);
+  let people = response.data.people
+    .map(createSchema);
+  context.commit('updatePeople', people);
 };
 
 export const addPerson = async (context, person) => {
   let response = await personService.addPerson(person);
-  context.commit('addPerson', response.data);
+  let newPerson = createSchema(response.data);
+  context.commit('addPerson', newPerson);
 };
 
 export const deletePerson = async (context, payload) => {
@@ -17,7 +21,7 @@ export const deletePerson = async (context, payload) => {
 
 export const editPerson = async (context, payload) => {
   let response = await personService.editPerson(payload.person, payload.id);
-  context.commit('editPerson', response.data);
+  context.commit('editPerson', createSchema(response.data));
 };
 
 export const fetchPerson = async (context, id) => {

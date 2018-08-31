@@ -3,7 +3,9 @@
         <tr class="smart-table--row smart-table--head">
             <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in getTableKeys" v-if="isDisplayHeading(heading)">
                 <template v-if="!unsearchableHeadings.includes(heading)">
-                    <a class="smart-table--link" :href="'/' + defaultContext + '?sortOrder=' + heading">{{formatFromCamelCase(heading)}}<bit-icon icon-type="sort"></bit-icon></a>
+                    <a class="smart-table--link" :href="'/' + defaultContext + '?sortOrder=' + heading">
+                        {{formatFromCamelCase(heading)}}<bit-icon icon-type="sort"></bit-icon>
+                    </a>
                 </template>
                 <template v-else>
                     {{formatFromCamelCase(heading)}}
@@ -12,19 +14,27 @@
             <th class="smart-table--heading">Actions</th>
         </tr>
         <tr class="smart-table--row" v-for="item in tableData">
-            <td v-for="(key, index) in Object.keys(item)" v-if="isDisplayHeading(key)" :class="{'smart-table--cell': true, 'smart-table--key': index < 2, 'smart-table--centeredCell': isCentered(item[key])}">
-                <span class="smart-table--inlineHeading">{{formatFromCamelCase(key)}}:</span>
-                <template v-if="typeof(item[key]) === typeof(true)">
+            <td v-for="(key, index) in Object.keys(item)"
+                v-if="isDisplayHeading(key)"
+                :class="{
+                  'smart-table--cell': true,
+                  'smart-table--key': index < 2,
+                  'smart-table--centeredCell': isCentered(item[key].type)
+                }">
+                <span class="smart-table--inlineHeading">
+                    {{formatFromCamelCase(key)}}:
+                </span>
+                <template v-if="item[key].type === Boolean.name">
                     <input type="checkbox" :checked="item[key]" disabled>
                 </template>
                 <template v-else>
-                    {{getValue(item[key])}}
+                    {{getValue(item[key].value)}}
                 </template>
             </td>
             <td class="smart-table--cell">
                 <block-action-container
                         :default-ctx="defaultContext"
-                        :item-id="getItemId(item)"
+                        :item-id="getItemId(item).value"
                         :details-btn="allowDetails"
                         :details-ctx="item.detailsContext"
                         :open-modal-details="openModalAll || openModalDetails"
@@ -187,7 +197,7 @@
         }
       },
       isCentered(value) {
-        return typeof value === 'number' || typeof value === 'boolean';
+        return value === Number.name || value === Boolean.name;
       }
     }
   }

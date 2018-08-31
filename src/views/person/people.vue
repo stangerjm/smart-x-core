@@ -6,7 +6,7 @@
                       method="get">
         </smart-search>
         <smart-table v-if="getPeople.length > 0"
-                     default-context="people"
+                     default-context="person"
                      :table-data="getPeople">
         </smart-table>
         <p v-else>Nothing to see here!</p>
@@ -14,9 +14,10 @@
 </template>
 
 <script>
-  import SmartTable from '../components/smart-table';
-  import SmartSearch from '../components/smart-search';
+  import SmartTable from '../../components/smart-table';
+  import SmartSearch from '../../components/smart-search';
   import { mapGetters } from 'vuex';
+
   export default {
     name: "people",
     components: {

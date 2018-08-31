@@ -7,8 +7,8 @@
             <dl v-for="column in detailColumns" class="smart-details--list">
                 <div v-for="[key, detail] in column" class="smart-details--detail">
                     <dt class="smart-details--detailKey">{{formatFromCamelCase(key)}}</dt>
-                    <dd class="smart-details--detailValue" v-if="typeof(detail) !== typeof(true)">{{getValue(detail)}}</dd>
-                    <dd class="smart-details--detailValue" v-else><input type="checkbox" :checked="detail" disabled></dd>
+                    <dd class="smart-details--detailValue" v-if="detail.type !== Boolean.name">{{getValue(detail.value)}}</dd>
+                    <dd class="smart-details--detailValue" v-else><input type="checkbox" :checked="detail.value" disabled></dd>
                 </div>
             </dl>
         </div>
@@ -62,8 +62,8 @@
           return detail;
         }
       },
-      isObjectOrArray(value) {
-        return Array.isArray(value) || typeof value === 'object';
+      isObjectOrArray(type) {
+        return  type === Array.name && type === Object.name;
       },
       isHiddenField(value) {
         return !value.startsWith('_');
@@ -89,7 +89,7 @@
 
       const filterOutOfScopeData = item => {
         let [key, value] = item;
-        if (!this.isObjectOrArray(value)) {
+        if (!this.isObjectOrArray(value.type)) {
           return this.isHiddenField(key);
         }
 

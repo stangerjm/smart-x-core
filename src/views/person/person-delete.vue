@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import SmartDetails from '../components/smart-details';
+  import SmartDetails from '../../components/smart-details';
   export default {
     name: "person-delete",
     components: {
@@ -21,7 +21,7 @@
     methods: {
       async deletePerson() {
         await this.$store.dispatch('deletePerson', { id: this.$route.params.id });
-        this.$router.push('/people');
+        this.$router.push('/person');
       }
     }
   }

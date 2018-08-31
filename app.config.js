@@ -2,14 +2,8 @@ export const config = {
     nav:
       [
         { 'itemTitle': 'Home', 'linkPath': '/' },
-        { 'itemTitle': 'People', 'linkPath': '/people' },
-        { 'itemTitle': 'More', 'linkPath': '#',
-          'inlineItems':
-            [
-              { 'itemTitle': 'Be a Trooper','linkPath':'#' },
-              { 'itemTitle': 'Media', 'linkPath': '#' }
-            ]
-        },
+        { 'itemTitle': 'People', 'linkPath': '/person' },
+        { 'itemTitle': 'Region', 'linkPath': '/region' },
         { 'itemTitle': 'Links', 'linkPath': '#',
           'inlineItems':
             [

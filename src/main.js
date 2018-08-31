@@ -6,7 +6,7 @@ import bitLoading from './components/bit-loading';
 import App from './App.vue';
 import store from './store';
 import Router from './router';
-import { formatFromCamelCase } from './global/mixins';
+import { formatFromCamelCase, createSchema, getNonReactiveCopy } from './global/mixins';
 
 //Register base components globally
 Vue.component('bit-btn', bitBtn);
@@ -24,10 +24,12 @@ Vue.mixin({
     }
 });
 
-//Format camel case mixin
+//Format camel case, create schema, and get non-reactive copy mixins
 Vue.mixin({
     methods: {
-        formatFromCamelCase: formatFromCamelCase
+        formatFromCamelCase: formatFromCamelCase,
+        createSchema: createSchema,
+        getNonReactiveCopy: getNonReactiveCopy
     }
 });
 
@@ -51,5 +53,9 @@ new Vue({
         smartModal: () => import('./components/smart-modal'),
         stackTableCollapsible: () => import('./components/stack-tableCollapsible')
     },
-    render: h => h(App)
+    render: h => h(App),
+    created() {
+        //TODO: initialize all store data here!
+      this.$store.dispatch('fetchPeopleData');
+    }
 }).$mount('#app');
