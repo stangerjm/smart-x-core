@@ -21,12 +21,7 @@
     },
     methods: {
       submit: async function(submittedData) {
-        let newPerson = {
-          name: submittedData.name.value,
-          age: submittedData.age.value
-        };
-
-        await this.$store.dispatch('addPerson', newPerson);
+        await this.$store.dispatch('addPerson', submittedData);
         this.$router.push('/person');
       }
     }

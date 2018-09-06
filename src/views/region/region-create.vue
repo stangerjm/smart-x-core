@@ -19,8 +19,9 @@
       }
     },
     methods: {
-      submit(submittedData) {
-
+      async submit(submittedData) {
+        await this.$store.dispatch('addRegion', submittedData);
+        this.$router.push('/region');
       }
     }
   }

@@ -57,5 +57,6 @@ new Vue({
     created() {
         //TODO: initialize all store data here!
       this.$store.dispatch('fetchPeopleData');
+      this.$store.dispatch('fetchRegionData');
     }
 }).$mount('#app');

@@ -1,12 +1,16 @@
 export const fetchRegionData = async context => {
   let data = await getData();
-  let regions = data;
-  context.commit('updateRegions', regions);
+  context.commit('updateRegions', data);
 };
 
 export const addRegion = async (context, region) => {
   let data = await getData();
-  let updatedData = data.concat([region]);
+  let newRegion = {
+    id: data[data.length - 1].id + 1,
+    ...region
+  };
+
+  let updatedData = data.concat([newRegion]);
 
   context.commit('updateRegions', updatedData);
 };
@@ -29,6 +33,6 @@ function getData() {
         { id: 5, name: 'NORTHERN WA', code: 'NO-WA' },
         { id: 6, name: 'SOUTHERN WA', code: 'SO-WA' }
       ]);
-    }, 2000);
+    }, 500);
   });
 }

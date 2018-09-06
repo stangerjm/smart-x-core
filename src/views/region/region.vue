@@ -8,7 +8,7 @@
 <script>
   import SmartTable from "../../components/smart-table";
   import SmartSearch from "../../components/smart-search";
-  import { mapGetters, mapActions } from 'vuex';
+  import { mapGetters } from 'vuex';
 
   export default {
     components: {
@@ -20,14 +20,6 @@
       ...mapGetters([
         'getRegions'
       ])
-    },
-    methods: {
-      ...mapActions([
-        'fetchRegionData'
-      ])
-    },
-    created() {
-        this.fetchRegionData();
     }
   }
 </script>

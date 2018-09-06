@@ -140,11 +140,11 @@
         if (this.typedData.length !== 0) {
           return Object.keys(this.typedData[0])
         }
-      }
-    },
-    data() {
-      return {
-        typedData: this.createSchema(this.tableData)
+      },
+      typedData() {
+        return this.tableData.map(function(tableItem) {
+          return this.createSchema(tableItem);
+        }, this);
       }
     },
     methods: {
