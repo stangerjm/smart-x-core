@@ -152,7 +152,7 @@
         }
       },
       submit() {
-        this.onSubmit(this.masterData.getUntypedObject());
+        this.onSubmit(this.masterData.untypedObject);
       }
     },
     /**

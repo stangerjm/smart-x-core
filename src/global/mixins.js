@@ -59,11 +59,27 @@ export function createSchema(schema) {
   return entries.reduce(getSchemaReductor(), {});
 }
 
+/**
+ * Returns a reducing function that will reduce an array of object entries into a typed schema object.
+ * @returns {function}
+ */
 function getSchemaReductor() {
+  /**
+   * Reverts the passed in object to an untyped model
+   * @param obj
+   * @returns {object}
+   */
   function revert(obj) {
     return Object.entries(obj).reduce(revertObjectToUntypedModel, {});
   }
 
+  /**
+   * Reducing function. Creates a new object with only the value from a typed schema.
+   * @param accumulatorObj
+   * @param key
+   * @param value
+   * @returns {object}
+   */
   function revertObjectToUntypedModel(accumulatorObj, [key, value]) {
     if (value.type || value.value != null) {
       return {
@@ -78,15 +94,28 @@ function getSchemaReductor() {
     }
   }
 
+  /**
+   * Defines an 'untypedObject' property on the passed in object which will get the untyped version of the object
+   * @param obj
+   * @returns {object}
+   */
   function getRevertableObject(obj) {
-    return Object.defineProperty(obj, 'getUntypedObject', {
-      value: function getUntypedObject() {
-        return revert(obj);
+    return Object.defineProperty(obj, 'untypedObject', {
+      enumerable: false,
+      get() {
+        return revert(obj)
       }
     });
   }
 
-  return function gatherIntoSchemaObject(accumulatorObj, [key, value]) {
+  /**
+   * Reducing function. Returns a new object with the type and value of the value passed in.
+   * @param accumulatorObj
+   * @param key
+   * @param value
+   * @returns {object}
+   */
+  function gatherIntoSchemaObject(accumulatorObj, [key, value]) {
     if (value == null || key === '__v') {
       // ignore null values and unwanted keys
       return accumulatorObj;
@@ -116,13 +145,25 @@ function getSchemaReductor() {
         }
       });
     }
-  };
+  }
+
+  return gatherIntoSchemaObject;
 }
 
+/**
+ * Returns the name of the type of the value passed in.
+ * @param value
+ * @returns {string}
+ */
 function getType(value) {
   return Object.getPrototypeOf(Object(value)).constructor.name;
 }
 
+/**
+ * Gets the default value for the type passed in.
+ * @param type
+ * @returns {*}
+ */
 function getDefaultValue(type) {
   switch(type) {
     case Number:
@@ -140,6 +181,15 @@ function getDefaultValue(type) {
   }
 }
 
+/**
+ * Determines if the value passed in is an object.
+ * @param value
+ * @returns {boolean}
+ */
 function isObject(value) {
-  return value && typeof value === 'object' && value.constructor === Object;
+  if (!value) {
+    return false;
+  }
+
+  return typeof value === 'object' && value.constructor === Object;
 }
