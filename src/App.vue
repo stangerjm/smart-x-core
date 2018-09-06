@@ -35,21 +35,7 @@
     },
     data() {
       return {
-        nav: config.nav,
-        dummyData:
-          {
-            group: 'Awesomeness',
-            members: 8,
-            test: true,
-            person1: 'James',
-            person2: 'Jenna',
-            person3: 'Joel',
-            person4: 'Jacquie',
-            person5: 'Joseph',
-            person6: 'Jacob',
-            person7: 'Jessica',
-            person8: 'Billy',
-          }
+        nav: config.nav
       }
     }
   }

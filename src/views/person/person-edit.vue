@@ -20,12 +20,7 @@
     },
     methods: {
       async submit(formData) {
-        let newPerson = {
-          name: formData.name.value,
-          age: formData.age.value
-        };
-
-        await this.$store.dispatch('editPerson', { person: newPerson, id: this.$route.params.id});
+        await this.$store.dispatch('editPerson', { person: formData, id: this.$route.params.id});
         this.$router.push('/person');
       }
     }

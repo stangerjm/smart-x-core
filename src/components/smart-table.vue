@@ -1,5 +1,5 @@
 <template>
-    <table class="smart-table" v-if="tableData.length !== 0">
+    <table class="smart-table" v-if="typedData.length !== 0">
         <tr class="smart-table--row smart-table--head">
             <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in getTableKeys" v-if="isDisplayHeading(heading)">
                 <template v-if="!unsearchableHeadings.includes(heading)">
@@ -13,7 +13,7 @@
             </th>
             <th class="smart-table--heading">Actions</th>
         </tr>
-        <tr class="smart-table--row" v-for="item in tableData">
+        <tr class="smart-table--row" v-for="item in typedData">
             <td v-for="(key, index) in Object.keys(item)"
                 v-if="isDisplayHeading(key)"
                 :class="{
@@ -137,9 +137,14 @@
     },
     computed: {
       getTableKeys() {
-        if (this.tableData.length !== 0) {
-          return Object.keys(this.tableData[0])
+        if (this.typedData.length !== 0) {
+          return Object.keys(this.typedData[0])
         }
+      }
+    },
+    data() {
+      return {
+        typedData: this.createSchema(this.tableData)
       }
     },
     methods: {

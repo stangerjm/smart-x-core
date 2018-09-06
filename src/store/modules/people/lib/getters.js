@@ -3,5 +3,5 @@ export const getPeople = state => {
 };
 
 export const getPersonSingle = (state) => (id) => {
-  return state.people.find(person => person._id.value === id);
+  return state.people.find(person => person._id === id);
 };

@@ -1,9 +1,6 @@
-import { createSchema } from '../../../../global/mixins';
-
 export const fetchRegionData = async context => {
   let data = await getData();
-  let regions = data
-    .map(createSchema);
+  let regions = data;
   context.commit('updateRegions', regions);
 };
 

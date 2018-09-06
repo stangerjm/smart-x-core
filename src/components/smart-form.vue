@@ -26,7 +26,6 @@
 </template>
 
 <script>
-  import { EventBus } from '../global/event-bus';
   import { parseJsonDate } from '../global/mixins';
 
   /**
@@ -36,14 +35,6 @@
    */
   export default {
     name: "smart-form",
-    data() {
-      return {
-        /**
-         * Will contain a non-reactive copy of the data when the component is created.
-         */
-        masterData: this.getNonReactiveCopy(this.formData)
-      }
-    },
     props: {
       /**
        * Corresponds to the native HTML attribute "action"
@@ -101,6 +92,17 @@
         default: 'MM-dd-yyyy'
       }
     },
+    data() {
+      return {
+        /**
+         * Will contain a non-reactive copy of the data when the component is created.
+         */
+        masterData:
+          this.createSchema(
+            this.formData
+          )
+      }
+    },
     methods: {
       /**
        * Gets the appropriate input type depending on the value's data type.
@@ -150,7 +152,7 @@
         }
       },
       submit() {
-        this.onSubmit(this.masterData);
+        this.onSubmit(this.masterData.getUntypedObject());
       }
     },
     /**

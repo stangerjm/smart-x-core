@@ -13,10 +13,10 @@
     },
     data() {
       return {
-        formData: this.createSchema({
+        formData: {
           name: String,
           age: Number
-        })
+        }
       }
     },
     methods: {

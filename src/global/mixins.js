@@ -56,39 +56,67 @@ export function getNonReactiveCopy(originalObj) {
 export function createSchema(schema) {
   let entries = Object.entries(schema);
 
-  return entries.reduce(gatherIntoSchemaObject, {});
+  return entries.reduce(getSchemaReductor(), {});
 }
 
-function gatherIntoSchemaObject(accumulatorObj, [key, value]) {
-  if (value === null || key === '__v') {
-    // ignore null values and unwanted keys
-    return accumulatorObj;
+function getSchemaReductor() {
+  function revert(obj) {
+    return Object.entries(obj).reduce(revertObjectToUntypedModel, {});
   }
 
-  if (isObject(value)) {
-    return {
-      ...accumulatorObj,
-      [key]: Object.entries(value).reduce(gatherIntoSchemaObject, {})
+  function revertObjectToUntypedModel(accumulatorObj, [key, value]) {
+    if (value.type || value.value != null) {
+      return {
+        ...accumulatorObj,
+        [key]: value.value
+      }
+    } else {
+      return {
+        ...accumulatorObj,
+        [key]: Object.entries(value).reduce(revertObjectToUntypedModel, {})
+      }
     }
   }
-  else if (typeof value === 'function') {
-    return {
-      ...accumulatorObj,
-      [key]: {
-        type: value.name,
-        value: getDefaultValue(value)
+
+  function getRevertableObject(obj) {
+    return Object.defineProperty(obj, 'getUntypedObject', {
+      value: function getUntypedObject() {
+        return revert(obj);
       }
-    };
+    });
   }
-  else {
-    return {
-      ...accumulatorObj,
-      [key]: {
-        type: getType(value),
-        value: value
-      }
-    };
-  }
+
+  return function gatherIntoSchemaObject(accumulatorObj, [key, value]) {
+    if (value == null || key === '__v') {
+      // ignore null values and unwanted keys
+      return accumulatorObj;
+    }
+
+    if (isObject(value)) {
+      return getRevertableObject({
+        ...accumulatorObj,
+        [key]: Object.entries(value).reduce(gatherIntoSchemaObject, {})
+      });
+    }
+    else if (typeof value === 'function') {
+      return getRevertableObject({
+        ...accumulatorObj,
+        [key]: {
+          type: value.name,
+          value: getDefaultValue(value)
+        }
+      });
+    }
+    else {
+      return getRevertableObject({
+        ...accumulatorObj,
+        [key]: {
+          type: getType(value),
+          value: value
+        }
+      });
+    }
+  };
 }
 
 function getType(value) {

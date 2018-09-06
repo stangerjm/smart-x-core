@@ -12,10 +12,10 @@
     name: "region-create",
     data() {
       return {
-        formData: this.createSchema({
+        formData: {
           name: String,
           code: String
-        })
+        }
       }
     },
     methods: {

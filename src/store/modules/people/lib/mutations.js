@@ -7,11 +7,11 @@ export const addPerson = (state, person) => {
 };
 
 export const deletePerson = (state, id) => {
-  let index = state.people.findIndex(person => person._id.value === id);
+  let index = state.people.findIndex(person => person._id === id);
   state.people.splice(index, 1);
 };
 
 export const editPerson = (state, newPerson) => {
-  let index = state.people.findIndex(person => person._id.value === newPerson._id.value);
+  let index = state.people.findIndex(person => person._id === newPerson._id);
   state.people.splice(index, 1, newPerson);
 };

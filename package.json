@@ -51,9 +51,7 @@
     }
   },
   "postcss": {
-    "plugins": {
-
-    }
+    "plugins": {}
   },
   "browserslist": [
     "> 1%",

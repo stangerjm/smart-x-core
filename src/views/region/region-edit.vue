@@ -12,18 +12,18 @@
     name: "region-edit",
     data() {
       return {
-        formData: this.createSchema({
+        formData: {
           name: String,
           code: String
-        })
+        }
       }
     },
     methods: {
       async submit(formData) {
-        let newRegion = this.createSchema({
+        let newRegion = {
           name: formData.name.value,
           code: formData.code.value
-        });
+        };
 
         await this.$store.dispatch('editRegion', { region: newRegion, id: this.$route.params.id });
         this.$router.push('/region');
