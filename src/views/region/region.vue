@@ -1,8 +1,15 @@
 <template>
-  <div>
-    <smart-search route-name="RegionCreate" method="get" form-title="Region"></smart-search>
-    <smart-table :table-data="getRegions" default-context="region"></smart-table>
-  </div>
+    <div>
+        <smart-search route-name="RegionCreate"
+                      method="get"
+                      form-title="Region">
+        </smart-search>
+        <smart-table :table-data="getRegions"
+                     default-context="region"
+                     v-if="getRegions.length > 0">
+        </smart-table>
+        <p v-else>No regions yet. Let's add one!</p>
+    </div>
 </template>
 
 <script>

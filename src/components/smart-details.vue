@@ -52,6 +52,13 @@
         detailColumns: []
       }
     },
+    computed: {
+      typedDetails() {
+        return this.createSchema(
+          this.detailData
+        );
+      }
+    },
     methods: {
       getValue: function(detail) {
         let detailValue = parseJsonDate(detail);
@@ -85,7 +92,7 @@
      * Filter out associated records and break main details object into objects representing columns.
      */
     created: function() {
-      const details = Object.entries(this.detailData);
+      const details = Object.entries(this.typedDetails);
 
       const filterOutOfScopeData = item => {
         let [key, value] = item;

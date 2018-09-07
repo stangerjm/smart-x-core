@@ -3,6 +3,5 @@ export const getRegions = state => {
 };
 
 export const getRegionSingle = (state) => (id) => {
-  let parsedId = parseInt(id);
-  return state.regions.find(region=> region.id === parsedId);
+  return state.regions.find(region=> region._id === id);
 };

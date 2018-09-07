@@ -1,38 +1,28 @@
+import regionService from '../../../services/regionService';
+
 export const fetchRegionData = async context => {
-  let data = await getData();
-  context.commit('updateRegions', data);
+  let response = await regionService.fetchRegions();
+  let regions = response.data.regions;
+  context.commit('updateRegions', regions);
 };
 
 export const addRegion = async (context, region) => {
-  let data = await getData();
-  let newRegion = {
-    id: data[data.length - 1].id + 1,
-    ...region
-  };
-
-  let updatedData = data.concat([newRegion]);
-
-  context.commit('updateRegions', updatedData);
+  let response = await regionService.addRegion(region);
+  let newRegion = response.data;
+  context.commit('addRegion', newRegion);
 };
 
-export const editRegion = async (context, region) => {
-  let response = await getData();
-  let updatedData = response.concat([region]);
-
-  context.commit('updateRegions', updatedData);
+export const deleteRegion = async (context, payload) => {
+  await regionService.deleteRegion(payload.id);
+  context.commit('deleteRegion', payload.id);
 };
 
-function getData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([
-        { id: 1, name: 'WESTERN WA', code: 'WE-WA' },
-        { id: 2, name: 'SOUTHWEST WA', code: 'SE-WA' },
-        { id: 3, name: 'EASTERN WA', code: 'EA-WA' },
-        { id: 4, name: 'CENTRAL WA', code: 'CE-WA' },
-        { id: 5, name: 'NORTHERN WA', code: 'NO-WA' },
-        { id: 6, name: 'SOUTHERN WA', code: 'SO-WA' }
-      ]);
-    }, 500);
-  });
-}
+export const editRegion = async (context, payload) => {
+  let response = await regionService.editRegion(payload.region, payload.id);
+  context.commit('editRegion', response.data);
+};
+
+export const fetchRegion = async (context, id) => {
+  let response = await regionService.fetchRegion(id);
+  return response.data;
+};

@@ -1,39 +1,31 @@
 <template>
     <div>
-        <smart-form form-title="Edit" :form-data="formData" :on-submit="submit"></smart-form>
+        <smart-form form-title="Edit"
+                    :form-data="getRegionSingle(this.routeId)"
+                    :on-submit="submit"></smart-form>
     </div>
 </template>
 
 <script>
   import SmartForm from "../../components/smart-form";
+  import { mapGetters } from 'vuex';
 
   export default {
-    components: {SmartForm},
     name: "region-edit",
-    data() {
-      return {
-        formData: {
-          name: String,
-          code: String
-        }
+    components: {
+      SmartForm
+    },
+    computed: {
+      ...mapGetters(['getRegionSingle']),
+      routeId() {
+        return this.$route.params.id
       }
     },
     methods: {
-      async submit(formData) {
-        let newRegion = {
-          name: formData.name.value,
-          code: formData.code.value
-        };
-
-        await this.$store.dispatch('editRegion', { region: newRegion, id: this.$route.params.id });
+      async submit(submittedData) {
+        await this.$store.dispatch('editRegion', { region: submittedData, id: this.routeId });
         this.$router.push('/region');
       }
-    },
-    created() {
-        let response = this.$store.getters.getRegionSingle(this.$route.params.id);
-
-        this.formData.name.value = response.name;
-        this.formData.code.value = response.code;
     }
   }
 </script>

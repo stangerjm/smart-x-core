@@ -1,13 +1,30 @@
 <template>
-    <h2>Would you like the details of this region?</h2>
+    <div class="layout-subsection">
+        <smart-details class="layout-subsection--main"
+                       v-if="region"
+                       :detail-data="region"></smart-details>
+        <smart-tabs class="layout-subsection--footer"></smart-tabs>
+    </div>
 </template>
 
 <script>
+  import SmartTabs from '../../components/smart-tabs-PROTO';
+  import SmartDetails from "../../components/smart-details";
+
   export default {
-    name: "region-details"
+    components: {
+      SmartDetails,
+      SmartTabs
+    },
+    name: "region-details",
+    computed: {
+      region() {
+        return this.$store.getters.getRegionSingle(this.$route.params.id);
+      }
+    }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    @import "../../../styles/sass/layout/subsection/subsection";
 </style>

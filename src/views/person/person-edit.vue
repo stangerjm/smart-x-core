@@ -16,7 +16,7 @@
       SmartForm
     },
     computed: {
-      ...mapGetters(['getPersonSingle', 'getPeople'])
+      ...mapGetters(['getPersonSingle'])
     },
     methods: {
       async submit(formData) {
