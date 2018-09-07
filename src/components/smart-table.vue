@@ -3,7 +3,7 @@
         <tr class="smart-table--row smart-table--head">
             <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in getTableKeys" v-if="isDisplayHeading(heading)">
                 <template v-if="!unsearchableHeadings.includes(heading)">
-                    <a class="smart-table--link" :href="'/' + defaultContext + '?sortOrder=' + heading">
+                    <a class="smart-table--link" @click="sortBy(heading)">
                         {{formatFromCamelCase(heading)}}<bit-icon icon-type="sort"></bit-icon>
                     </a>
                 </template>
@@ -147,6 +147,11 @@
         }, this);
       }
     },
+    data() {
+      return {
+        ascending: false
+      }
+    },
     methods: {
       /**
        * Expands record on mobile screen.
@@ -203,6 +208,10 @@
       },
       isCentered(value) {
         return value === Number.name || value === Boolean.name;
+      },
+      sortBy(key) {
+        this.ascending = !this.ascending;
+        this.$store.dispatch('changeFilter', { key: key, orientation: this.ascending });
       }
     }
   }

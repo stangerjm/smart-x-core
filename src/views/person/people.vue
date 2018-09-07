@@ -5,9 +5,9 @@
                       form-title="People"
                       method="get">
         </smart-search>
-        <smart-table v-if="getPeople.length > 0"
+        <smart-table v-if="getSortablePeople.length > 0"
                      default-context="person"
-                     :table-data="getPeople">
+                     :table-data="getSortablePeople">
         </smart-table>
         <p v-else>Nothing to see here!</p>
     </div>
@@ -26,7 +26,7 @@
     },
     computed: {
       ...mapGetters([
-        'getPeople'
+        'getSortablePeople'
       ])
     }
   }

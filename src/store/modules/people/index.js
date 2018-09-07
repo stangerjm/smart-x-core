@@ -4,7 +4,9 @@ import * as mutations from './lib/mutations';
 
 const people = {
   state: {
-    people: []
+    people: [],
+    currentFilter: '',
+    orientation: false
   },
   getters,
   actions,
