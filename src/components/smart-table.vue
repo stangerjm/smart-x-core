@@ -1,61 +1,20 @@
 <template>
     <table class="smart-table" v-if="typedData.length !== 0">
-        <tr class="smart-table--row smart-table--head">
-            <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in getTableKeys" v-if="isDisplayHeading(heading)">
-                <template v-if="!unsearchableHeadings.includes(heading)">
-                    <a class="smart-table--link" @click="sortBy(heading)">
-                        {{formatFromCamelCase(heading)}}<bit-icon icon-type="sort"></bit-icon>
-                    </a>
-                </template>
-                <template v-else>
-                    {{formatFromCamelCase(heading)}}
-                </template>
-            </th>
-            <th class="smart-table--heading">Actions</th>
-        </tr>
-        <tr class="smart-table--row" v-for="item in typedData">
-            <td v-for="(key, index) in Object.keys(item)"
-                v-if="isDisplayHeading(key)"
-                :class="{
-                  'smart-table--cell': true,
-                  'smart-table--key': index < 2,
-                  'smart-table--centeredCell': isCentered(item[key].type)
-                }">
-                <span class="smart-table--inlineHeading">
-                    {{formatFromCamelCase(key)}}:
-                </span>
-                <template v-if="item[key].type === Boolean.name">
-                    <input type="checkbox" :checked="item[key]" disabled>
-                </template>
-                <template v-else>
-                    {{getValue(item[key].value)}}
-                </template>
-            </td>
-            <td class="smart-table--cell">
-                <block-action-container
-                        :default-ctx="defaultContext"
-                        :item-id="getItemId(item).value"
-                        :details-btn="allowDetails"
-                        :details-ctx="item.detailsContext"
-                        :open-modal-details="openModalAll || openModalDetails"
-                        :edit-btn="allowEdit"
-                        :edit-ctx="item.editContext"
-                        :open-modal-edit="openModalAll || openModalEdit"
-                        :delete-btn="allowDelete"
-                        :delete-ctx="item.deleteContext"
-                        :open-modal-delete="openModalAll || openModalDelete">
-                </block-action-container>
-            </td>
-            <td class="smart-table--expand">
-                <bit-btn btn-style="expand" @click.native="expandRecord"></bit-btn>
-            </td>
-        </tr>
+        <block-table-heading :table-headings="getTableKeys"
+                             :unsearchable-headings="unsearchableHeadings"
+                             :sort-method="sortBy">
+        </block-table-heading>
+        <block-table-body :typed-data="typedData"
+                          :data-keys="getTableKeys"
+                          :default-context="defaultContext"
+                          :allow-details="allowDetails"
+                          :allow-delete="allowDelete"
+                          :allow-edit="allowEdit">
+        </block-table-body>
     </table>
 </template>
 
 <script>
-  import { parseJsonDate } from "../global/mixins";
-
   /**
    * A component that renders a responsive table from a data-set.
    * @author James Stanger, Washington State Patrol
@@ -64,7 +23,8 @@
   export default {
     name: "smart-table",
     components: {
-      blockActionContainer: () => import('./block-actionContainer')
+      blockTableBody: () => import('./block-tableBody'),
+      blockTableHeading: () => import('./block-tableHeading')
     },
     props: {
       /**
@@ -81,6 +41,18 @@
       defaultContext: {
         type: String,
         required: true
+      },
+      /**
+       * The method that will be called when a sort button on the table is clicked.
+       * Takes a property key and descending flag, and returns an array of sorted objects.
+       * Should be ordered by the property key, and descending if the 'descending' flag is true.
+       * @param {string} key
+       * @param {boolean} descending
+       * @returns {array}
+       */
+      sortMethod: {
+        type: Function,
+        default: function() { return this.localTableData }
       },
       /**
        * An array of key names that will render each
@@ -114,71 +86,40 @@
         type: Boolean,
         default: true
       },
+      /**
+       * List of fields to ignore
+       */
       ignoreFields: {
         type: Array,
         default: () => []
-      },
-      openModalAll: {
-        type: Boolean,
-        default: false
-      },
-      openModalEdit: {
-        type: Boolean,
-        default: false
-      },
-      openModalDelete: {
-        type: Boolean,
-        default: false
-      },
-      openModalDetails: {
-        type: Boolean,
-        default: false
       }
     },
     computed: {
       getTableKeys() {
         if (this.typedData.length !== 0) {
-          return Object.keys(this.typedData[0])
+          return Object.keys(this.typedData[0]).filter(this.isDisplayHeading)
         }
       },
       typedData() {
-        return this.tableData.map(function(tableItem) {
+        return this.localTableData.map(function(tableItem) {
           return this.createSchema(tableItem);
         }, this);
       }
     },
     data() {
       return {
-        ascending: false
+        localTableData: this.tableData,
+        descending: true,
+        currentKey: null
       }
     },
     methods: {
-      /**
-       * Expands record on mobile screen.
-       * @param event
-       */
-      expandRecord: function (event) {
-        let btn = event.target;
-        let row = this.findAncestor(btn, 'smart-table--row');
-        row.classList.toggle('record-is-expanded');
-
-        /**
-         * Emit to parent that a record has been expanded so parent can resize appropriately.
-         * @event recordExpanded
-         * @type null
-         */
-        this.$emit('recordExpanded');
-      },
-      findAncestor: function(el, cls) {
-        while ((el = el.parentElement) && !el.classList.contains(cls));
-        return el;
-      },
       /**
        * Ignores the detailsContext, editContext, and deleteContext keys needed to build action container
        * @param heading
        * @returns {boolean}
        */
-      isDisplayHeading: function (heading) {
+      isDisplayHeading(heading) {
         if (this.ignoreFields.includes(heading) || heading[0] === '_') {
           return false;
         }
@@ -192,26 +133,16 @@
             return true;
         }
       },
-      getItemId: function (item) {
-        let keys = Object.keys(item);
-        let idKey = keys.find(id => id.toLowerCase() === 'id' || id.toLowerCase() === '_id');
-        return item[idKey];
-      },
-      getValue: function(detail) {
-        let detailValue = parseJsonDate(detail);
-        if (detailValue !== null) {
-          let options = {year: 'numeric', month: '2-digit', day: '2-digit'};
-          return detailValue.toLocaleDateString('en-us', options);
-        } else {
-          return detail;
-        }
-      },
-      isCentered(value) {
-        return value === Number.name || value === Boolean.name;
-      },
       sortBy(key) {
-        this.ascending = !this.ascending;
-        this.$store.dispatch('changeFilter', { key: key, orientation: this.ascending });
+        if (this.currentKey === key) {
+          this.descending = !this.descending;
+        } else {
+          this.descending = true;
+        }
+
+        this.currentKey = key;
+
+        this.localTableData = this.sortMethod(key, this.descending);
       }
     }
   }
