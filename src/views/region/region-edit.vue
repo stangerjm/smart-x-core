@@ -8,7 +8,9 @@
 
 <script>
   import SmartForm from "../../components/smart-form";
-  import { mapGetters } from 'vuex';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters, mapActions } = createNamespacedHelpers('regions');
 
   export default {
     name: "region-edit",
@@ -22,8 +24,9 @@
       }
     },
     methods: {
+      ...mapActions(['editRegion']),
       async submit(submittedData) {
-        await this.$store.dispatch('editRegion', { region: submittedData, id: this.routeId });
+        await this.editRegion({ region: submittedData, id: this.routeId });
         this.$router.push('/region');
       }
     }

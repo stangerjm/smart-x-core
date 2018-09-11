@@ -3,10 +3,9 @@ import * as actions from './lib/actions';
 import * as mutations from './lib/mutations';
 
 const people = {
+  namespaced: true,
   state: {
-    people: [],
-    currentFilter: '',
-    orientation: false
+    people: []
   },
   getters,
   actions,

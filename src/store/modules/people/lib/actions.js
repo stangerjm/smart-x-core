@@ -26,7 +26,3 @@ export const fetchPerson = async (context, id) => {
   let response = await personService.fetchPerson(id);
   return response.data;
 };
-
-export const changeFilter = async (context, filter) => {
-  context.commit('changeFilter', filter);
-};

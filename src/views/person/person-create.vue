@@ -6,6 +6,10 @@
 
 <script>
   import SmartForm from '../../components/smart-form';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapActions } = createNamespacedHelpers('people');
+
   export default {
     name: "person-create",
     components: {
@@ -20,8 +24,9 @@
       }
     },
     methods: {
+      ...mapActions(['addPerson']),
       submit: async function(submittedData) {
-        await this.$store.dispatch('addPerson', submittedData);
+        await this.addPerson(submittedData);
         this.$router.push('/person');
       }
     }

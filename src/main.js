@@ -17,13 +17,6 @@ Vue.component('bit-loading', bitLoading);
 //Apply base styles to all components
 require('../styles/sass/base/_base.scss');
 
-//Mounted mixin
-Vue.mixin({
-    mounted() {
-      this.$emit('mounted');
-    }
-});
-
 //Format camel case, create schema, and get non-reactive copy mixins
 Vue.mixin({
     methods: {
@@ -55,8 +48,7 @@ new Vue({
     },
     render: h => h(App),
     created() {
-        //TODO: initialize all store data here!
-      this.$store.dispatch('fetchPeopleData');
-      this.$store.dispatch('fetchRegionData');
+      this.$store.dispatch('people/fetchPeopleData');
+      this.$store.dispatch('regions/fetchRegionData');
     }
 }).$mount('#app');

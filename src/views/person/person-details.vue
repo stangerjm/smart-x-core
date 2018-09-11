@@ -11,6 +11,9 @@
 <script>
   import SmartDetails from '../../components/smart-details';
   import SmartTabs from '../../components/smart-tabs-PROTO';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters } = createNamespacedHelpers('people');
 
   export default {
     name: "person-details",
@@ -19,8 +22,9 @@
       SmartTabs
     },
     computed: {
+      ...mapGetters(['getPersonSingle']),
       person() {
-        return this.$store.getters.getPersonSingle(this.$route.params.id);
+        return this.getPersonSingle(this.$route.params.id);
       }
     }
   }

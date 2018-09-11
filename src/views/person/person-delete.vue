@@ -2,25 +2,31 @@
     <div v-if="person">
         <h1>Delete this record?</h1>
         <smart-details :detail-data="person"></smart-details>
-        <button type="button" @click="deletePerson">Delete</button>
+        <button type="button" @click="deleteRecord">Delete</button>
     </div>
 </template>
 
 <script>
   import SmartDetails from '../../components/smart-details';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters, mapActions } = createNamespacedHelpers('people');
+
   export default {
     name: "person-delete",
     components: {
       SmartDetails
     },
     computed: {
+      ...mapGetters(['getPersonSingle']),
       person() {
-        return this.$store.getters.getPersonSingle(this.$route.params.id);
+        return this.getPersonSingle(this.$route.params.id);
       }
     },
     methods: {
-      async deletePerson() {
-        await this.$store.dispatch('deletePerson', { id: this.$route.params.id });
+      ...mapActions(['deletePerson']),
+      async deleteRecord() {
+        await this.deletePerson({ id: this.$route.params.id });
         this.$router.push('/person');
       }
     }

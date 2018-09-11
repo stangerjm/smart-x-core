@@ -5,9 +5,10 @@
                       form-title="People"
                       method="get">
         </smart-search>
-        <smart-table v-if="getSortablePeople.length > 0"
+        <smart-table v-if="getPeople.length > 0"
                      default-context="person"
-                     :table-data="getSortablePeople">
+                     :sortMethod="this.getDataSortedBy"
+                     :table-data="getPeople">
         </smart-table>
         <p v-else>Nothing to see here!</p>
     </div>
@@ -16,7 +17,9 @@
 <script>
   import SmartTable from '../../components/smart-table';
   import SmartSearch from '../../components/smart-search';
-  import { mapGetters } from 'vuex';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters } = createNamespacedHelpers('people');
 
   export default {
     name: "people",
@@ -26,7 +29,8 @@
     },
     computed: {
       ...mapGetters([
-        'getSortablePeople'
+        'getPeople',
+        'getDataSortedBy'
       ])
     }
   }

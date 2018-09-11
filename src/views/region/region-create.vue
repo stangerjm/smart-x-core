@@ -6,6 +6,9 @@
 
 <script>
   import SmartForm from "../../components/smart-form";
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapActions } = createNamespacedHelpers('regions');
 
   export default {
     components: { SmartForm },
@@ -19,8 +22,9 @@
       }
     },
     methods: {
+      ...mapActions(['addRegion']),
       async submit(submittedData) {
-        await this.$store.dispatch('addRegion', submittedData);
+        await this.addRegion(submittedData);
         this.$router.push('/region');
       }
     }

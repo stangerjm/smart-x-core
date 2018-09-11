@@ -3,6 +3,7 @@ import * as actions from './lib/actions';
 import * as mutations from './lib/mutations';
 
 const regions = {
+  namespaced: true,
   state: {
     regions: []
   },

@@ -8,7 +8,9 @@
 
 <script>
   import SmartForm from '../../components/smart-form';
-  import { mapGetters } from 'vuex';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters, mapActions } = createNamespacedHelpers('people');
 
   export default {
     name: "person-edit",
@@ -19,8 +21,9 @@
       ...mapGetters(['getPersonSingle'])
     },
     methods: {
+      ...mapActions(['editPerson']),
       async submit(formData) {
-        await this.$store.dispatch('editPerson', { person: formData, id: this.$route.params.id});
+        await this.editPerson({ person: formData, id: this.$route.params.id});
         this.$router.push('/person');
       }
     }

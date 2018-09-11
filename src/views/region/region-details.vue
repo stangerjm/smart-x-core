@@ -10,6 +10,9 @@
 <script>
   import SmartTabs from '../../components/smart-tabs-PROTO';
   import SmartDetails from "../../components/smart-details";
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters } = createNamespacedHelpers('regions');
 
   export default {
     components: {
@@ -18,8 +21,9 @@
     },
     name: "region-details",
     computed: {
+      ...mapGetters(['getRegionSingle']),
       region() {
-        return this.$store.getters.getRegionSingle(this.$route.params.id);
+        return this.getRegionSingle(this.$route.params.id);
       }
     }
   }

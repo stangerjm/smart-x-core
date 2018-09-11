@@ -6,7 +6,8 @@
         </smart-search>
         <smart-table :table-data="getRegions"
                      default-context="region"
-                     v-if="getRegions.length > 0">
+                     v-if="getRegions.length > 0"
+                     :sort-method="getDataSortedBy">
         </smart-table>
         <p v-else>No regions yet. Let's add one!</p>
     </div>
@@ -15,7 +16,9 @@
 <script>
   import SmartTable from "../../components/smart-table";
   import SmartSearch from "../../components/smart-search";
-  import { mapGetters } from 'vuex';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapGetters } = createNamespacedHelpers('regions');
 
   export default {
     components: {
@@ -25,7 +28,8 @@
     name: "region",
     computed: {
       ...mapGetters([
-        'getRegions'
+        'getRegions',
+        'getDataSortedBy'
       ])
     }
   }
