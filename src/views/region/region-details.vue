@@ -3,12 +3,10 @@
         <smart-details class="layout-subsection--main"
                        v-if="region"
                        :detail-data="region"></smart-details>
-        <smart-tabs class="layout-subsection--footer"></smart-tabs>
     </div>
 </template>
 
 <script>
-  import SmartTabs from '../../components/smart-tabs-PROTO';
   import SmartDetails from "../../components/smart-details";
   import { createNamespacedHelpers } from 'vuex';
 

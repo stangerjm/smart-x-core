@@ -16,7 +16,7 @@
   import SmartNav from './components/smart-nav';
   import { config } from '../app.config.js';
   import SmartSearch from './components/smart-search';
-  import SmartTabs from './components/smart-tabs-PROTO';
+  import SmartTabs from './components/smart-tabs';
   import SmartDetails from './components/smart-details';
   import SmartFooter from './components/smart-footer';
   import SmartTable from './components/smart-table';
