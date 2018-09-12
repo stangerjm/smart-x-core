@@ -14,8 +14,7 @@
 
   export default {
     components: {
-      SmartDetails,
-      SmartTabs
+      SmartDetails
     },
     name: "region-details",
     computed: {

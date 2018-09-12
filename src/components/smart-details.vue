@@ -6,7 +6,7 @@
         <div class="smart-details--listContainer">
             <dl v-for="column in detailColumns" class="smart-details--list">
                 <div v-for="[key, detail] in column" class="smart-details--detail">
-                    <dt class="smart-details--detailKey">{{formatFromCamelCase(key)}}</dt>
+                    <dt class="smart-details--detailKey">{{ key | toTitleCase }}</dt>
                     <dd class="smart-details--detailValue" v-if="detail.type !== Boolean.name">{{getValue(detail.value)}}</dd>
                     <dd class="smart-details--detailValue" v-else><input type="checkbox" :checked="detail.value" disabled></dd>
                 </div>

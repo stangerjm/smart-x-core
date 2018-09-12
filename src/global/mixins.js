@@ -4,11 +4,21 @@
  * @returns {*}
  */
 export function parseJsonDate(date) {
+  if (typeof date === typeof new Date()) {
+    return date;
+  }
+
   let dateRegex = /\/Date\((\d+)(?:-\d+)?\)\//i;
   if (date === '/Date(-62135568000000)/') {
     return new Date('1/1/0001');
   } else if (dateRegex.test(date)) {
-    return new Date(parseInt(dateRegex.exec(date)[1], 10));
+    return new Date(
+      parseInt(
+        dateRegex.exec(date)[1], 10
+      )
+    );
+  } else if(typeof date !== 'number' && typeof date !== 'boolean' && new Date(date).toString() !== 'Invalid Date') {
+    return new Date(date);
   } else {
     return null;
   }
@@ -19,7 +29,7 @@ export function parseJsonDate(date) {
  * @param text
  * @returns {string}
  */
-export function formatFromCamelCase(text) {
+export function toTitleCase(text) {
     return text
         .replace(/([A-Z])/g, ' $1')
         .replace(/^./, (substr) => { return substr.toUpperCase(); });
@@ -140,14 +150,25 @@ function getSchemaReductor() {
       return getRevertableObject({
         ...accumulatorObj,
         [key]: {
-          type: getType(value),
-          value: value
+          type: getType(
+            getValue(value)
+          ),
+          value: getValue(value)
         }
       });
     }
   }
 
   return gatherIntoSchemaObject;
+}
+
+function getValue(value) {
+  let jsonDate = parseJsonDate(value);
+  if (jsonDate !== null) {
+    return jsonDate;
+  }
+
+  return value;
 }
 
 /**

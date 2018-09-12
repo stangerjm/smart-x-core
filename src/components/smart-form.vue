@@ -15,7 +15,7 @@
                            :stack-elements="true"
                            :input-name="key"
                            :input-type="getType(item)"
-                           :label-text="formatFromCamelCase(key)"
+                           :label-text="key | toTitleCase"
                            :readonly="readonlyInputs.includes(key)"
                            v-model="item.value">
                 </bit-input>
@@ -26,8 +26,6 @@
 </template>
 
 <script>
-  import { parseJsonDate } from '../global/mixins';
-
   /**
    * A component that renders a dynamic form based on a model.
    * @author James Stanger, Washington State Patrol
@@ -154,40 +152,6 @@
       submit() {
         this.onSubmit(this.masterData.untypedObject);
       }
-    },
-    /**
-     * Loop through the properties in the model and replace all of the dates with the expected format.
-     */
-    created: function () {
-      let model = this.masterData;
-
-      for (let prop in model) {
-        let jsonDate = parseJsonDate(model[prop]);
-        if (jsonDate !== null) {
-          model[prop] = jsonDate.toString();
-        }
-      }
-
-      // if (this.masterData) {
-      //   this.mountModel();
-      // }
-
-      // //Set up event listener for the modal recieving data
-      // EventBus.$on('modal-data-received', (payload) => {
-      //   this.masterData = payload.data;
-      //   this.action = payload.path;
-      //   this.mountModel();
-      //
-      //   for (let value of Object.values(payload.data)) {
-      //     if (Array.isArray(value)) {
-      //       EventBus.$emit('form-data-updated', value);
-      //     }
-      //   }
-      // });
-      //
-      // EventBus.$on('modal-closed', () => {
-      //   this.masterData = {};
-      // });
     },
     /**
      * Set each input specified in the requiredInputs array to have the native HTML attribute "required"

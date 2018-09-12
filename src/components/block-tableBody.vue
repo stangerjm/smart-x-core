@@ -1,22 +1,14 @@
 <template>
   <tbody>
     <tr class="smart-table--row" v-for="item in typedData">
-      <td v-for="(key, index) in dataKeys"
-          :class="{
-            'smart-table--cell': true,
-            'smart-table--key': index < 2,
-            'smart-table--centeredCell': isCentered(item[key].type)
-          }">
-        <span class="smart-table--inlineHeading">
-            {{formatFromCamelCase(key)}}:
-        </span>
-        <template v-if="item[key].type === Boolean.name">
-          <input type="checkbox" :checked="item[key]" disabled>
-        </template>
-        <template v-else>
-          {{getValue(item[key].value)}}
-        </template>
-      </td>
+      <!-- Render a cell for each item in the table data -->
+      <bit-table-cell v-for="(key, index) in dataKeys"
+                      :cell-value="item[key]"
+                      :cell-title="key"
+                      :is-table-key="index < 2">
+      </bit-table-cell>
+
+      <!-- Action container cell -->
       <td class="smart-table--cell">
         <block-action-container
             :default-ctx="defaultContext"
@@ -26,6 +18,8 @@
             :delete-btn="allowDelete">
         </block-action-container>
       </td>
+
+      <!-- Expand button (for mobile) -->
       <td class="smart-table--expand">
         <bit-btn btn-style="expand" @click.native="expandRecord"></bit-btn>
       </td>
@@ -34,10 +28,10 @@
 </template>
 
 <script>
-  import { parseJsonDate } from "../global/mixins";
   export default {
     name: "block-table-body",
     components: {
+      BitTableCell: () =>  import('./bit-tableCell'),
       blockActionContainer: () => import('./block-actionContainer')
     },
     props: {
@@ -87,18 +81,11 @@
       }
     },
     methods: {
-      isCentered(value) {
-        return value === Number.name || value === Boolean.name;
-      },
-      getValue(detail) {
-        let detailValue = parseJsonDate(detail);
-        if (detailValue !== null) {
-          let options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-          return detailValue.toLocaleDateString('en-us', options);
-        } else {
-          return detail;
-        }
-      },
+      /**
+       * Finds the id property of an item and returns it.
+       * @param {object} item
+       * @returns {string | number}
+       */
       getItemId(item) {
         let keys = Object.keys(item);
         let idKey = keys.find(id => id.toLowerCase() === 'id' || id.toLowerCase() === '_id');
@@ -119,8 +106,14 @@
          */
         this.$emit('recordExpanded');
       },
-      findAncestor(el, cls) {
-        while ((el = el.parentElement) && !el.classList.contains(cls));
+      /**
+       * Finds the nearest ancestor that contains the specified class attribute.
+       * @param el
+       * @param classSelector
+       * @returns {object}
+       */
+      findAncestor(el, classSelector) {
+        while ((el = el.parentElement) && !el.classList.contains(classSelector));
         return el;
       },
     }

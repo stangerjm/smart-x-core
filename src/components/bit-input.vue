@@ -6,8 +6,8 @@
                    :id="inputName"
                    :type="inputType"
                    :name="inputName"
-                   :value="value"
-                   @input="$emit('input', $event.target.value)"
+                   :checked="checked"
+                   @change="updateCheckbox"
                    v-bind="$attrs">
             <input type="hidden" value="false" :name="inputName">
         </template>
@@ -15,21 +15,21 @@
             <label class="bit-input--label" :for="inputId ? inputId : randomId">{{labelText}}</label>
             <input class="bit-input--field"
                    :id="inputId ? inputId : randomId"
-                   :type="inputType"
-                   :name="inputName"
                    :value="value"
+                   :name="inputName"
                    @input="$emit('input', $event.target.value)"
-                   v-bind="$attrs">
+                   v-bind="$attrs"
+                   :type="inputType">
         </template>
         <template v-else>
             <label class="bit-input--label" :for="inputId ? inputId : randomId">{{labelText}}</label>
             <flat-pickr class="bit-input--field bit-input--date"
                         :id="inputId ? inputId : randomId"
-                        :value="value"
-                        v-model="value"
                         :name="inputName"
-                        :config="config"
-                        v-bind="$attrs">
+                        v-bind="$attrs"
+                        :value="value"
+                        @input="$emit('input', $event)"
+                        :config="config">
             </flat-pickr>
         </template>
     </div>
@@ -96,7 +96,14 @@
           dateFormat: 'm-d-Y',
           minDate: '01/01/1900',
           maxDate: '12/31/2099'
-        }
+        },
+        checked: this.value
+      }
+    },
+    methods: {
+      updateCheckbox() {
+        this.checked = !this.checked;
+        this.$emit('input', this.checked);
       }
     }
   }

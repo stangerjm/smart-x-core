@@ -1,13 +1,13 @@
 <template>
     <div :class="stackElements ? 'block-multiSelect-stacked' : 'block-multiSelect'">
-        <label class="block-multiSelect--label" :for="'selectParent-' + inputId">{{formatFromCamelCase(parentName)}}</label>
+        <label class="block-multiSelect--label" :for="'selectParent-' + inputId">{{ parentName | toTitleCase }}</label>
         <select class="block-multiSelect--select" :name="parentName" v-model="selectedParent"
                 :id="'selectParent-' + inputId">
-            <option disabled>Please select a {{formatFromCamelCase(parentName)}}</option>
+            <option disabled>Please select a {{ parentName | toTitleCase }}</option>
             <option v-for="parentNode in selectData" :value="parentNode">{{parentNode[parentDisplayKey]}}</option>
         </select>
 
-        <label class="block-multiSelect--label" :for="'selectChild-' + inputId">{{formatFromCamelCase(childName)}}</label>
+        <label class="block-multiSelect--label" :for="'selectChild-' + inputId">{{ childName | toTitleCase }}</label>
         <select class="block-multiSelect--select" :name="childName" v-model="selectedChild"
                 :id="'selectChild-' + inputId">
             <option disabled>Please select a {{Object.keys(selectedParent).length !== 0 ? childName : parentName}}</option>

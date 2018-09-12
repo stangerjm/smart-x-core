@@ -4,11 +4,11 @@
       <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in tableHeadings">
         <template v-if="!unsearchableHeadings.includes(heading)">
           <a class="smart-table--link" @click="sortMethod(heading)" :title="`Sort by ${heading}`">
-            {{formatFromCamelCase(heading)}}<bit-icon icon-type="sort"></bit-icon>
+            {{ heading | toTitleCase }}<bit-icon icon-type="sort"></bit-icon>
           </a>
         </template>
         <template v-else>
-          {{formatFromCamelCase(heading)}}
+          {{ heading | toTitleCase }}
         </template>
       </th>
       <th class="smart-table--heading">Actions</th>

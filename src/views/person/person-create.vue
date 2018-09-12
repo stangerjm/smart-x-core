@@ -19,7 +19,9 @@
       return {
         formData: {
           name: String,
-          age: Number
+          age: Number,
+          birthday: Date,
+          isEmployee: Boolean
         }
       }
     },

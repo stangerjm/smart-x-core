@@ -6,7 +6,7 @@ import bitLoading from './components/bit-loading';
 import App from './App.vue';
 import store from './store';
 import Router from './router';
-import { formatFromCamelCase, createSchema, getNonReactiveCopy } from './global/mixins';
+import { toTitleCase, createSchema, getNonReactiveCopy } from './global/mixins';
 
 //Register base components globally
 Vue.component('bit-btn', bitBtn);
@@ -17,13 +17,15 @@ Vue.component('bit-loading', bitLoading);
 //Apply base styles to all components
 require('../styles/sass/base/_base.scss');
 
-//Format camel case, create schema, and get non-reactive copy mixins
+//title case, create schema, and get non-reactive copy mixins
 Vue.mixin({
-    methods: {
-        formatFromCamelCase: formatFromCamelCase,
-        createSchema: createSchema,
-        getNonReactiveCopy: getNonReactiveCopy
-    }
+  methods: {
+      createSchema: createSchema,
+      getNonReactiveCopy: getNonReactiveCopy
+  },
+  filters: {
+    toTitleCase: toTitleCase
+  }
 });
 
 Vue.config.productionTip = false;
@@ -44,7 +46,8 @@ new Vue({
         smartAccordion: () => import('./components/smart-accordion'),
         smartForm: () => import('./components/smart-form'),
         smartModal: () => import('./components/smart-modal'),
-        stackTableCollapsible: () => import('./components/stack-tableCollapsible')
+        stackTableCollapsible: () => import('./components/stack-tableCollapsible'),
+        smartTabs: () => import('./components/smart-tabs')
     },
     render: h => h(App),
     created() {
