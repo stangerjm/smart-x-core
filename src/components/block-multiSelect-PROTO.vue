@@ -11,7 +11,7 @@
       <option disabled>
         Please select a {{ parentName | toTitleCase }}
       </option>
-      <option v-for="parentNode in selectData" :value="parentNode">
+      <option v-for="parentNode in selectData" :key="parentNode[parentDisplayKey]" :value="parentNode">
         {{parentNode[parentDisplayKey]}}
       </option>
     </select>
@@ -27,7 +27,7 @@
       <option disabled>
         Please select a {{Object.keys(selectedParent).length !== 0 ? childName : parentName}}
       </option>
-      <option v-for="childNode in selectedParent[arrayKey]">
+      <option v-for="childNode in selectedParent[arrayKey]" :key="childNode[childDisplayKey]">
         {{childNode[childDisplayKey]}}
       </option>
     </select>

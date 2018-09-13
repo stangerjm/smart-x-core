@@ -41,7 +41,6 @@ new Vue({
         bitDropList: () => import('./components/bit-dropList'),
         blockActionContainer: () => import('./components/block-actionContainer'),
         blockNavList: () => import('./components/block-navList'),
-        blockMultiSelect: () => import('./components/block-multiSelect'),
         smartSearch: () => import('./components/smart-search'),
         smartNav: () => import('./components/smart-nav'),
         smartTable: () => import('./components/smart-table'),
