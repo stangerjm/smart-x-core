@@ -48,7 +48,8 @@ new Vue({
         smartAccordion: () => import('./components/smart-accordion'),
         smartForm: () => import('./components/smart-form'),
         stackTableCollapsible: () => import('./components/stack-tableCollapsible'),
-        smartTabs: () => import('./components/smart-tabs')
+        smartTabs: () => import('./components/smart-tabs'),
+        layoutGrid: () => import('./components/layout-grid')
     },
     render: h => h(App),
     created() {

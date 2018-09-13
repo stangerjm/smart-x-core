@@ -1,14 +1,30 @@
 <template>
     <div id="app" class="layout-grid layout-main">
-        <smart-nav class="layout-main--nav"
-                   :nav-items="nav"
-                   nav-title="Admin"
-                   usr="JMST225">
-        </smart-nav>
-        <main class="layout-main--content">
-            <router-view></router-view>
-        </main>
-        <smart-footer class="layout-main--footer"></smart-footer>
+
+      <layout-grid>
+
+        <template slot="header">
+
+          <smart-nav :nav-items="nav"
+                     nav-title="Admin"
+                     usr="JMST225">
+          </smart-nav>
+
+        </template>
+
+        <template slot="content">
+
+          <router-view></router-view>
+
+        </template>
+
+        <template slot="footer">
+
+          <smart-footer></smart-footer>
+
+        </template>
+
+      </layout-grid>
     </div>
 </template>
 
@@ -20,6 +36,7 @@
   import SmartFooter from './components/smart-footer';
   import SmartTable from './components/smart-table';
   import SmartAccordion from './components/smart-accordion';
+  import LayoutGrid from './components/layout-grid';
 
   export default {
     name: 'app',
@@ -29,7 +46,8 @@
       SmartDetails,
       SmartFooter,
       SmartTable,
-      SmartAccordion
+      SmartAccordion,
+      LayoutGrid
     },
     data() {
       return {
@@ -40,6 +58,5 @@
 </script>
 
 <style lang="scss">
-    @import "../styles/sass/layout/grid/grid";
     @import "../styles/sass/base/base";
 </style>
