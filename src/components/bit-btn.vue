@@ -37,28 +37,32 @@
         default: false
       }
     },
-    data() {
-      return {
+    computed: {
+      btnClass() {
         /**
          * Class attribute for the button or link
          */
-        btnClass: `bit-btn ${this.getClass(this.btnStyle)}`,
-        /**
-         * Default class for the button
-         */
-        defaultClass: 'bit-btn-clickable',
+        return `bit-btn ${this.getClass(this.btnStyle)}`;
+      }
+    },
+    data() {
+      return {
         /**
          * Possible button types
          */
-        buttonTypes: ['add', 'exit', 'expand', 'reset', 'search']
-      }
+        buttonTypes: ['add', 'exit', 'expand', 'reset', 'search'],
+        /**
+         * Default class attribute for the button
+         */
+        defaultClass: 'bit-btn-clickable'
+      };
     },
     methods: {
       /**
        * Returns the correct class for the string passed into the btnStyle property
        * @param {string} type - button style
        */
-      getClass: function (type) {
+      getClass(type) {
         if (type == null) {
           return this.defaultClass;
         }

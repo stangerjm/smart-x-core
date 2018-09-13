@@ -2,7 +2,7 @@
   <tbody>
   <tr class="smart-table--row" v-for="item in typedData" :key="getItemId(item).value">
     <!-- Render a cell for each item in the table data -->
-    <bit-table-cell v-for="(key, index) in dataKeys" :key="item[key]"
+    <bit-table-cell v-for="(key, index) in dataKeys" :key="key"
                     :cell-value="item[key]"
                     :cell-title="key"
                     :is-table-key="index < 2">

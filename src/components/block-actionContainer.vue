@@ -3,17 +3,17 @@
 
     <!-- Render the details button if flagged to show -->
     <template v-if="detailsBtn">
-      <router-link class="bit-icon-details" :to="getActionPath('Details', detailsContext, itemId)"></router-link>
+      <router-link class="bit-icon-details" :to="getActionPath(detailsContext, 'Details', itemId)"></router-link>
     </template>
 
     <!-- Render the edit button if flagged to show -->
     <template v-if="editBtn">
-      <router-link class="bit-icon-edit" :to="getActionPath('Edit', editContext, itemId)"></router-link>
+      <router-link class="bit-icon-edit" :to="getActionPath(editContext, 'Edit', itemId)"></router-link>
     </template>
 
     <!-- Render the delete button if flagged to show -->
     <template v-if="deleteBtn">
-      <router-link class="bit-icon-delete" :to="getActionPath('Delete', deleteContext, itemId)"></router-link>
+      <router-link class="bit-icon-delete" :to="getActionPath(deleteContext, 'Delete', itemId)"></router-link>
     </template>
 
   </div>
