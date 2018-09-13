@@ -42,7 +42,9 @@
         /**
          * Class attribute for the button or link
          */
-        btnClass: 'bit-btn ' + this.getClass(this.btnStyle)
+        btnClass: `bit-btn ${this.getClass(this.btnStyle)}`,
+        defaultClass: 'bit-btn-clickable',
+        buttonTypes: ['add', 'exit', 'expand', 'reset', 'search']
       }
     },
     methods: {
@@ -51,20 +53,15 @@
        * @param {string} type - button style
        */
       getClass: function (type) {
-        if (!type) {
-          return "bit-btn-clickable";
+        if (type == null) {
+          return this.defaultClass;
         }
 
-        switch (type) {
-          case 'add':
-          case 'exit':
-          case 'expand':
-          case 'reset':
-          case 'search':
-            return 'bit-btn-' + type;
-          default:
-            return 'bit-btn-clickable';
+        if (this.buttonTypes.includes(type)) {
+          return `bit-btn-${type}`;
         }
+
+        return this.defaultClass;
       }
     }
   }
