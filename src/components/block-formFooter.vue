@@ -1,7 +1,8 @@
 <template>
-    <!--
-        TODO: Implement
-    -->
+  <!--
+      TODO: Implement
+  -->
+  <p style="color: red;">block-formFooter is not implemented!</p>
 </template>
 
 <script>
