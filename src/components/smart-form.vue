@@ -1,28 +1,32 @@
 <template>
-    <form class="smart-form" v-if="formData">
-        <header class="smart-form--titleSection" v-if="formTitle">
-            <h3 class="smart-form--title">{{formTitle}}</h3>
-        </header>
-        <section class="smart-form--fieldSection">
-            <slot></slot>
-            <template v-for="(item, key) in masterData">
-                <input v-if="key.toLowerCase().includes('id')"
-                       :name="key"
-                       type="hidden"
-                       v-model="item.value">
-                <bit-input class="smart-form--field"
-                           v-else-if="isValidField(item, key)"
-                           :stack-elements="true"
-                           :input-name="key"
-                           :input-type="getType(item)"
-                           :label-text="key | toTitleCase"
-                           :readonly="readonlyInputs.includes(key)"
-                           v-model="item.value">
-                </bit-input>
-            </template>
-            <bit-btn @click.native="submit">Submit</bit-btn>
-        </section>
-    </form>
+  <form class="smart-form" v-if="formData">
+    <header class="smart-form--titleSection" v-if="formTitle">
+      <h3 class="smart-form--title">{{formTitle}}</h3>
+    </header>
+    <section class="smart-form--fieldSection">
+      <!-- @slot Area for extra inputs to be added. -->
+      <slot></slot>
+
+      <!-- Render each item in the "masterData" array as an input field with a label. -->
+      <template v-for="(item, key) in masterData">
+        <!-- If the item is the object's id, render it as a hidden field. -->
+        <input v-if="isObjectId(key)"
+               :name="key"
+               type="hidden"
+               v-model="item.value">
+        <bit-input class="smart-form--field"
+                   v-else-if="isValidField(item, key)"
+                   :stack-elements="true"
+                   :input-name="key"
+                   :input-type="getType(item)"
+                   :label-text="key | toTitleCase"
+                   :readonly="readonlyInputs.includes(key)"
+                   v-model="item.value">
+        </bit-input>
+      </template>
+      <bit-btn @click.native="submit">Submit</bit-btn>
+    </section>
+  </form>
 </template>
 
 <script>
@@ -41,6 +45,11 @@
         type: String,
         default: '/'
       },
+      /**
+       * Function to be executed on form submit.
+       * Takes an object that holds the submitted data as a parameter.
+       * @param {object} submittedData
+       */
       onSubmit: {
         type: Function,
         required: true
@@ -50,7 +59,8 @@
        */
       formData: {
         type: Object,
-        default: () => { }
+        default: () => {
+        }
       },
       /**
        * A list of inputs that should be readonly.
@@ -66,6 +76,9 @@
         type: Array,
         default: () => []
       },
+      /**
+       * Optional array of strings that represent properties that should be ignored.
+       */
       ignoreFields: {
         type: Array,
         default: () => []
@@ -93,7 +106,7 @@
     data() {
       return {
         /**
-         * Will contain a non-reactive copy of the data when the component is created.
+         * Will contain typed schema derived from the "formData" local property.
          */
         masterData:
           this.createSchema(
@@ -107,9 +120,9 @@
        * @param item
        * @returns {string}
        */
-      getType: function(item) {
+      getType: function (item) {
         let type = item.type;
-        switch(type) {
+        switch (type) {
           case 'Boolean':
             return 'checkbox';
           case 'Number':
@@ -120,21 +133,22 @@
             return 'text';
         }
       },
-      determineIsEmpty: function (value) {
-        if (!value || value === null) {
-          return false;
-        }
-
-        return value !== 0 && value.toString() !== new Date('1/1/0001').toString();
-      },
-      isValidField: function (item, key) {
+      /**
+       * Ensures that the item passed in is not an array, and that the key passed in
+       * has not been marked to be ignored.
+       */
+      isValidField(item, key) {
         return (
           !Array.isArray(item)
           &&
           !this.ignoreFields.includes(key)
         );
       },
-      setRequiredInputs: function () {
+      /**
+       * Sets the "required" attribute on any elements that correspond to values found in the
+       * "requiredInputs" local property.
+       */
+      setRequiredInputs() {
         for (let requiredInput of this.requiredInputs) {
           let domInput;
 
@@ -149,6 +163,19 @@
           }
         }
       },
+      /**
+       * Checks the key to see if it is an id property.
+       */
+      isObjectId(key) {
+        return key.toLowerCase() === ('id')
+          ||
+          key.toLowerCase() === ('_id');
+      },
+      /**
+       * Execute the "onSubmit" function that was passed into the component and pass
+       * the local typed schema object's "untypedObject" property, which is the untyped
+       * version of the typed schema object.
+       */
       submit() {
         this.onSubmit(this.masterData.untypedObject);
       }
@@ -156,14 +183,14 @@
     /**
      * Set each input specified in the requiredInputs array to have the native HTML attribute "required"
      */
-    updated: function() {
+    updated: function () {
       this.setRequiredInputs();
     }
   }
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/config";
-    @import "../../styles/sass/components/smart/form/smart-form";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/config";
+  @import "../../styles/sass/components/smart/form/smart-form";
 </style>

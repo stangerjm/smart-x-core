@@ -1,41 +1,22 @@
 <template>
-    <div class="block-actionContainer">
-        <template v-if="detailsBtn">
-            <template v-if="openModalDetails">
-                <!--<bit-btn btn-style="details"-->
-                <!--btn-event="modal-open"-->
-                <!--:path="getActionPath('Details', detailsContext)">-->
-                <!--</bit-btn>-->
-            </template>
-            <template v-else>
-                <router-link class="bit-icon-details" :to="getActionPath('Details', detailsContext)"></router-link>
-            </template>
-        </template>
+  <div class="block-actionContainer">
 
-        <template v-if="editBtn">
-            <template v-if="openModalEdit">
-                <!--<bit-btn btn-style="edit"-->
-                <!--btn-event="modal-open"-->
-                <!--:path="getActionPath('Edit', editContext)">-->
-                <!--</bit-btn>-->
-            </template>
-            <template v-else>
-                <router-link class="bit-icon-edit" :to="getActionPath('Edit', editContext)"></router-link>
-            </template>
-        </template>
+    <!-- Render the details button if flagged to show -->
+    <template v-if="detailsBtn">
+      <router-link class="bit-icon-details" :to="getActionPath('Details', detailsContext, itemId)"></router-link>
+    </template>
 
-        <template v-if="deleteBtn">
-            <template v-if="openModalDelete">
-                <!--<bit-btn btn-style="delete"-->
-                <!--btn-event="modal-open"-->
-                <!--:path="getActionPath('Delete', deleteContext)">-->
-                <!--</bit-btn>-->
-            </template>
-            <template v-else>
-                <router-link class="bit-icon-delete" :to="getActionPath('Delete', deleteContext)"></router-link>
-            </template>
-        </template>
-    </div>
+    <!-- Render the edit button if flagged to show -->
+    <template v-if="editBtn">
+      <router-link class="bit-icon-edit" :to="getActionPath('Edit', editContext, itemId)"></router-link>
+    </template>
+
+    <!-- Render the delete button if flagged to show -->
+    <template v-if="deleteBtn">
+      <router-link class="bit-icon-delete" :to="getActionPath('Delete', deleteContext, itemId)"></router-link>
+    </template>
+
+  </div>
 </template>
 
 <script>
@@ -100,37 +81,44 @@
        */
       deleteCtx: {
         type: String
-      },
-      openModalEdit: {
-        type: Boolean,
-        default: false
-      },
-      openModalDelete: {
-        type: Boolean,
-        default: false
-      },
-      openModalDetails: {
-        type: Boolean,
-        default: false
       }
     },
     data() {
       return {
+        /**
+         * The context for the edit button. Will either be the value passed into the "editCtx" prop, or the
+         * value passed into the required "defaultCtx" prop if the former is undefined.
+         */
         editContext: this.editCtx ? this.editCtx : this.defaultCtx,
+        /**
+         * The context for the delete button. Will either be the value passed into the "deleteCtx" prop, or the
+         * value passed into the required "defaultCtx" prop if the former is undefined.
+         */
         deleteContext: this.deleteCtx ? this.deleteCtx : this.defaultCtx,
+        /**
+         * The context for the details button. Will either be the value passed into the "detailsCtx" prop, or the
+         * value passed into the required "defaultCtx" prop if the former is undefined.
+         */
         detailsContext: this.detailsCtx ? this.detailsCtx : this.defaultCtx,
       }
     },
     methods: {
-      getActionPath: function(action, context) {
-        return '/' + context + '/' + action + '/' + this.itemId;
+      /**
+       * Builds a path out of the context, action, and id parameters
+       * @param context
+       * @param action
+       * @param id
+       * @returns {string}
+       */
+      getActionPath: function (context, action, id) {
+        return `/${ context }/${ action }/${ id }`;
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/components/block/actionContainer/block-actionContainer";
-    @import "../../styles/sass/components/bit/icon/bit-icon";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/components/block/actionContainer/block-actionContainer";
+  @import "../../styles/sass/components/bit/icon/bit-icon";
 </style>

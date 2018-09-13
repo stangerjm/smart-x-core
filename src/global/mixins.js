@@ -162,10 +162,17 @@ function getSchemaReductor() {
   return gatherIntoSchemaObject;
 }
 
-function getValue(value) {
-  let jsonDate = parseJsonDate(value);
-  if (jsonDate !== null) {
-    return jsonDate;
+/**
+ * Parses value if needed and returns raw or parsed value.
+ * @param value
+ * @param type
+ * @returns {*}
+ */
+function getValue(value, type) {
+  let parsedValue = parseJsonDate(value);
+
+  if (type === Date.name || parsedValue !== null) {
+    return parsedValue;
   }
 
   return value;

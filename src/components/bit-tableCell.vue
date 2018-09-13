@@ -16,54 +16,63 @@
            :checked="cellValue.value"
            disabled>
 
+    <!-- Render as date if cellValue is a date -->
+    <template v-else-if="cellValue.type === Date.name">
+      {{ cellValue.value | moment(config.dateFormat) }}
+    </template>
+
     <!-- Render value as text if anything else -->
     <template v-else>
-      {{getValue(cellValue.value, cellValue.type)}}
+      {{ cellValue.value }}
     </template>
   </td>
 </template>
 
 <script>
-import { parseJsonDate } from "../global/mixins";
+  import {config} from '../../app.config.js';
 
-export default {
-  name: "bit-table-cell",
-  props: {
-    cellValue: {
-      type: Object,
-      required: true
+  export default {
+    name: "bit-table-cell",
+    props: {
+      /**
+       * The value to be rendered in the cell
+       */
+      cellValue: {
+        type: Object,
+        required: true
+      },
+      /**
+       * The title to be rendered as the inline, mobile title
+       */
+      cellTitle: {
+        type: String,
+        required: true
+      },
+      /**
+       * Flag indicating if the cell should be treated as a table key
+       */
+      isTableKey: {
+        type: Boolean,
+        default: false
+      }
     },
-    cellTitle: {
-      type: String,
-      required: true
+    data() {
+      return {
+        /**
+         * The user-defined application configuration
+         */
+        config: config
+      }
     },
-    isTableKey: {
-      type: Boolean,
-      default: false
-    }
-  },
-  methods: {
-    /**
-     * Returns true if value should be centered in the table.
-     */
-    isCentered(value) {
-      return value === Number.name || value === Boolean.name;
-    },
-    /**
-     * Parses the "cellValue" passed in if needed and returns the parsed or raw value
-     */
-    getValue(cellValue, type) {
-      let parsedValue = parseJsonDate(cellValue);
-
-      if (type === Date.name || parsedValue !== null) {
-        let options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        return parsedValue.toLocaleDateString('en-us', options);
-      } else {
-        return cellValue;
+    methods: {
+      /**
+       * Returns true if value should be centered in the table.
+       */
+      isCentered(value) {
+        return value === Number.name || value === Boolean.name;
       }
     }
   }
-}
 </script>
 
 <style scoped lang="scss">

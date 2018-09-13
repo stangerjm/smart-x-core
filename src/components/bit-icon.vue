@@ -1,6 +1,9 @@
 <template>
-    <span v-if="!isLink" :class="iconClass"></span>
-    <a v-else :class="iconClass" v-bind="$attrs"></a>
+  <!-- Render as link -->
+  <a v-if="isLink" :class="iconClass" v-bind="$attrs"></a>
+
+  <!-- Render as text -->
+  <span v-else :class="iconClass" v-bind="$attrs"></span>
 </template>
 
 <script>
@@ -20,6 +23,9 @@
         type: String,
         required: true
       },
+      /**
+       * Flag indicating that the element rendered should be a link
+       */
       isLink: {
         type: Boolean,
         default: false
@@ -27,6 +33,9 @@
     },
     data: function () {
       return {
+        /**
+         * The class attribute for the icon
+         */
         iconClass: this.getClass(this.iconType)
       }
     },
@@ -49,7 +58,7 @@
   }
 </script>
 <style scoped lang="scss">
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/components/bit/icon/bit-icon";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/components/bit/icon/bit-icon";
 </style>

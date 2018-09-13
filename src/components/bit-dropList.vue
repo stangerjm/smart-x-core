@@ -1,9 +1,13 @@
 <template>
-    <ul class="bit-dropList">
-        <li class="bit-dropList--item" v-for="item in dropItems">
-            <router-link :to="item.linkPath" class="bit-link">{{item.itemTitle}}</router-link>
-        </li>
-    </ul>
+  <ul class="bit-dropList">
+
+    <!-- Render each item in the dropItems array -->
+    <li class="bit-dropList--item" v-for="item in dropItems">
+      <!-- Point a router-link to the item's linkPath -->
+      <router-link :to="item.linkPath" class="bit-link">{{item.itemTitle}}</router-link>
+    </li>
+
+  </ul>
 </template>
 
 <script>
@@ -27,8 +31,8 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/config";
-    @import "../../styles/sass/components/bit/link/bit-link";
-    @import "../../styles/sass/components/bit/dropList/bit-dropList";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/config";
+  @import "../../styles/sass/components/bit/link/bit-link";
+  @import "../../styles/sass/components/bit/dropList/bit-dropList";
 </style>

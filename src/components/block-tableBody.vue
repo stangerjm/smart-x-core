@@ -1,29 +1,29 @@
 <template>
   <tbody>
-    <tr class="smart-table--row" v-for="item in typedData">
-      <!-- Render a cell for each item in the table data -->
-      <bit-table-cell v-for="(key, index) in dataKeys"
-                      :cell-value="item[key]"
-                      :cell-title="key"
-                      :is-table-key="index < 2">
-      </bit-table-cell>
+  <tr class="smart-table--row" v-for="item in typedData">
+    <!-- Render a cell for each item in the table data -->
+    <bit-table-cell v-for="(key, index) in dataKeys"
+                    :cell-value="item[key]"
+                    :cell-title="key"
+                    :is-table-key="index < 2">
+    </bit-table-cell>
 
-      <!-- Action container cell -->
-      <td class="smart-table--cell">
-        <block-action-container
-            :default-ctx="defaultContext"
-            :item-id="getItemId(item).value"
-            :details-btn="allowDetails"
-            :edit-btn="allowEdit"
-            :delete-btn="allowDelete">
-        </block-action-container>
-      </td>
+    <!-- Action container cell -->
+    <td class="smart-table--cell">
+      <block-action-container
+          :default-ctx="defaultContext"
+          :item-id="getItemId(item).value"
+          :details-btn="allowDetails"
+          :edit-btn="allowEdit"
+          :delete-btn="allowDelete">
+      </block-action-container>
+    </td>
 
-      <!-- Expand button (for mobile) -->
-      <td class="smart-table--expand">
-        <bit-btn btn-style="expand" @click.native="expandRecord"></bit-btn>
-      </td>
-    </tr>
+    <!-- Expand button (for mobile) -->
+    <td class="smart-table--expand">
+      <bit-btn btn-style="expand" @click.native="expandRecord"></bit-btn>
+    </td>
+  </tr>
   </tbody>
 </template>
 
@@ -31,7 +31,7 @@
   export default {
     name: "block-table-body",
     components: {
-      BitTableCell: () =>  import('./bit-tableCell'),
+      BitTableCell: () => import('./bit-tableCell'),
       blockActionContainer: () => import('./block-actionContainer')
     },
     props: {
@@ -113,7 +113,7 @@
        * @returns {object}
        */
       findAncestor(el, classSelector) {
-        while ((el = el.parentElement) && !el.classList.contains(classSelector));
+        while ((el = el.parentElement) && !el.classList.contains(classSelector)) ;
         return el;
       },
     }

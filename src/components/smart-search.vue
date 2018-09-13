@@ -1,33 +1,49 @@
 <template>
-    <form class="smart-search">
-        <header class="smart-search--heading">
-            <h2 class="smart-search--title">{{formTitle}}</h2>
-            <router-link class="bit-btn bit-btn-add" :to="{ name: routeName }">Add</router-link>
-            <bit-icon class="smart-search--action" icon-type="search" v-show="isHidden"
-                     @click.native="toggle()"></bit-icon>
-            <bit-icon class="smart-search--action" icon-type="exit" v-show="!isHidden"
-                     @click.native="toggle()"></bit-icon>
-        </header>
-        <div :class="['smart-search--fieldContainer', isHidden ? 'is-hidden' : '']">
-            <div class="smart-search--toggleContainer">
-                <bit-input
-                        class="smart-search--field"
-                        :disabled="isHidden"
-                        input-type="text"
-                        label-text="Find by ID/Name"
-                        input-name="searchField">
-                </bit-input>
-                <bit-input
-                        class="smart-search--field"
-                        :disabled="isHidden"
-                        input-type="number"
-                        label-text="Number of Results Per Page"
-                        input-name="pageNumber">
-                </bit-input>
-                <bit-btn :disabled="isHidden" type="submit" btn-style="search">Search</bit-btn>
-            </div>
-        </div>
-    </form>
+  <form class="smart-search">
+
+    <header class="smart-search--heading">
+      <!-- Search Title -->
+      <h2 class="smart-search--title">{{formTitle}}</h2>
+
+      <!-- Action -->
+      <router-link class="bit-btn bit-btn-add" :to="{ name: routeName }">Add</router-link>
+
+      <!-- Search icon -->
+      <bit-icon class="smart-search--action" icon-type="search" v-show="isHidden"
+                @click.native="toggle()"></bit-icon>
+
+      <!-- Exit icon -->
+      <bit-icon class="smart-search--action" icon-type="exit" v-show="!isHidden"
+                @click.native="toggle()"></bit-icon>
+    </header>
+
+    <!-- Search fields container -->
+    <div :class="['smart-search--fieldContainer', isHidden ? 'is-hidden' : '']">
+      <div class="smart-search--toggleContainer">
+
+        <!-- Fields -->
+        <bit-input
+            class="smart-search--field"
+            :disabled="isHidden"
+            input-type="text"
+            label-text="Find by ID/Name"
+            input-name="searchField">
+        </bit-input>
+        <bit-input
+            class="smart-search--field"
+            :disabled="isHidden"
+            input-type="number"
+            label-text="Number of Results Per Page"
+            input-name="pageNumber">
+        </bit-input>
+
+        <!-- Search button -->
+        <bit-btn :disabled="isHidden" type="submit" btn-style="search">Search</bit-btn>
+
+      </div>
+    </div>
+
+  </form>
 </template>
 
 <script>
@@ -111,7 +127,10 @@
     created: function () {
       window.addEventListener('resize', this.resize);
     },
-    mounted: function() {
+    /**
+     * Resize component when first mounted to ensure full size.
+     */
+    mounted: function () {
       if (this.isExpanded) {
         this.resize();
       }
@@ -120,8 +139,8 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/components/smart/search/smart-search";
-    @import "../../styles/sass/components/bit/btn/bit-btn";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/components/smart/search/smart-search";
+  @import "../../styles/sass/components/bit/btn/bit-btn";
 </style>

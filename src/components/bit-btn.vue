@@ -1,15 +1,19 @@
 <template>
-    <button type="button" :class="btnClass" v-if="!isLink" @click="emitEvent">
-        <slot></slot>
-    </button>
-    <a :class="btnClass" :href="path" v-else>
-        <slot></slot>
-    </a>
+
+  <!-- Render as a link -->
+  <a :class="btnClass" :href="path" v-if="isLink">
+    <!-- @slot Link text -->
+    <slot></slot>
+  </a>
+
+  <!-- Render as a button -->
+  <button type="button" :class="btnClass" v-else>
+    <!-- @slot Button text -->
+    <slot></slot>
+  </button>
 </template>
 
 <script>
-  import { EventBus } from '../global/event-bus';
-
   /**
    * A dynamic button that can be used as an various types of buttons and links.
    * @author James Stanger, Washington State Patrol
@@ -31,16 +35,13 @@
       isLink: {
         type: Boolean,
         default: false
-      },
-      btnEvent: {
-        type: String
-      },
-      path: {
-        type: String
       }
     },
     data() {
       return {
+        /**
+         * Class attribute for the button or link
+         */
         btnClass: 'bit-btn ' + this.getClass(this.btnStyle)
       }
     },
@@ -54,7 +55,7 @@
           return "bit-btn-clickable";
         }
 
-        switch(type) {
+        switch (type) {
           case 'add':
           case 'exit':
           case 'expand':
@@ -64,18 +65,13 @@
           default:
             return 'bit-btn-clickable';
         }
-      },
-      emitEvent: function () {
-        if (this.btnEvent) {
-          EventBus.$emit(this.btnEvent, this.path);
-        }
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/components/bit/btn/bit-btn";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/components/bit/btn/bit-btn";
 </style>

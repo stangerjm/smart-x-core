@@ -1,17 +1,21 @@
 <template>
-    <table class="smart-table" v-if="typedData.length !== 0">
-        <block-table-heading :table-headings="getTableKeys"
-                             :unsearchable-headings="unsearchableHeadings"
-                             :sort-method="sortBy">
-        </block-table-heading>
-        <block-table-body :typed-data="typedData"
-                          :data-keys="getTableKeys"
-                          :default-context="defaultContext"
-                          :allow-details="allowDetails"
-                          :allow-delete="allowDelete"
-                          :allow-edit="allowEdit">
-        </block-table-body>
-    </table>
+  <table class="smart-table" v-if="typedData.length !== 0">
+
+    <!-- Table head -->
+    <block-table-heading :table-headings="getTableKeys"
+                         :unsearchable-headings="unsearchableHeadings"
+                         :sort-method="sortBy">
+    </block-table-heading>
+
+    <!-- Table body -->
+    <block-table-body :typed-data="typedData"
+                      :data-keys="getTableKeys"
+                      :default-context="defaultContext"
+                      :allow-details="allowDetails"
+                      :allow-delete="allowDelete"
+                      :allow-edit="allowEdit">
+    </block-table-body>
+  </table>
 </template>
 
 <script>
@@ -52,7 +56,9 @@
        */
       sortMethod: {
         type: Function,
-        default: function() { return this.localTableData }
+        default: function () {
+          return this.localTableData
+        }
       },
       /**
        * An array of key names that will render each
@@ -95,21 +101,46 @@
       }
     },
     computed: {
+      /**
+       * Retrieves the keys of the first object in the "typedData" local
+       * property, which will act as the headings that should be displayed
+       * on the table.
+       */
       getTableKeys() {
-        if (this.typedData.length !== 0) {
-          return Object.keys(this.typedData[0]).filter(this.isDisplayHeading)
+        if (this.typedData.length > 0) {
+          return Object.keys(
+            this.typedData[0]
+          ).filter(
+            this.isDisplayHeading
+          );
         }
       },
+      /**
+       * Maps each item in the "localTableData" property to an array
+       * that holds a typed schema based off of the object passed into
+       * the "createSchema" method.
+       * @see createSchema
+       */
       typedData() {
-        return this.localTableData.map(function(tableItem) {
+        return this.localTableData.map(function (tableItem) {
           return this.createSchema(tableItem);
         }, this);
       }
     },
     data() {
       return {
+        /**
+         * Local copy of the "tableData" property
+         */
         localTableData: this.tableData,
+        /**
+         * Flag indicating if the table sort should be descending or ascending.
+         * Note: this will change each time a sort is performed.
+         */
         descending: true,
+        /**
+         * The current key the table sort will use as the criteria
+         */
         currentKey: null
       }
     },
@@ -133,6 +164,12 @@
             return true;
         }
       },
+      /**
+       * Calls the sort method passed into the component.
+       * Note: the local property "descending" will be mutated here if
+       *       the current key is equal to the key passed in.
+       * @param key
+       */
       sortBy(key) {
         if (this.currentKey === key) {
           this.descending = !this.descending;
@@ -149,7 +186,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/components/smart/table/smart-table";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/components/smart/table/smart-table";
 </style>

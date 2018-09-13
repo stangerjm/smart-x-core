@@ -1,5 +1,5 @@
 <template>
-    <div class="bit-loading"></div>
+  <div class="bit-loading"></div>
 </template>
 
 <script>
@@ -9,6 +9,6 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/components/bit/loading/bit-loading";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/components/bit/loading/bit-loading";
 </style>

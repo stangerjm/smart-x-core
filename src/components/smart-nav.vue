@@ -1,20 +1,25 @@
 <template>
-    <nav class="smart-nav">
-        <header class="smart-nav--header">
-            <main class="smart-nav--headerMain">
-                <a href="/" class="smart-nav--logo"></a>
-                <h4 class="smart-nav--title">{{navTitle}}</h4>
-            </main>
-            <aside class="smart-nav--headerAside">
-                <span class="smart-nav--userTime">{{usr}} - {{currentDateTime}}</span>
-            </aside>
-        </header>
-        <main class="smart-nav--list">
-            <block-nav-list
-                    :list-items="navItems">
-            </block-nav-list>
-        </main>
-    </nav>
+  <nav class="smart-nav">
+
+    <header class="smart-nav--header">
+
+      <main class="smart-nav--headerMain">
+        <a href="/" class="smart-nav--logo"></a>
+        <h4 class="smart-nav--title">{{navTitle}}</h4>
+      </main>
+
+      <aside class="smart-nav--headerAside">
+        <span class="smart-nav--userTime">{{usr}} - {{currentDateTime}}</span>
+      </aside>
+
+    </header>
+
+    <main class="smart-nav--list">
+      <block-nav-list
+          :list-items="navItems">
+      </block-nav-list>
+    </main>
+  </nav>
 </template>
 
 <script>
@@ -53,6 +58,9 @@
     },
     data() {
       return {
+        /**
+         * Current time and date
+         */
         currentDateTime: null
       }
     },
@@ -106,7 +114,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/components/smart/nav/smart-nav";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/components/smart/nav/smart-nav";
 </style>

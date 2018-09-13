@@ -1,17 +1,28 @@
 <template>
-    <div class="block-navList">
-        <div class="block-navList--expand" @click="isExpanded = !isExpanded">
-            <div class="block-navList--expandLine"></div>
-            <div class="block-navList--expandLine"></div>
-            <div class="block-navList--expandLine"></div>
-        </div>
-        <ul :class="[isExpanded ? 'nav-show' : '', 'block-navList--list']">
-            <li class="block-navList--item" v-for="item in listItems">
-                <router-link :to="item.linkPath" :class="['bit-link', hasSubitems(item) ? 'block-navList--sublistHeading' : '']">{{item.itemTitle}}</router-link>
-                <bit-drop-list v-if="hasSubitems(item)" :drop-items="item.inlineItems"></bit-drop-list>
-            </li>
-        </ul>
+  <div class="block-navList">
+
+    <!-- Mobile expand button -->
+    <div class="block-navList--expand" @click="isExpanded = !isExpanded">
+      <div class="block-navList--expandLine"></div>
+      <div class="block-navList--expandLine"></div>
+      <div class="block-navList--expandLine"></div>
     </div>
+
+    <ul :class="[isExpanded ? 'nav-show' : '', 'block-navList--list']">
+
+      <!-- Render each item in the nav list -->
+      <li class="block-navList--item" v-for="item in listItems">
+        <!-- Render a router link based on the linkPath -->
+        <router-link :to="item.linkPath" :class="['bit-link', item.inlineItems ? 'block-navList--sublistHeading' : '']">
+          {{item.itemTitle}}
+        </router-link>
+
+        <!-- Render sub-items if they exist -->
+        <bit-drop-list v-if="item.inlineItems" :drop-items="item.inlineItems"></bit-drop-list>
+      </li>
+
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -36,20 +47,18 @@
     },
     data: function () {
       return {
+        /**
+         * Flag indicating if nav is expanded
+         */
         isExpanded: false
-      }
-    },
-    methods: {
-      hasSubitems: function(item) {
-        return item.inlineItems;
       }
     }
   }
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/components/bit/link/bit-link";
-    @import "../../styles/sass/components/block/navList/block-navList";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/components/bit/link/bit-link";
+  @import "../../styles/sass/components/block/navList/block-navList";
 </style>

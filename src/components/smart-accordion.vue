@@ -1,15 +1,20 @@
 <template>
-    <section class="smart-accordion">
-        <button :class="['smart-accordion--toggle', isExpanded ? 'is-expanded' : '']" type="button" @click="toggleExpand">{{title}}</button>
-        <article class="smart-accordion--content">
-            <!-- @slot Allows content to be passed into the expanded portion. -->
-            <slot></slot>
-        </article>
-    </section>
+  <section class="smart-accordion">
+    <button :class="['smart-accordion--toggle', isExpanded ? 'is-expanded' : '']"
+            type="button"
+            @click="toggleExpand">
+      {{title}}
+    </button>
+    <article class="smart-accordion--content">
+      <!-- @slot Allows content to be passed into the expanded portion. -->
+      <slot></slot>
+    </article>
+  </section>
 </template>
 
 <script>
-  import {fillCustomEvent} from '../polyfill/polyfill';
+  import { fillCustomEvent } from '../polyfill/polyfill';
+
   fillCustomEvent();
   /**
    * A component that renders a responsive accordion that can contain any HTML content.
@@ -29,9 +34,17 @@
     },
     data() {
       return {
+        /**
+         * Flag indicating if the accordion is expanded
+         */
         isExpanded: false,
-        inputId: 'ac-' + Math.random().toString(36).substr(2, 9),
+        /**
+         * Reference to the accordion's content container element
+         */
         contentContainer: null,
+        /**
+         * Height of the previous rendering of the accordion
+         */
         previousHeight: 0
       }
     },
@@ -74,7 +87,7 @@
         }
 
         //do not update DOM unless the height needs to be updated
-        if(this.previousHeight !== totalHeight) {
+        if (this.previousHeight !== totalHeight) {
           contentContainer.style.height = totalHeight + 'px';
           this.previousHeight = totalHeight;
         }
@@ -102,14 +115,14 @@
     created: function () {
       window.addEventListener('resize', this.handleResize);
     },
-    mounted: function() {
+    mounted: function () {
       this.contentContainer = this.$el.querySelector('.smart-accordion--content');
     }
   }
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/components/smart/accordion/smart-accordion";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/components/smart/accordion/smart-accordion";
 </style>

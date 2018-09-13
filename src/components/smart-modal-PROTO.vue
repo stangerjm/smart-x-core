@@ -1,21 +1,21 @@
 <template>
-    <section class="smart-modal"
-             role="dialog"
-             style="display: none">
-        <div class="smart-modal--content">
-            <header class="smart-modal--head">
-                <button class="smart-modal--close">CLOSE</button>
-                <h2 class="smart-modal--title">{{modalTitle}}</h2>
-            </header>
-            <main class="smart-modal--body">
-              <slot></slot>
-            </main>
-        </div>
-    </section>
+  <section class="smart-modal"
+           role="dialog"
+           style="display: none">
+    <div class="smart-modal--content">
+      <header class="smart-modal--head">
+        <button class="smart-modal--close">CLOSE</button>
+        <h2 class="smart-modal--title">{{modalTitle}}</h2>
+      </header>
+      <main class="smart-modal--body">
+        <slot></slot>
+      </main>
+    </div>
+  </section>
 </template>
 
 <script>
-  import { EventBus } from '../global/event-bus';
+  import {EventBus} from '../global/event-bus';
   import Axios from 'axios';
 
   export default {
@@ -35,7 +35,7 @@
       }
     },
     methods: {
-      open: function() {
+      open: function () {
         let Dialog = this;
 
         this.$el.removeAttribute('aria-hidden');
@@ -43,48 +43,48 @@
 
         this.focusedElBeforeOpen = document.activeElement;
 
-        this.$el.addEventListener('keydown', function(e) {
+        this.$el.addEventListener('keydown', function (e) {
           Dialog._handleKeyDown(e);
         });
 
         this.firstFocusableEl.focus();
       },
-      close: function() {
+      close: function () {
         this.$el.setAttribute('aria-hidden', true);
         this.$el.setAttribute('style', 'display: none');
 
-        if(this.focusedElBeforeOpen) {
+        if (this.focusedElBeforeOpen) {
           this.focusedElBeforeOpen.focus();
         }
 
         EventBus.$emit('modal-closed');
       },
-      _handleKeyDown: function(e) {
+      _handleKeyDown: function (e) {
         let Dialog = this;
         let KEY_TAB = 9;
         let KEY_ESC = 27;
 
         function handleBackwardTab() {
-          if(document.activeElement === Dialog.firstFocusableEl) {
+          if (document.activeElement === Dialog.firstFocusableEl) {
             e.preventDefault();
             Dialog.lastFocusableEl.focus();
           }
         }
 
         function handleForwardTab() {
-          if( document.activeElement === Dialog.lastFocusableEl ) {
+          if (document.activeElement === Dialog.lastFocusableEl) {
             e.preventDefault();
             Dialog.firstFocusableEl.focus();
           }
         }
 
-        switch(e.keyCode) {
+        switch (e.keyCode) {
           case KEY_TAB:
             if (Dialog.focusableEls.length === 1) {
               e.preventDefault();
               break;
             }
-            if( e.shiftKey ) {
+            if (e.shiftKey) {
               handleBackwardTab();
             } else {
               handleForwardTab();
@@ -98,25 +98,25 @@
             break;
         }
       },
-      addEventListeners: function(openDialogSel, closeDialogSel) {
+      addEventListeners: function (openDialogSel, closeDialogSel) {
         let Dialog = this;
 
         let openDialogEls = document.querySelectorAll(openDialogSel);
-        for(let i = 0; i < openDialogEls.length; i++) {
-          openDialogEls[i].addEventListener('click', function() {
+        for (let i = 0; i < openDialogEls.length; i++) {
+          openDialogEls[i].addEventListener('click', function () {
             Dialog.open();
           });
         }
 
         let closeDialogEls = document.querySelectorAll(closeDialogSel);
         for (let i = 0; i < closeDialogEls.length; i++) {
-          closeDialogEls[i].addEventListener('click', function() {
+          closeDialogEls[i].addEventListener('click', function () {
             Dialog.close();
           });
         }
       }
     },
-    mounted: function() {
+    mounted: function () {
       let focusableEls = this.$el.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
       this.focusableEls = Array.prototype.slice.call(focusableEls);
 
@@ -132,12 +132,12 @@
       EventBus.$on('modal-open', (payload) => {
         if (payload) {
           Axios.get(payload)
-               .then(response => {
-                 EventBus.$emit('modal-data-received', {
-                   data: response.data,
-                   path: payload
-                 });
-               });
+            .then(response => {
+              EventBus.$emit('modal-data-received', {
+                data: response.data,
+                path: payload
+              });
+            });
         }
 
         this.open();
@@ -147,7 +147,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../../styles/sass/global/mixins";
-    @import "../../styles/sass/global/variables";
-    @import "../../styles/sass/components/smart/modal/smart-modal";
+  @import "../../styles/sass/global/mixins";
+  @import "../../styles/sass/global/variables";
+  @import "../../styles/sass/components/smart/modal/smart-modal";
 </style>

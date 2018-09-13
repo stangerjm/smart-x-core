@@ -2,7 +2,7 @@
     <div v-if="person">
         <h1>Delete this record?</h1>
         <smart-details :detail-data="person"></smart-details>
-        <button type="button" @click="deleteRecord">Delete</button>
+        <bit-btn @click.native="deleteRecord">Delete</bit-btn>
     </div>
 </template>
 

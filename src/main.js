@@ -14,6 +14,9 @@ Vue.component('bit-input', bitInput);
 Vue.component('bit-icon', bitIcon);
 Vue.component('bit-loading', bitLoading);
 
+//Use Moment library (vue-edition)
+Vue.use(require('vue-moment'));
+
 //Apply base styles to all components
 require('../styles/sass/base/_base.scss');
 
@@ -45,7 +48,6 @@ new Vue({
         smartDetails: () => import('./components/smart-details'),
         smartAccordion: () => import('./components/smart-accordion'),
         smartForm: () => import('./components/smart-form'),
-        smartModal: () => import('./components/smart-modal'),
         stackTableCollapsible: () => import('./components/stack-tableCollapsible'),
         smartTabs: () => import('./components/smart-tabs')
     },
