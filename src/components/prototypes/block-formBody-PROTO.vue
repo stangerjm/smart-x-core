@@ -12,8 +12,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/global/mixins";
+  @import "../../../styles/sass/global/variables";
+  @import "../../../styles/sass/global/mixins";
 
   /// Styles a section of the form. Allows a body to be styled using
   /// .form-section, a heading to be styled using .form-section--heading

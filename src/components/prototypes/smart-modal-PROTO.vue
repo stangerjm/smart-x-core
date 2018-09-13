@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import {EventBus} from '../global/event-bus';
+  import {EventBus} from '../../global/event-bus';
   import Axios from 'axios';
 
   export default {
@@ -147,7 +147,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/mixins";
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/components/smart/modal/smart-modal";
+  @import "../../../styles/sass/global/mixins";
+  @import "../../../styles/sass/global/variables";
+  @import "../../../styles/sass/components/smart/modal/smart-modal";
 </style>
