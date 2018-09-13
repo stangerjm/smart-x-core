@@ -13,8 +13,10 @@
         <input v-if="isObjectId(key)"
                :name="key"
                type="hidden"
+               :key="key"
                v-model="item.value">
         <bit-input class="smart-form--field"
+                   :key="key"
                    v-else-if="isValidField(item, key)"
                    :stack-elements="true"
                    :input-name="key"

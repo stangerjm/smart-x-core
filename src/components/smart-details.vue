@@ -6,10 +6,10 @@
     <div class="smart-details--listContainer">
 
       <!-- Render each column -->
-      <dl v-for="column in detailColumns" class="smart-details--list">
+      <dl v-for="(column, index) in detailColumns" :key="index" class="smart-details--list">
 
         <!-- Render each item in the column -->
-        <div v-for="[key, detail] in column" class="smart-details--detail">
+        <div v-for="[key, detail] in column" :key="key" class="smart-details--detail">
 
           <!-- Render detail title -->
           <dt class="smart-details--detailKey">{{ key | toTitleCase }}</dt>
