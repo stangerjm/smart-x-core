@@ -1,18 +1,18 @@
 export const config = {
   nav:
     [
-      { 'itemTitle': 'Home', 'linkPath': '/' },
-      { 'itemTitle': 'People', 'linkPath': '/person' },
-      { 'itemTitle': 'Region', 'linkPath': '/region' },
-      { 'itemTitle': 'Links', 'linkPath': '#',
+      { 'linkTitle': 'Home', 'linkPath': '/' },
+      { 'linkTitle': 'People', 'linkPath': '/person' },
+      { 'linkTitle': 'Region', 'linkPath': '/region' },
+      { 'linkTitle': 'Links', 'linkPath': '#',
         'inlineItems':
           [
-            { 'itemTitle': 'breathtest', 'linkPath': '#' },
-            { 'itemTitle': 'wsp.wa.gov', 'linkPath': '#' },
-            { 'itemTitle': 'Google', 'linkPath': '#' }
+            { 'linkTitle': 'breathtest', 'linkPath': '#' },
+            { 'linkTitle': 'wsp.wa.gov', 'linkPath': '#' },
+            { 'linkTitle': 'Google', 'linkPath': '#' }
           ]
       },
-      { 'itemTitle': 'Contact', 'linkPath': '#'}
+      { 'linkTitle': 'Contact', 'linkPath': '#'}
     ],
   dateFormat: 'MM-DD-YYYY',
   flatpickrFormat: 'm-d-Y'

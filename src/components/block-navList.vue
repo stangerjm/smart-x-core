@@ -11,10 +11,11 @@
     <ul :class="[isExpanded ? 'nav-show' : '', 'block-navList--list']">
 
       <!-- Render each item in the nav list -->
-      <li class="block-navList--item" v-for="item in listItems">
+      <li class="block-navList--item" v-for="item in listItems" :key="item.linkTitle">
+
         <!-- Render a router link based on the linkPath -->
         <router-link :to="item.linkPath" :class="['bit-link', item.inlineItems ? 'block-navList--sublistHeading' : '']">
-          {{item.itemTitle}}
+          {{item.linkTitle}}
         </router-link>
 
         <!-- Render sub-items if they exist -->

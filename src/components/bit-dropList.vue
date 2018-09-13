@@ -2,9 +2,9 @@
   <ul class="bit-dropList">
 
     <!-- Render each item in the dropItems array -->
-    <li class="bit-dropList--item" v-for="item in dropItems" :key="item.itemTitle">
+    <li class="bit-dropList--item" v-for="item in dropItems" :key="item.linkTitle">
       <!-- Point a router-link to the item's linkPath -->
-      <router-link :to="item.linkPath" class="bit-link">{{item.itemTitle}}</router-link>
+      <router-link :to="item.linkPath" class="bit-link">{{item.linkTitle}}</router-link>
     </li>
 
   </ul>
