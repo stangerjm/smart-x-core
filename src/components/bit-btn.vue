@@ -43,7 +43,13 @@
          * Class attribute for the button or link
          */
         btnClass: `bit-btn ${this.getClass(this.btnStyle)}`,
+        /**
+         * Default class for the button
+         */
         defaultClass: 'bit-btn-clickable',
+        /**
+         * Possible button types
+         */
         buttonTypes: ['add', 'exit', 'expand', 'reset', 'search']
       }
     },
