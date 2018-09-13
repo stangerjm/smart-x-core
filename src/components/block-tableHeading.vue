@@ -3,7 +3,7 @@
   <tr class="smart-table--row smart-table--head">
 
     <!-- Render each heading -->
-    <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in tableHeadings">
+    <th class="smart-table--heading smart-table--sortableHeading" v-for="heading in tableHeadings" :key="heading">
 
       <!-- Render the heading as a sort button if heading is not flagged to be unsearchable -->
       <template v-if="!unsearchableHeadings.includes(heading)">
