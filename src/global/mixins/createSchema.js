@@ -7,8 +7,9 @@ import { parseJsonDate } from './parseJsonDate';
  */
 export function createSchema(schema) {
   let entries = Object.entries(schema);
+  let createSchemaFromEntries = getSchemaReductor();
 
-  return entries.reduce(getSchemaReductor(), {});
+  return entries.reduce(createSchemaFromEntries, {});
 }
 
 /**
@@ -129,7 +130,11 @@ function getValue(value, type) {
  * @returns {string}
  */
 function getType(value) {
-  return Object.getPrototypeOf(Object(value)).constructor.name;
+  return Object.getPrototypeOf(
+      Object(value)
+    )
+    .constructor
+    .name;
 }
 
 /**
@@ -160,7 +165,7 @@ function getDefaultValue(type) {
  * @returns {boolean}
  */
 function isObject(value) {
-  if (!value) {
+  if (value == null) {
     return false;
   }
 
