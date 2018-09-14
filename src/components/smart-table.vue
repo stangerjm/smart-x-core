@@ -125,7 +125,7 @@
         if (this.typedData.length > 0) {
           return this.getItemId(
             this.typedData[0]
-          ) > 0
+          ) != null;
         }
       },
       /**

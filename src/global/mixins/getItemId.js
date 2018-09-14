@@ -11,6 +11,6 @@ export function getItemId(item) {
     return item[idKey].value;
   }
 
-  // return random negative whole number
-  return Math.round(-Math.random() * 100);
+  // return undefined if no valid id is found
+  return undefined;
 }
