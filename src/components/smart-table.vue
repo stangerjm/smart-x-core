@@ -4,7 +4,8 @@
     <!-- Table head -->
     <block-table-heading :table-headings="getTableKeys"
                          :unsearchable-headings="unsearchableHeadings"
-                         :sort-method="sortBy">
+                         :sort-method="sortBy"
+                         :include-action-container="dataHasIdProperty">
     </block-table-heading>
 
     <!-- Table body -->
@@ -13,7 +14,8 @@
                       :default-context="defaultContext"
                       :allow-details="allowDetails"
                       :allow-delete="allowDelete"
-                      :allow-edit="allowEdit">
+                      :allow-edit="allowEdit"
+                      :include-action-container="dataHasIdProperty">
     </block-table-body>
   </table>
 </template>
@@ -113,6 +115,17 @@
           ).filter(
             this.isDisplayHeading
           );
+        }
+      },
+      /**
+       * Looks at the first object in the "typedData" local property
+       * and determines if a valid id can be found
+       */
+      dataHasIdProperty() {
+        if (this.typedData.length > 0) {
+          return this.getItemId(
+            this.typedData[0]
+          ) > 0
         }
       },
       /**

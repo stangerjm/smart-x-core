@@ -6,7 +6,7 @@ import bitLoading from './components/bit-loading';
 import App from './App.vue';
 import store from './store';
 import Router from './router';
-import { toTitleCase, createSchema, getNonReactiveCopy } from './global/mixins';
+import { toTitleCase, createSchema, getNonReactiveCopy, getItemId } from './global/mixins';
 
 //Register base components globally
 Vue.component('bit-btn', bitBtn);
@@ -23,8 +23,9 @@ require('../styles/sass/base/_base.scss');
 //title case, create schema, and get non-reactive copy mixins
 Vue.mixin({
   methods: {
-      createSchema: createSchema,
-      getNonReactiveCopy: getNonReactiveCopy
+    createSchema: createSchema,
+    getNonReactiveCopy: getNonReactiveCopy,
+    getItemId: getItemId
   },
   filters: {
     toTitleCase: toTitleCase

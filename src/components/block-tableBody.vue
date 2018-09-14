@@ -1,6 +1,6 @@
 <template>
   <tbody>
-  <tr class="smart-table--row" v-for="item in typedData" :key="getItemId(item).value">
+  <tr class="smart-table--row" v-for="item in typedData" :key="getItemId(item)">
     <!-- Render a cell for each item in the table data -->
     <bit-table-cell v-for="(key, index) in dataKeys" :key="key"
                     :cell-value="item[key]"
@@ -9,10 +9,10 @@
     </bit-table-cell>
 
     <!-- Action container cell -->
-    <td class="smart-table--cell">
+    <td class="smart-table--cell" v-if="includeActionContainer">
       <block-action-container
           :default-ctx="defaultContext"
-          :item-id="getItemId(item).value"
+          :item-id="getItemId(item)"
           :details-btn="allowDetails"
           :edit-btn="allowEdit"
           :delete-btn="allowDelete">
@@ -78,19 +78,16 @@
       allowDelete: {
         type: Boolean,
         default: true
+      },
+      /**
+       * Flag to optionally include the action container
+       */
+      includeActionContainer: {
+        type: Boolean,
+        default: true
       }
     },
     methods: {
-      /**
-       * Finds the id property of an item and returns it.
-       * @param {object} item
-       * @returns {string | number}
-       */
-      getItemId(item) {
-        let keys = Object.keys(item);
-        let idKey = keys.find(id => id.toLowerCase() === 'id' || id.toLowerCase() === '_id');
-        return item[idKey];
-      },
       /**
        * Expands record on mobile screen.
        * @param event

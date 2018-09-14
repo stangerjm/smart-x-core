@@ -20,8 +20,8 @@
 
     </th>
 
-    <!-- Always include the Actions heading -->
-    <th class="smart-table--heading">Actions</th>
+    <!-- Always include the Actions heading if a valid Id is found -->
+    <th class="smart-table--heading" v-if="includeActionContainer">Actions</th>
   </tr>
   </thead>
 </template>
@@ -50,6 +50,13 @@
       sortMethod: {
         type: Function,
         required: true
+      },
+      /**
+       * Flag to optionally include the action container
+       */
+      includeActionContainer: {
+        type: Boolean,
+        default: true
       }
     }
   }
