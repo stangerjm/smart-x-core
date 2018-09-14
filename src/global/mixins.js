@@ -1,4 +1,4 @@
-export { parseJsonDate } from './mixins/parseJsonDate';
+export { parseDateString } from './mixins/parseDateString';
 export { createSchema } from './mixins/createSchema';
 export { toTitleCase } from './mixins/toTitleCase';
 export { getNonReactiveCopy } from './mixins/getNonReactiveCopy';

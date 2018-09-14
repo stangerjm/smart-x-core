@@ -1,4 +1,4 @@
-import { parseJsonDate } from './parseJsonDate';
+import { parseDateString } from './parseDateString';
 
 /**
  * Takes in an object and returns a typed schema based on the values
@@ -115,10 +115,10 @@ function getSchemaReductor() {
  * @returns {*}
  */
 function getValue(value, type) {
-  let parsedValue = parseJsonDate(value);
-
-  if (type === Date.name || parsedValue != null) {
-    return parsedValue;
+  if (type === 'String'
+      ||
+      getType(value) === 'String') {
+    return parseDateString(value) || value;
   }
 
   return value;

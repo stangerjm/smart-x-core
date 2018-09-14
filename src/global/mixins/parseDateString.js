@@ -2,16 +2,11 @@ import moment from 'moment';
 import { config } from '../../../app.config';
 
 /**
- * Parses a JSON date into a new Date object.
+ * Parses a string date into a new Date object.
  * @param date
  * @returns {Date | undefined}
  */
-export function parseJsonDate(date) {
-  // If parameter is already a date, return
-  if (date instanceof Date) {
-    return date;
-  }
-
+export function parseDateString(date) {
   // Regular expression that matches .NET encoded JSON dates
   let dateRegex = /\/Date\((\d+)(?:-\d+)?\)\//i;
 
