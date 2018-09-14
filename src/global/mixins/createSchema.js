@@ -117,7 +117,7 @@ function getSchemaReductor() {
 function getValue(value, type) {
   let parsedValue = parseJsonDate(value);
 
-  if (type === Date.name || parsedValue !== null) {
+  if (type === Date.name || parsedValue != null) {
     return parsedValue;
   }
 
