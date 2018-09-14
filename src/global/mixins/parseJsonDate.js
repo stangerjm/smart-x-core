@@ -8,7 +8,7 @@ import { config } from '../../../app.config';
  */
 export function parseJsonDate(date) {
   // If parameter is already a date, return
-  if (typeof date === typeof new Date()) {
+  if (date instanceof Date) {
     return date;
   }
 
