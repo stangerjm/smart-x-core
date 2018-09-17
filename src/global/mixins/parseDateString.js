@@ -38,12 +38,14 @@ export function parseDateString(date) {
 
 /**
  * Returns true if the passed in value is a valid date string
- * @param value
+ * @param {string} value
  * @returns {boolean}
  */
 function isValidDateString(value) {
-  // If date string cannot be parsed, return false
-  if (isNaN(Date.parse(value))) {
+  // If value is not a string or a parseable date-string, return false
+  if (typeof value !== 'string'
+      ||
+      Number.isNaN(Date.parse(value))) {
     return false;
   }
 
