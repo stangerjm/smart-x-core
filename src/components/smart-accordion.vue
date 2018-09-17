@@ -41,7 +41,7 @@
         /**
          * Reference to the accordion's content container element
          */
-        contentContainer: null,
+        contentContainer: undefined,
         /**
          * Height of the previous rendering of the accordion
          */

@@ -61,7 +61,7 @@
         /**
          * Current time and date
          */
-        currentDateTime: null
+        currentDateTime: undefined
       }
     },
     methods: {
@@ -70,7 +70,7 @@
        * @param fromDate
        * @returns {string}
        */
-      getTime: function (fromDate = null) {
+      getTime: function (fromDate) {
         let currentTime = fromDate ? fromDate : new Date();
         let year = currentTime.getFullYear().toString().slice(-2);
         let day = this.formatTime(currentTime.getDate());

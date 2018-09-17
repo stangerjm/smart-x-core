@@ -154,7 +154,7 @@
         /**
          * The current key the table sort will use as the criteria
          */
-        currentKey: null
+        currentKey: undefined
       }
     },
     methods: {

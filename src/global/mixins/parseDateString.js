@@ -3,10 +3,14 @@ import { config } from '../../../app.config';
 
 /**
  * Parses a string date into a new Date object.
- * @param date
+ * @param {string} date
  * @returns {Date | undefined}
  */
 export function parseDateString(date) {
+  if (typeof date !== 'string') {
+    return undefined;
+  }
+
   // Regular expression that matches .NET encoded JSON dates
   let dateRegex = /\/Date\((\d+)(?:-\d+)?\)\//i;
 

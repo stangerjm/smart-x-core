@@ -160,7 +160,7 @@
             domInput = this.$el.querySelector('input[name=' + requiredInput + ']');
           }
 
-          if (domInput !== null) {
+          if (domInput != null) {
             domInput.required = true;
           }
         }

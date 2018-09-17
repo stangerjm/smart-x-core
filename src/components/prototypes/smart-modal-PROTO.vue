@@ -27,10 +27,10 @@
     },
     data() {
       return {
-        focusableEls: null,
-        firstFocusableEl: null,
-        lastFocusableEl: null,
-        focusedElBeforeOpen: null,
+        focusableEls: undefined,
+        firstFocusableEl: undefined,
+        lastFocusableEl: undefined,
+        focusedElBeforeOpen: undefined,
         selectData: []
       }
     },
