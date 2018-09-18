@@ -1,3 +1,5 @@
+import { isObject } from './helpers';
+
 /**
  * Returns a non-reactive copy of the passed in object
  * @param originalObj

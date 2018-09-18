@@ -1,4 +1,5 @@
 import { parseDateString } from './parseDateString';
+import { isObject } from './helpers';
 
 /**
  * Takes in an object and returns a typed schema based on the values
@@ -157,17 +158,4 @@ function getDefaultValue(type) {
     case Array:
       return []
   }
-}
-
-/**
- * Determines if the value passed in is an object.
- * @param value
- * @returns {boolean}
- */
-function isObject(value) {
-  if (value == null) {
-    return false;
-  }
-
-  return typeof value === 'object' && value.constructor === Object;
 }
