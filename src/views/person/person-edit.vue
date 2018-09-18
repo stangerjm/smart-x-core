@@ -7,29 +7,28 @@
 </template>
 
 <script>
-  import SmartForm from '../../components/smart-form';
-  import { createNamespacedHelpers } from 'vuex';
+import SmartForm from "../../components/smart-form";
+import { createNamespacedHelpers } from "vuex";
 
-  const { mapGetters, mapActions } = createNamespacedHelpers('people');
+const { mapGetters, mapActions } = createNamespacedHelpers("people");
 
-  export default {
-    name: "person-edit",
-    components: {
-      SmartForm
-    },
-    computed: {
-      ...mapGetters(['getPersonSingle'])
-    },
-    methods: {
-      ...mapActions(['editPerson']),
-      async submit(formData) {
-        await this.editPerson({ person: formData, id: this.$route.params.id});
-        this.$router.push('/person');
-      }
+export default {
+  name: "person-edit",
+  components: {
+    SmartForm
+  },
+  computed: {
+    ...mapGetters(["getPersonSingle"])
+  },
+  methods: {
+    ...mapActions(["editPerson"]),
+    async submit(formData) {
+      await this.editPerson({ person: formData, id: this.$route.params.id });
+      this.$router.push("/person");
     }
   }
+};
 </script>
 
 <style scoped>
-
 </style>

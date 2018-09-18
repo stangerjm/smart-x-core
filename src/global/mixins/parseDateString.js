@@ -1,5 +1,5 @@
-import moment from 'moment';
-import { config } from '../../../app.config';
+import moment from "moment";
+import { config } from "../../../app.config";
 
 /**
  * Parses a string date into a new Date object.
@@ -7,7 +7,7 @@ import { config } from '../../../app.config';
  * @returns {Date | undefined}
  */
 export function parseDateString(date) {
-  if (typeof date !== 'string') {
+  if (typeof date !== "string") {
     return undefined;
   }
 
@@ -15,19 +15,15 @@ export function parseDateString(date) {
   let dateRegex = /\/Date\((\d+)(?:-\d+)?\)\//i;
 
   // If date is earliest possible .NET encoded JSON date, return early date
-  if (date === '/Date(-62135568000000)/') {
-    return new Date('1/1/0001');
+  if (date === "/Date(-62135568000000)/") {
+    return new Date("1/1/0001");
   }
   // If date is any .NET encoded JSON date, return a new date with the value
   else if (dateRegex.test(date)) {
-    return new Date(
-      parseInt(
-        dateRegex.exec(date)[1], 10
-      )
-    );
+    return new Date(parseInt(dateRegex.exec(date)[1], 10));
   }
   // If date is any other valid date, return new date with the value
-  else if(isValidDateString(date)) {
+  else if (isValidDateString(date)) {
     return new Date(date);
   }
   // If date is any other type, return undefined
@@ -43,12 +39,13 @@ export function parseDateString(date) {
  */
 function isValidDateString(value) {
   // If value is not a string or a parseable date-string, return false
-  if (typeof value !== 'string'
-      ||
-      Number.isNaN(Date.parse(value))) {
+  if (typeof value !== "string" || Number.isNaN(Date.parse(value))) {
     return false;
   }
 
   // Return whether or not the date string can be parsed by the 'moment.js' date library
-  return moment(value, moment.ISO_8601, true).isValid() || moment.utc(value, config.dateFormat).isValid();
+  return (
+    moment(value, moment.ISO_8601, true).isValid() ||
+    moment.utc(value, config.dateFormat).isValid()
+  );
 }

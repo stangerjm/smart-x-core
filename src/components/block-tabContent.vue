@@ -6,11 +6,10 @@
 </template>
 
 <script>
-  export default {
-    name: "block-tab-content"
-  }
+export default {
+  name: "block-tab-content"
+};
 </script>
 
 <style scoped>
-
 </style>

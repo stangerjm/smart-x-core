@@ -7,32 +7,31 @@
 </template>
 
 <script>
-  import SmartDetails from '../../components/smart-details';
-  import { createNamespacedHelpers } from 'vuex';
+import SmartDetails from "../../components/smart-details";
+import { createNamespacedHelpers } from "vuex";
 
-  const { mapGetters, mapActions } = createNamespacedHelpers('people');
+const { mapGetters, mapActions } = createNamespacedHelpers("people");
 
-  export default {
-    name: "person-delete",
-    components: {
-      SmartDetails
-    },
-    computed: {
-      ...mapGetters(['getPersonSingle']),
-      person() {
-        return this.getPersonSingle(this.$route.params.id);
-      }
-    },
-    methods: {
-      ...mapActions(['deletePerson']),
-      async deleteRecord() {
-        await this.deletePerson({ id: this.$route.params.id });
-        this.$router.push('/person');
-      }
+export default {
+  name: "person-delete",
+  components: {
+    SmartDetails
+  },
+  computed: {
+    ...mapGetters(["getPersonSingle"]),
+    person() {
+      return this.getPersonSingle(this.$route.params.id);
+    }
+  },
+  methods: {
+    ...mapActions(["deletePerson"]),
+    async deleteRecord() {
+      await this.deletePerson({ id: this.$route.params.id });
+      this.$router.push("/person");
     }
   }
+};
 </script>
 
 <style scoped>
-
 </style>

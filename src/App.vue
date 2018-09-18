@@ -29,34 +29,34 @@
 </template>
 
 <script>
-  import SmartNav from './components/smart-nav';
-  import { config } from '../app.config.js';
-  import SmartSearch from './components/smart-search';
-  import SmartDetails from './components/smart-details';
-  import SmartFooter from './components/smart-footer';
-  import SmartTable from './components/smart-table';
-  import SmartAccordion from './components/smart-accordion';
-  import LayoutGrid from './components/layout-grid';
+import SmartNav from "./components/smart-nav";
+import { config } from "../app.config.js";
+import SmartSearch from "./components/smart-search";
+import SmartDetails from "./components/smart-details";
+import SmartFooter from "./components/smart-footer";
+import SmartTable from "./components/smart-table";
+import SmartAccordion from "./components/smart-accordion";
+import LayoutGrid from "./components/layout-grid";
 
-  export default {
-    name: 'app',
-    components: {
-      SmartNav,
-      SmartSearch,
-      SmartDetails,
-      SmartFooter,
-      SmartTable,
-      SmartAccordion,
-      LayoutGrid
-    },
-    data() {
-      return {
-        nav: config.nav
-      }
-    }
+export default {
+  name: "app",
+  components: {
+    SmartNav,
+    SmartSearch,
+    SmartDetails,
+    SmartFooter,
+    SmartTable,
+    SmartAccordion,
+    LayoutGrid
+  },
+  data() {
+    return {
+      nav: config.nav
+    };
   }
+};
 </script>
 
 <style lang="scss">
-    @import "../styles/sass/base/base";
+@import "../styles/sass/base/base";
 </style>

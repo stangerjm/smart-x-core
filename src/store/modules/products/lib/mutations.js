@@ -1,11 +1,11 @@
 export const increasePrice = state => {
-    state.products.forEach(product => {
-        product.price++;
-    });
+  state.products.forEach(product => {
+    product.price++;
+  });
 };
 
 export const reducePrice = state => {
-    state.products.forEach(product => {
-        product.price -= 1;
-    })
+  state.products.forEach(product => {
+    product.price -= 1;
+  });
 };

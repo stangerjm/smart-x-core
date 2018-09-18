@@ -1,3 +1,5 @@
+import { isObject } from "./helpers";
+
 /**
  * Returns a non-reactive copy of the passed in object
  * @param originalObj
@@ -21,5 +23,5 @@ function createCopy(accumulatorObj, [prop, attribute]) {
       type: attribute.type,
       value: attribute.value
     }
-  }
+  };
 }

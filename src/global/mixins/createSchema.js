@@ -1,4 +1,5 @@
-import { parseDateString } from './parseDateString';
+import { parseDateString } from "./parseDateString";
+import { isObject } from "./helpers";
 
 /**
  * Takes in an object and returns a typed schema based on the values
@@ -38,12 +39,15 @@ function getSchemaReductor() {
       return {
         ...accumulatorObj,
         [key]: typedValue.value
-      }
+      };
     } else {
       return {
         ...accumulatorObj,
-        [key]: Object.entries(typedValue.value).reduce(revertObjectToUntypedModel, {})
-      }
+        [key]: Object.entries(typedValue.value).reduce(
+          revertObjectToUntypedModel,
+          {}
+        )
+      };
     }
   }
 
@@ -53,10 +57,10 @@ function getSchemaReductor() {
    * @returns {object}
    */
   function getRevertableObject(obj) {
-    return Object.defineProperty(obj, 'untypedObject', {
+    return Object.defineProperty(obj, "untypedObject", {
       enumerable: false,
       get() {
-        return revert(obj)
+        return revert(obj);
       }
     });
   }
@@ -69,7 +73,7 @@ function getSchemaReductor() {
    * @returns {object}
    */
   function gatherIntoSchemaObject(accumulatorObj, [key, value]) {
-    if (value == null || key === '__v') {
+    if (value == null || key === "__v") {
       // ignore null values and unwanted keys
       return accumulatorObj;
     }
@@ -82,8 +86,7 @@ function getSchemaReductor() {
           value: Object.entries(value).reduce(gatherIntoSchemaObject, {})
         }
       });
-    }
-    else if (typeof value === 'function') {
+    } else if (typeof value === "function") {
       return getRevertableObject({
         ...accumulatorObj,
         [key]: {
@@ -91,14 +94,11 @@ function getSchemaReductor() {
           value: getDefaultValue(value)
         }
       });
-    }
-    else {
+    } else {
       return getRevertableObject({
         ...accumulatorObj,
         [key]: {
-          type: getType(
-            getValue(value)
-          ),
+          type: getType(getValue(value)),
           value: getValue(value)
         }
       });
@@ -115,9 +115,7 @@ function getSchemaReductor() {
  * @returns {*}
  */
 function getValue(value, type) {
-  if (type === 'String'
-      ||
-      getType(value) === 'String') {
+  if (type === "String" || getType(value) === "String") {
     return parseDateString(value) || value;
   }
 
@@ -130,11 +128,7 @@ function getValue(value, type) {
  * @returns {string}
  */
 function getType(value) {
-  return Object.getPrototypeOf(
-      Object(value)
-    )
-    .constructor
-    .name;
+  return Object.getPrototypeOf(Object(value)).constructor.name;
 }
 
 /**
@@ -143,11 +137,11 @@ function getType(value) {
  * @returns {*}
  */
 function getDefaultValue(type) {
-  switch(type) {
+  switch (type) {
     case Number:
       return null;
     case String:
-      return '';
+      return "";
     case Date:
       return new Date();
     case Object:
@@ -155,19 +149,6 @@ function getDefaultValue(type) {
     case Boolean:
       return false;
     case Array:
-      return []
+      return [];
   }
-}
-
-/**
- * Determines if the value passed in is an object.
- * @param value
- * @returns {boolean}
- */
-function isObject(value) {
-  if (value == null) {
-    return false;
-  }
-
-  return typeof value === 'object' && value.constructor === Object;
 }

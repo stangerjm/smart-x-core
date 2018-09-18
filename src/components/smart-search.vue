@@ -47,100 +47,104 @@
 </template>
 
 <script>
-  /**
-   * A component that renders a mobile oriented search bar.
-   * @author James Stanger, Washington State Patrol
-   * @version 1.0
-   */
-  export default {
-    name: "smart-search",
-    data() {
-      return {
-        /**
-         * Flag indicating that the search is hidden.
-         */
-        isHidden: !this.isExpanded
-      }
-    },
-    props: {
+/**
+ * A component that renders a mobile oriented search bar.
+ * @author James Stanger, Washington State Patrol
+ * @version 1.0
+ */
+export default {
+  name: "smart-search",
+  data() {
+    return {
       /**
-       * Indicates if the search should be expanded
+       * Flag indicating that the search is hidden.
        */
-      isExpanded: {
-        type: Boolean,
-        default: false
-      },
-      /**
-       * Name of the route to navigate to when add button is clicked.
-       */
-      routeName: {
-        type: String,
-        required: true
-      },
-      /**
-       * Corresponds to the native HTML form attribute "method"
-       */
-      method: {
-        type: String,
-        required: true
-      },
-      /**
-       * The title that will display to the right of the search.
-       */
-      formTitle: {
-        type: String,
-        required: true
-      }
-    },
-    methods: {
-      /**
-       * Toggles the search bar visibility.
-       */
-      toggle: function () {
-        if (this.isHidden) {
-          this.isHidden = false;
-          this.resize()
-        } else {
-          this.isHidden = true;
-          this.$el.querySelector('.smart-search--fieldContainer').style.minHeight = 0;
-        }
-      },
-      /**
-       * Event handler for the resize event. Dynamically set the height of the search container, and change
-       * the style of the toggle buttons on smaller screens.
-       */
-      resize: function () {
-        if (!this.isHidden) {
-          let search = this.$el.querySelector('.smart-search--toggleContainer');
-          let fieldContainer = this.$el.querySelector('.smart-search--fieldContainer');
-
-          //do not add search height if screen is less than breakpoint
-          let searchHeight = search.offsetHeight;
-
-          fieldContainer.style.minHeight = searchHeight + 'px';
-        }
-      }
+      isHidden: !this.isExpanded
+    };
+  },
+  props: {
+    /**
+     * Indicates if the search should be expanded
+     */
+    isExpanded: {
+      type: Boolean,
+      default: false
     },
     /**
-     * Sets up an event listener and the above handler for the "resize" event
+     * Name of the route to navigate to when add button is clicked.
      */
-    created: function () {
-      window.addEventListener('resize', this.resize);
+    routeName: {
+      type: String,
+      required: true
     },
     /**
-     * Resize component when first mounted to ensure full size.
+     * Corresponds to the native HTML form attribute "method"
      */
-    mounted: function () {
-      if (this.isExpanded) {
+    method: {
+      type: String,
+      required: true
+    },
+    /**
+     * The title that will display to the right of the search.
+     */
+    formTitle: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    /**
+     * Toggles the search bar visibility.
+     */
+    toggle: function() {
+      if (this.isHidden) {
+        this.isHidden = false;
         this.resize();
+      } else {
+        this.isHidden = true;
+        this.$el.querySelector(
+          ".smart-search--fieldContainer"
+        ).style.minHeight = 0;
+      }
+    },
+    /**
+     * Event handler for the resize event. Dynamically set the height of the search container, and change
+     * the style of the toggle buttons on smaller screens.
+     */
+    resize: function() {
+      if (!this.isHidden) {
+        let search = this.$el.querySelector(".smart-search--toggleContainer");
+        let fieldContainer = this.$el.querySelector(
+          ".smart-search--fieldContainer"
+        );
+
+        //do not add search height if screen is less than breakpoint
+        let searchHeight = search.offsetHeight;
+
+        fieldContainer.style.minHeight = `${searchHeight}px`;
       }
     }
+  },
+  /**
+   * Sets up an event listener and the above handler for the "resize" event
+   */
+  created: function() {
+    window.addEventListener("resize", this.resize);
+  },
+  /**
+   * Resize component when first mounted to ensure full size.
+   */
+  mounted: function() {
+    if (this.isExpanded) {
+      this.resize();
+    }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/mixins";
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/components/smart/search/smart-search";
-  @import "../../styles/sass/components/bit/btn/bit-btn";
+@import "../../styles/sass/global/mixins";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/components/smart/search/smart-search";
+@import "../../styles/sass/components/bit/btn/bit-btn";
 </style>

@@ -7,21 +7,21 @@
 </template>
 
 <script>
-  export default {
-    name: "smart-footer",
-    data() {
-      return {
-        /**
-         * The current year to be displayed in the footer.
-         */
-        currentYear: new Date().getFullYear()
-      }
-    }
+export default {
+  name: "smart-footer",
+  data() {
+    return {
+      /**
+       * The current year to be displayed in the footer.
+       */
+      currentYear: new Date().getFullYear()
+    };
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/config";
-  @import "../../styles/sass/components/smart/footer/smart-footer";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/config";
+@import "../../styles/sass/components/smart/footer/smart-footer";
 </style>

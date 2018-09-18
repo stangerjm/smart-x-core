@@ -18,28 +18,28 @@
 </template>
 
 <script>
-  import SmartTable from './smart-table';
+import SmartTable from "./smart-table";
 
-  export default {
-    name: "smart-tabs",
-    components: {
-      SmartTable
-    },
-    /**
-     * Add active class to the first tab and the corresponding item.
-     */
-    mounted() {
-      let firstItem = this.$el.querySelector('.smart-tabs--item');
-      firstItem.classList.add('smart-tabs--activeItem');
+export default {
+  name: "smart-tabs",
+  components: {
+    SmartTable
+  },
+  /**
+   * Add active class to the first tab and the corresponding item.
+   */
+  mounted() {
+    let firstItem = this.$el.querySelector(".smart-tabs--item");
+    firstItem.classList.add("smart-tabs--activeItem");
 
-      let firstTab = this.$el.querySelector('.smart-tabs--tab');
-      firstTab.classList.add('smart-tabs--activeTab');
-    }
+    let firstTab = this.$el.querySelector(".smart-tabs--tab");
+    firstTab.classList.add("smart-tabs--activeTab");
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/config";
-  @import "../../styles/sass/components/smart/tabs/smart-tabs";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/config";
+@import "../../styles/sass/components/smart/tabs/smart-tabs";
 </style>
