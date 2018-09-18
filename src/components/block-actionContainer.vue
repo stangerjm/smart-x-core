@@ -20,105 +20,105 @@
 </template>
 
 <script>
-  /**
-   * A component that renders an action container to be part of a table or other such structure.
-   * The action container should be linked to a record or item in a table-like structure.
-   * Contains action links that handle details, edit, and delete actions.
-   * @author James Stanger, Washington State Patrol
-   * @version 1.0
-   */
-  export default {
-    name: "block-action-container",
-    props: {
-      /**
-       * Default context for action links. If an action link context is omitted in the data object, this will be used.
-       */
-      defaultCtx: {
-        type: String,
-        required: true
-      },
-      /**
-       * Id of the corresponding item.
-       */
-      itemId: {
-        required: true
-      },
-      /**
-       * Flag to optionally omit the details button.
-       */
-      detailsBtn: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * Flag to optionally omit the edit button.
-       */
-      editBtn: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * Flag to optionally omit the delete button.
-       */
-      deleteBtn: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * Context for the edit button.
-       */
-      editCtx: {
-        type: String
-      },
-      /**
-       * Context for the details button.
-       */
-      detailsCtx: {
-        type: String
-      },
-      /**
-       * Context for the delete button.
-       */
-      deleteCtx: {
-        type: String
-      }
+/**
+ * A component that renders an action container to be part of a table or other such structure.
+ * The action container should be linked to a record or item in a table-like structure.
+ * Contains action links that handle details, edit, and delete actions.
+ * @author James Stanger, Washington State Patrol
+ * @version 1.0
+ */
+export default {
+  name: "block-action-container",
+  props: {
+    /**
+     * Default context for action links. If an action link context is omitted in the data object, this will be used.
+     */
+    defaultCtx: {
+      type: String,
+      required: true
     },
-    data() {
-      return {
-        /**
-         * The context for the edit button. Will either be the value passed into the "editCtx" prop, or the
-         * value passed into the required "defaultCtx" prop if the former is undefined.
-         */
-        editContext: this.editCtx ? this.editCtx : this.defaultCtx,
-        /**
-         * The context for the delete button. Will either be the value passed into the "deleteCtx" prop, or the
-         * value passed into the required "defaultCtx" prop if the former is undefined.
-         */
-        deleteContext: this.deleteCtx ? this.deleteCtx : this.defaultCtx,
-        /**
-         * The context for the details button. Will either be the value passed into the "detailsCtx" prop, or the
-         * value passed into the required "defaultCtx" prop if the former is undefined.
-         */
-        detailsContext: this.detailsCtx ? this.detailsCtx : this.defaultCtx,
-      }
+    /**
+     * Id of the corresponding item.
+     */
+    itemId: {
+      required: true
     },
-    methods: {
+    /**
+     * Flag to optionally omit the details button.
+     */
+    detailsBtn: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Flag to optionally omit the edit button.
+     */
+    editBtn: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Flag to optionally omit the delete button.
+     */
+    deleteBtn: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Context for the edit button.
+     */
+    editCtx: {
+      type: String
+    },
+    /**
+     * Context for the details button.
+     */
+    detailsCtx: {
+      type: String
+    },
+    /**
+     * Context for the delete button.
+     */
+    deleteCtx: {
+      type: String
+    }
+  },
+  data() {
+    return {
       /**
-       * Builds a path out of the context, action, and id parameters
-       * @param context
-       * @param action
-       * @param id
-       * @returns {string}
+       * The context for the edit button. Will either be the value passed into the "editCtx" prop, or the
+       * value passed into the required "defaultCtx" prop if the former is undefined.
        */
-      getActionPath: function (context, action, id) {
-        return `/${ context }/${ action }/${ id }`;
-      }
+      editContext: this.editCtx ? this.editCtx : this.defaultCtx,
+      /**
+       * The context for the delete button. Will either be the value passed into the "deleteCtx" prop, or the
+       * value passed into the required "defaultCtx" prop if the former is undefined.
+       */
+      deleteContext: this.deleteCtx ? this.deleteCtx : this.defaultCtx,
+      /**
+       * The context for the details button. Will either be the value passed into the "detailsCtx" prop, or the
+       * value passed into the required "defaultCtx" prop if the former is undefined.
+       */
+      detailsContext: this.detailsCtx ? this.detailsCtx : this.defaultCtx
+    };
+  },
+  methods: {
+    /**
+     * Builds a path out of the context, action, and id parameters
+     * @param context
+     * @param action
+     * @param id
+     * @returns {string}
+     */
+    getActionPath: function(context, action, id) {
+      return `/${context}/${action}/${id}`;
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/mixins";
-  @import "../../styles/sass/components/block/actionContainer/block-actionContainer";
-  @import "../../styles/sass/components/bit/icon/bit-icon";
+@import "../../styles/sass/global/mixins";
+@import "../../styles/sass/components/block/actionContainer/block-actionContainer";
+@import "../../styles/sass/components/bit/icon/bit-icon";
 </style>

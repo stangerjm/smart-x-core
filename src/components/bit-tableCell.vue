@@ -29,54 +29,54 @@
 </template>
 
 <script>
-  import {config} from '../../app.config.js';
+import { config } from "../../app.config.js";
 
-  export default {
-    name: "bit-table-cell",
-    props: {
-      /**
-       * The value to be rendered in the cell
-       */
-      cellValue: {
-        type: Object,
-        required: true
-      },
-      /**
-       * The title to be rendered as the inline, mobile title
-       */
-      cellTitle: {
-        type: String,
-        required: true
-      },
-      /**
-       * Flag indicating if the cell should be treated as a table key
-       */
-      isTableKey: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  name: "bit-table-cell",
+  props: {
+    /**
+     * The value to be rendered in the cell
+     */
+    cellValue: {
+      type: Object,
+      required: true
     },
-    data() {
-      return {
-        /**
-         * The user-defined application configuration
-         */
-        config: config
-      }
+    /**
+     * The title to be rendered as the inline, mobile title
+     */
+    cellTitle: {
+      type: String,
+      required: true
     },
-    methods: {
+    /**
+     * Flag indicating if the cell should be treated as a table key
+     */
+    isTableKey: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
       /**
-       * Returns true if value should be centered in the table.
+       * The user-defined application configuration
        */
-      isCentered(value) {
-        return value === Number.name || value === Boolean.name;
-      }
+      config: config
+    };
+  },
+  methods: {
+    /**
+     * Returns true if value should be centered in the table.
+     */
+    isCentered(value) {
+      return value === Number.name || value === Boolean.name;
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/mixins";
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/components/smart/table/smart-table";
+@import "../../styles/sass/global/mixins";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/components/smart/table/smart-table";
 </style>

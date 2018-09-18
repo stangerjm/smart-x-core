@@ -28,97 +28,97 @@
 </template>
 
 <script>
-  export default {
-    name: "block-table-body",
-    components: {
-      BitTableCell: () => import('./bit-tableCell'),
-      blockActionContainer: () => import('./block-actionContainer')
+export default {
+  name: "block-table-body",
+  components: {
+    BitTableCell: () => import("./bit-tableCell"),
+    blockActionContainer: () => import("./block-actionContainer")
+  },
+  props: {
+    /**
+     * Typed data to be rendered in the table.
+     * @see {mixin} createSchema
+     */
+    typedData: {
+      type: Array,
+      required: true
     },
-    props: {
-      /**
-       * Typed data to be rendered in the table.
-       * @see {mixin} createSchema
-       */
-      typedData: {
-        type: Array,
-        required: true
-      },
-      /**
-       * Keys to the "typedData" object
-       * @see typedData
-       */
-      dataKeys: {
-        type: Array,
-        required: true
-      },
-      /**
-       * Default context of the action container
-       */
-      defaultContext: {
-        type: String,
-        required: true
-      },
-      /**
-       * Flag to optionally render details button
-       */
-      allowDetails: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * Flag to optionally render edit button
-       */
-      allowEdit: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * Flag to optionally render delete button
-       */
-      allowDelete: {
-        type: Boolean,
-        default: true
-      },
-      /**
-       * Flag to optionally include the action container
-       */
-      includeActionContainer: {
-        type: Boolean,
-        default: true
-      }
+    /**
+     * Keys to the "typedData" object
+     * @see typedData
+     */
+    dataKeys: {
+      type: Array,
+      required: true
     },
-    methods: {
+    /**
+     * Default context of the action container
+     */
+    defaultContext: {
+      type: String,
+      required: true
+    },
+    /**
+     * Flag to optionally render details button
+     */
+    allowDetails: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Flag to optionally render edit button
+     */
+    allowEdit: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Flag to optionally render delete button
+     */
+    allowDelete: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Flag to optionally include the action container
+     */
+    includeActionContainer: {
+      type: Boolean,
+      default: true
+    }
+  },
+  methods: {
+    /**
+     * Expands record on mobile screen.
+     * @param event
+     */
+    expandRecord(event) {
+      let btn = event.target;
+      let row = this.findAncestor(btn, "smart-table--row");
+      row.classList.toggle("record-is-expanded");
       /**
-       * Expands record on mobile screen.
-       * @param event
+       * Emit to parent that a record has been expanded so parent can resize appropriately.
+       * @event recordExpanded
+       * @type null
        */
-      expandRecord(event) {
-        let btn = event.target;
-        let row = this.findAncestor(btn, 'smart-table--row');
-        row.classList.toggle('record-is-expanded');
-        /**
-         * Emit to parent that a record has been expanded so parent can resize appropriately.
-         * @event recordExpanded
-         * @type null
-         */
-        this.$emit('recordExpanded');
-      },
-      /**
-       * Finds the nearest ancestor that contains the specified class attribute.
-       * @param el
-       * @param classSelector
-       * @returns {object}
-       */
-      findAncestor(el, classSelector) {
-        while ((el = el.parentElement) && !el.classList.contains(classSelector)) ;
-        return el;
-      },
+      this.$emit("recordExpanded");
+    },
+    /**
+     * Finds the nearest ancestor that contains the specified class attribute.
+     * @param el
+     * @param classSelector
+     * @returns {object}
+     */
+    findAncestor(el, classSelector) {
+      while ((el = el.parentElement) && !el.classList.contains(classSelector));
+      return el;
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/mixins";
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/components/smart/table/smart-table";
+@import "../../styles/sass/global/mixins";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/components/smart/table/smart-table";
 </style>

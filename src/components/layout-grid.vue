@@ -28,11 +28,11 @@
 </template>
 
 <script>
-  export default {
-    name: "layout-grid"
-  }
+export default {
+  name: "layout-grid"
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/layout/grid/grid";
+@import "../../styles/sass/layout/grid/grid";
 </style>

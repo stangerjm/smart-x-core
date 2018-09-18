@@ -7,22 +7,20 @@ function sortDataBy(data, key, descending) {
     descending = !descending;
   }
 
-  return data
-    .slice()
-    .sort(function(item1, item2) {
-      let itemKey1;
-      let itemKey2;
+  return data.slice().sort(function(item1, item2) {
+    let itemKey1;
+    let itemKey2;
 
-      if (descending) {
-        itemKey1 = item1[key];
-        itemKey2 = item2[key];
-      } else {
-        itemKey1 = item2[key];
-        itemKey2 = item1[key];
-      }
+    if (descending) {
+      itemKey1 = item1[key];
+      itemKey2 = item2[key];
+    } else {
+      itemKey1 = item2[key];
+      itemKey2 = item1[key];
+    }
 
-      return compare(itemKey1, itemKey2);
-    });
+    return compare(itemKey1, itemKey2);
+  });
 }
 
 function isArrayOfNumbers(array, key) {

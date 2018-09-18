@@ -7,32 +7,31 @@
 </template>
 
 <script>
-  import SmartDetails from "../../components/smart-details";
-  import { createNamespacedHelpers } from 'vuex';
+import SmartDetails from "../../components/smart-details";
+import { createNamespacedHelpers } from "vuex";
 
-  const { mapGetters, mapActions } = createNamespacedHelpers('regions');
+const { mapGetters, mapActions } = createNamespacedHelpers("regions");
 
-  export default {
-    name: "region-delete",
-    components: {
-      SmartDetails
-    },
-    computed: {
-      ...mapGetters(['getRegionSingle']),
-      region() {
-        return this.getRegionSingle(this.$route.params.id);
-      }
-    },
-    methods: {
-      ...mapActions(['deleteRegion']),
-      async deleteRecord() {
-        await this.deleteRegion({ id: this.$route.params.id });
-        this.$router.push('/region');
-      }
+export default {
+  name: "region-delete",
+  components: {
+    SmartDetails
+  },
+  computed: {
+    ...mapGetters(["getRegionSingle"]),
+    region() {
+      return this.getRegionSingle(this.$route.params.id);
+    }
+  },
+  methods: {
+    ...mapActions(["deleteRegion"]),
+    async deleteRecord() {
+      await this.deleteRegion({ id: this.$route.params.id });
+      this.$router.push("/region");
     }
   }
+};
 </script>
 
 <style scoped>
-
 </style>

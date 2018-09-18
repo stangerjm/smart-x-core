@@ -11,28 +11,28 @@
 </template>
 
 <script>
-  /**
-   * A component that renders a drop-down list to be part of a navigation.
-   * @author James Stanger, Washington State Patrol
-   * @version 1.0
-   */
-  export default {
-    name: "bit-drop-list",
-    props: {
-      /**
-       * The items to be rendered as part of the drop-down.
-       */
-      dropItems: {
-        type: Array,
-        required: true
-      }
+/**
+ * A component that renders a drop-down list to be part of a navigation.
+ * @author James Stanger, Washington State Patrol
+ * @version 1.0
+ */
+export default {
+  name: "bit-drop-list",
+  props: {
+    /**
+     * The items to be rendered as part of the drop-down.
+     */
+    dropItems: {
+      type: Array,
+      required: true
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/config";
-  @import "../../styles/sass/components/bit/link/bit-link";
-  @import "../../styles/sass/components/bit/dropList/bit-dropList";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/config";
+@import "../../styles/sass/components/bit/link/bit-link";
+@import "../../styles/sass/components/bit/dropList/bit-dropList";
 </style>

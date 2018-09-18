@@ -14,27 +14,23 @@
 </template>
 
 <script>
-  import SmartTable from "../../components/smart-table";
-  import SmartSearch from "../../components/smart-search";
-  import { createNamespacedHelpers } from 'vuex';
+import SmartTable from "../../components/smart-table";
+import SmartSearch from "../../components/smart-search";
+import { createNamespacedHelpers } from "vuex";
 
-  const { mapGetters } = createNamespacedHelpers('regions');
+const { mapGetters } = createNamespacedHelpers("regions");
 
-  export default {
-    components: {
-      SmartSearch,
-      SmartTable
-    },
-    name: "region",
-    computed: {
-      ...mapGetters([
-        'getRegions',
-        'getDataSortedBy'
-      ])
-    }
+export default {
+  components: {
+    SmartSearch,
+    SmartTable
+  },
+  name: "region",
+  computed: {
+    ...mapGetters(["getRegions", "getDataSortedBy"])
   }
+};
 </script>
 
 <style scoped>
-
 </style>

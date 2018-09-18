@@ -27,43 +27,43 @@
 </template>
 
 <script>
-  export default {
-    name: "block-table-heading",
-    props: {
-      /**
-       * List of headings to be rendered
-       */
-      tableHeadings: {
-        type: Array,
-        required: true
-      },
-      /**
-       * List of headings that should not trigger a search
-       */
-      unsearchableHeadings: {
-        type: Array,
-        default: () => []
-      },
-      /**
-       * Method that should be called as a result of clicking a sortable heading
-       */
-      sortMethod: {
-        type: Function,
-        required: true
-      },
-      /**
-       * Flag to optionally include the action container
-       */
-      includeActionContainer: {
-        type: Boolean,
-        default: true
-      }
+export default {
+  name: "block-table-heading",
+  props: {
+    /**
+     * List of headings to be rendered
+     */
+    tableHeadings: {
+      type: Array,
+      required: true
+    },
+    /**
+     * List of headings that should not trigger a search
+     */
+    unsearchableHeadings: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Method that should be called as a result of clicking a sortable heading
+     */
+    sortMethod: {
+      type: Function,
+      required: true
+    },
+    /**
+     * Flag to optionally include the action container
+     */
+    includeActionContainer: {
+      type: Boolean,
+      default: true
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  @import "../../styles/sass/global/mixins";
-  @import "../../styles/sass/global/variables";
-  @import "../../styles/sass/components/smart/table/smart-table";
+@import "../../styles/sass/global/mixins";
+@import "../../styles/sass/global/variables";
+@import "../../styles/sass/components/smart/table/smart-table";
 </style>

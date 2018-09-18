@@ -8,5 +8,5 @@ export function isObject(value) {
     return false;
   }
 
-  return typeof value === 'object' && value.constructor === Object;
+  return typeof value === "object" && value.constructor === Object;
 }

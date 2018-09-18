@@ -5,7 +5,9 @@
  */
 export function getItemId(item) {
   let keys = Object.keys(item);
-  let idKey = keys.find(id => id.toLowerCase() === 'id' || id.toLowerCase() === '_id');
+  let idKey = keys.find(
+    id => id.toLowerCase() === "id" || id.toLowerCase() === "_id"
+  );
 
   if (idKey != null) {
     return item[idKey].value;
