@@ -1,8 +1,4 @@
-export function getSortedData(data, sortKey, descending) {
-  return sortDataBy(data, sortKey, descending);
-}
-
-function sortDataBy(data, key, descending) {
+export function getSortedData(data, key, descending) {
   if (isArrayOfNumbers(data, key)) {
     descending = !descending;
   }
